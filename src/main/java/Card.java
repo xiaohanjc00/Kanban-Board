@@ -1,25 +1,33 @@
-package project;
 
-import java.util.Date;
-import java.util.List;
 
+import java.time.*;
+import java.util.ArrayList;
+
+/*
+* Card object class
+* Cards must contain a title, creator
+* Cards can contain a description, members assigned, a deadline
+*
+*/
 public class Card{
 
 private String title;
 private String description;
-
-
 //to be changed from String to member/user object once class has been implemented
 private final String creator;
-private List<String> members;
+private ArrayList<String> members;
 //private Label label;
+private LocalDateTime deadline;
+private LocalDateTime creationDate;
 
-
-private Date deadline;
-
+/*
+*Create a new Card object
+*Requires a creator and a Title
+*/
 public Card(String creatorIn, String titleIn){
   creator = creatorIn;
   title = titleIn;
+  creationDate = LocalDateTime.now();
 }
 
   public String getTitle() {
@@ -38,7 +46,7 @@ public Card(String creatorIn, String titleIn){
     this.description = description;
   }
 
-  public List<String> getMembers() {
+  public ArrayList<String> getMembers() {
     return members;
   }
 
@@ -46,15 +54,20 @@ public Card(String creatorIn, String titleIn){
     this.members.add(newMember);
   }
 
-  public void removeMember(String member) {
-  this.members.remove(member);
+
+ public void removeMember(String member) {
+   this.members.remove(member);
   }
 
-  public Date getDeadline() {
+  public LocalDateTime getDeadline() {
     return deadline;
   }
 
-  public void setDeadline(Date deadline) {
+  //this method assumes the GUI checks that the date inputted has not alread passed
+  public void setDeadline(LocalDateTime deadline) {
     this.deadline = deadline;
+  }
+  public String getCreator(){
+    return creator;
   }
 }
