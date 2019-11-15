@@ -1,5 +1,6 @@
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
+import java.util.ArrayList;
 
 public class ColumnTest{
     @Test
@@ -9,8 +10,8 @@ public class ColumnTest{
         String role = "Backlog";
         Column newColumn = new Column(name, role);
         assertEquals(name, newColumn.getName());
-        assertEquals(role, newCard.getRole());
-        assertEquals(0, newCard.getCards().size());
+        assertEquals(role, newColumn.getRole());
+        assertEquals(0, newColumn.getCards().size());
     }
     @Test
     //Tests that changing the name of a column does what is expected
@@ -67,7 +68,7 @@ public class ColumnTest{
         ArrayList<Card> shouldBe = new ArrayList<Card>();
         shouldBe.add(c);
         //Check that column only has 1 card and the correct card
-        assertEquals(1, newColumn.getCards().getSize());
+        assertEquals(1, newColumn.getCards().size());
         assertEquals(shouldBe, newColumn.getCards());
     }
     @Test
@@ -83,11 +84,11 @@ public class ColumnTest{
         Card c = new Card("James", "Do This");
         shouldBe.add(c);
         newColumn.addCard(c);
-        assertEquals(shouldBe, newColumn);
+        assertEquals(shouldBe, newColumn.getCards());
         //Check that removing the card and returning the list of cards returns an ArrayList with the card removed (empty)
         newColumn.removeCard(c);
         shouldBe.remove(c);
-        assertEquals(shouldBe, newColumn);
+        assertEquals(shouldBe, newColumn.getCards());
     }
 
 }
