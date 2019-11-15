@@ -84,11 +84,11 @@ public class ColumnTest{
         Card c = new Card("James", "Do This");
         shouldBe.add(c);
         newColumn.addCard(c);
-        assertEquals(shouldBe, newColumn);
+        assertEquals(shouldBe, newColumn.getCards());
         //Check that removing the card and returning the list of cards returns an ArrayList with the card removed (empty)
         newColumn.removeCard(c);
         shouldBe.remove(c);
-        assertEquals(shouldBe, newColumn);
+        assertEquals(shouldBe, newColumn.getCards());
     }
 
 }
