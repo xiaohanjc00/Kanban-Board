@@ -30,6 +30,10 @@ public void setName(String nameIn){
   addToHistory(LocalDateTime.now(), "Changed Board name to" + name);
 }
 
+public String getName(){
+  return name;
+}
+
 public void addColumn(Column col){
   columns.add(col);
   addToHistory(LocalDateTime.now(), "Added column " + col.getName());
@@ -38,6 +42,10 @@ public void addColumn(Column col){
 public void removeColumn(Column col){
   columns.remove(col);
   addToHistory(LocalDateTime.now(), "Removed column " + col.getName());
+}
+
+public ArrayList<Column> getColumns(){
+  return columns;
 }
 
 public void addMember(String member){
