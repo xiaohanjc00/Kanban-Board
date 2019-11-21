@@ -61,7 +61,7 @@ public static void main(String[] args)
                         "ENTER BOARD NAME:", null);
             if(board_name != null)
             {
-             board new_board = new board();
+             boardGUI new_board = new boardGUI();
                 first_frame.getContentPane().removeAll();
                 first_frame.add(head, BorderLayout.PAGE_START);
                 first_frame.add(new_board.generate(), BorderLayout.CENTER);
