@@ -42,7 +42,7 @@ public static void main(String[] args)
     
     /* Adding a basic description of the application */
     JPanel description = new JPanel();
-    description.setBorder(BorderFactory.createMatteBorder(5,5,5,5, Color.black));
+    description.setBorder(BorderFactory.createMatteBorder(0,5,5,5, Color.black));
     JLabel description_label = new JLabel(" ADD BASIC DESCRIPTION ABOUT THE APPLICATION ");
     description.add(description_label);
     description.setMaximumSize(new Dimension(screen_width,400));
@@ -67,7 +67,6 @@ public static void main(String[] args)
                 first_frame.add(new_board.generate(), BorderLayout.CENTER);
                 first_frame.revalidate();
                 first_frame.repaint();
-        
             }
         }
     });
