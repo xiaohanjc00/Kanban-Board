@@ -3,15 +3,15 @@ import java.awt.event.*;
 
 public class CardGui {
 
-    // public Card card;
+    public Card card;
 
-    // public CardGui(Card card) {
-    //     this.card = card;
-    //     makeFrame();
-    // }
+    public CardGui(Card card) {
+        this.card = card;
+        makeFrame();
+    }
 
-    // public void makeFrame() {
-    public static void main(String[] args) {
+    public void makeFrame() {
+    // public static void main(String[] args) {
         JFrame f=new JFrame();//creating instance of JFrame
 
         JButton closeWindowBtn = new JButton("X Close");
