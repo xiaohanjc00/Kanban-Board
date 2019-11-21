@@ -47,13 +47,11 @@ public class ColumnGui {
     Delete cards from the column
     */
     public void deleteCard(String cardName){
-
     }
 
     /*
     Edit cards from the column
     */
     public void editCard(String cardName){
-
     }
 }
