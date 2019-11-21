@@ -21,13 +21,17 @@ public Board(String nameIn){
     members = new ArrayList<String>();
 }
 
-public void addToHistory(LocalDateTime time, String data){
-  history.put(time, data);
+public void addToHistory(String data){
+  history.put(LocalDateTime.now(), data);
+}
+
+public HashMap<LocalDateTime, String> getLog(){
+  return history;
 }
 
 public void setName(String nameIn){
   name = nameIn;
-  addToHistory(LocalDateTime.now(), "Changed Board name to" + name);
+  addToHistory("Changed Board name to" + name);
 }
 
 public String getName(){
@@ -36,12 +40,12 @@ public String getName(){
 
 public void addColumn(Column col){
   columns.add(col);
-  addToHistory(LocalDateTime.now(), "Added column " + col.getName());
+  addToHistory("Added column " + col.getName());
 }
 
 public void removeColumn(Column col){
   columns.remove(col);
-  addToHistory(LocalDateTime.now(), "Removed column " + col.getName());
+  addToHistory("Removed column " + col.getName());
 }
 
 public ArrayList<Column> getColumns(){
@@ -50,12 +54,16 @@ public ArrayList<Column> getColumns(){
 
 public void addMember(String member){
   members.add(member);
-  addToHistory(LocalDateTime.now(), "Added Member " + member);
+  addToHistory("Added Member " + member);
 }
 
 public void removeMember(String member){
   members.remove(member);
-  addToHistory(LocalDateTime.now(), "Removed Member " + member);
+  addToHistory("Removed Member " + member);
+}
+
+public ArrayList<String> getMembers(){
+  return members;
 }
 
 }

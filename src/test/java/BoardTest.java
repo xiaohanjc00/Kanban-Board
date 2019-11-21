@@ -13,7 +13,7 @@ public class BoardTest{
   public void boardCreationTest() {
     String title = "My first board";
     Board newBoard = new Board(title);
-    assertEquals(title, newCard.getName());
+    assertEquals(title, newBoard.getName());
   }
 
   @Test
@@ -22,7 +22,7 @@ public class BoardTest{
     Board newBoard = new Board(title);
     title = "Edited";
     newBoard.setName(title);
-    assertEquals(title, newCard.getName());
+    assertEquals(title, newBoard.getName());
   }
 
   // @Test
