@@ -44,7 +44,7 @@ public  class boardGUI
     c.weightx = 0.01;
     c.weighty = 0.01;   
     activity.add(head,c);
-    
+
     /* JPanel for Columns */
     
     JPanel work_area = new JPanel();
