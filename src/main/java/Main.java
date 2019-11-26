@@ -5,11 +5,12 @@ import java.awt.*;
 
 public class Main  {
     static String board_name = "";
+    static JFrame first_frame;
 public static void main(String[] args)
 {
-    
+   JPanel first_panel = new JPanel();
     String app_name = "APPLICATION_NAME";
-    JFrame first_frame = new JFrame();
+     first_frame = new JFrame();
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     int screen_width = (int)screenSize.getWidth();
     BorderLayout base = new BorderLayout(10,10);
@@ -21,6 +22,21 @@ public static void main(String[] args)
     head.setLayout(new BoxLayout(head, BoxLayout.X_AXIS));
     JLabel head_lb = new JLabel(app_name);
     
+    /*Home Button*/
+    JButton home_b = new JButton(" HOME ");
+    home_b.addActionListener(new ActionListener()
+          {
+            public void actionPerformed(ActionEvent e){
+             first_frame.getContentPane().removeAll();
+             first_panel.setLayout(base);
+             first_panel.add(head, BorderLayout.PAGE_START);
+             first_frame.add(first_panel);
+             first_frame.revalidate();
+             first_frame.repaint();
+             }                
+        });
+    
+    head.add(home_b);
     head.add(Box.createHorizontalGlue());
     head.add(head_lb);
     head.add(Box.createHorizontalGlue());
@@ -37,7 +53,7 @@ public static void main(String[] args)
     head.add(close_b);
     
     /* Setting the body of the homepage */
-    JPanel body = new JPanel();
+     JPanel body = new JPanel();
     body.setLayout(new BoxLayout(body,BoxLayout.Y_AXIS));
     
     /* Adding a basic description of the application */
@@ -84,18 +100,15 @@ public static void main(String[] args)
     body.add(list_boards);
     
     //Setting up tHe first page
-    first_frame.setLayout(base);
-    first_frame.add(head, BorderLayout.PAGE_START);
-    first_frame.add(body, BorderLayout.CENTER);
+    
+    first_panel.setLayout(base);
+    first_panel.add(head, BorderLayout.PAGE_START);
+    first_panel.add(body, BorderLayout.CENTER);
+    first_frame.add(first_panel);
     first_frame.setSize(screenSize.width, screenSize.height);
+    
     first_frame.setVisible(true);
+    
 }
 }
 
-/*
-public class Main{
-  public static void main(String[] args){
-    System.out.println("Hello World!");
-  }
-}
-*/

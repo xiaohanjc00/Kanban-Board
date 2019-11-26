@@ -10,6 +10,7 @@ public  class boardGUI
    static int last = -1; // counter to keep track of the last position for lists
    static JPanel col_n; // JPanel to add new column or list
     String b_name ;
+    String col_name;
     public boardGUI(String name)
     {
         b_name = name;
@@ -91,7 +92,9 @@ public  class boardGUI
 
     public void actionPerformed(ActionEvent e) {
         last++;
-    Column column = new Column("TDB Column name", "TBD Column role");
+        col_name = JOptionPane.showInputDialog(Main.first_frame,
+                        "ENTER COLUMN NAME:", null);
+    Column column = new Column(col_name, "TBD Column role");
     board.addColumn(column);
     col_n = new JPanel();
 
