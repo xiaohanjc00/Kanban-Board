@@ -9,10 +9,15 @@ public  class boardGUI
 {
    static int last = -1; // counter to keep track of the last position for lists
    static JPanel col_n; // JPanel to add new column or list
+    String b_name ;
+    public boardGUI(String name)
+    {
+        b_name = name;
+    }
     public  JPanel generate()
 {
     //add an input before the creation in the Homepage that would give us the name of the board
-    Board board = new Board("TBD");
+    Board board = new Board(b_name);
 
     JPanel f = new JPanel();
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -55,8 +60,8 @@ public  class boardGUI
     c.weightx = 0.01;
     c.weighty = 0.01;
     activity.add(head,c);
-<<<<<<< HEAD
-=======
+
+
     int i=1;
     for(Object key : board.getLog().keySet()){
       c.gridy = i;
@@ -64,8 +69,6 @@ public  class boardGUI
       activity.add(thing, c);
       i++;
     }
->>>>>>> e3ccc2ad803780d920c432eb7410380292a2a8e9
-
 
     /* JPanel for Columns */    JPanel work_area = new JPanel();
     work_area.setLayout(new BorderLayout());
