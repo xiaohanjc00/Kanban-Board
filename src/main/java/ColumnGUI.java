@@ -2,13 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 
-public class ColumnGui {
+public class ColumnGUI {
 
     private String name;
     private Column column;
     private JPanel panel;
    
-    public ColumnGui(String name) {
+    public ColumnGUI(String name) {
         this.name = name;
         column = new Column(name,name);
         generatePanel();
@@ -19,7 +19,6 @@ public class ColumnGui {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         JLabel nameLabel = new JLabel(name);
         panel.add(nameLabel);
-        
         createCards(panel);
 
         return panel;
@@ -29,16 +28,16 @@ public class ColumnGui {
     Create Buttons for each card
     */
     public void createCards(JPanel panel){
-        ArrayList<CardGui> arrayOfCards = column.getCards();
+        ArrayList<Card> arrayOfCards = column.getCards();
         for (int i = 0; i < column.getCards().size(); i++) {
-            CardGui newCard = arrayOfCards.get(i);
+            CardGUI newCard = arrayOfCards.get(i);
             panel.add(newCard);
         }
     }
     /*
     Create new cards for the column
     */
-    public void addCard(CardGui newCard){
+    public void addCard(CardGUI newCard){
         column.addCard(newCard);
         panel.add(newCard);
     }

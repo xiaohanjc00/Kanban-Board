@@ -96,7 +96,7 @@ public  class boardGUI
                         "ENTER COLUMN NAME:", null);
     Column column = new Column(col_name, "TBD Column role");
     board.addColumn(column);
-    col_n = new JPanel();
+    col_n = new ColumnGUI(col_name);
 
     col_n.setBorder(BorderFactory.createLineBorder(Color.black));
     JLabel tt = new JLabel(column.getName());
