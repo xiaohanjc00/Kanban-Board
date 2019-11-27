@@ -2,7 +2,7 @@ import java.util.ArrayList;
 public class Column {
     private String name;
     private String role;
-    private ArrayList<CardGui> cards;
+    private ArrayList<Card> cards;
 
     /*
     Constructor for making a new column
@@ -10,7 +10,7 @@ public class Column {
     public Column(String nameIn, String roleIn){
         name = nameIn;
         role = roleIn;
-        cards =  new ArrayList<CardGui>();
+        cards =  new ArrayList<Card>();
     }
     /*
     Return the name of a column
@@ -27,7 +27,7 @@ public class Column {
     /*
     Returns the array list which holds all the cards to be displayed in the column
      */
-    public ArrayList<CardGui> getCards(){
+    public ArrayList<Card> getCards(){
         return cards;
     }
 
@@ -46,14 +46,14 @@ public class Column {
     /*
     Add cards to a column
      */
-    public void addCard(CardGui newCard){
+    public void addCard(Card newCard){
         cards.add(newCard);
     }
 
     /*
     Remove cards from a column
      */
-    public void removeCard(CardGui newCard){
+    public void removeCard(Card newCard){
         cards.remove(newCard);
     }
 }
