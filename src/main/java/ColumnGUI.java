@@ -18,12 +18,21 @@ public class ColumnGUI {
     public JPanel generatePanel() {
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        JLabel nameLabel = new JLabel(name);
-        panel.add(nameLabel);
+        addTitle();
         loadCards();
         addButton();
         return panel;
     }
+
+   public void addTitle()
+   {
+       JLabel nameLabel = new JLabel(name);
+        panel.add(nameLabel);
+   }
+    
+    /*
+     Add Button to create cards
+    */
 
     public void addButton() {
          JButton add_card = new JButton("ADD NEW CARD");
@@ -53,6 +62,7 @@ public class ColumnGUI {
             card_in_col = new JPanel();
             card_in_col.setLayout(new BorderLayout());
             JLabel card_title = new JLabel(arrayOfCards.get(i).getTitle());
+            
              
             for(String member:arrayOfCards.get(i).getMembers() )
             {
@@ -79,6 +89,7 @@ public class ColumnGUI {
     public void addCard(Card newCard){
         column.addCard(newCard);
         panel.removeAll();
+        addTitle();
         loadCards();
         addButton();
         panel.revalidate();
