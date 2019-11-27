@@ -96,11 +96,9 @@ public  class boardGUI
                         "ENTER COLUMN NAME:", null);
     Column column = new Column(col_name, "TBD Column role");
     board.addColumn(column);
-    col_n = new ColumnGUI(col_name);
-
+    ColumnGUI col_obj= new ColumnGUI(col_name);
+    col_n = col_obj.generatePanel();
     col_n.setBorder(BorderFactory.createLineBorder(Color.black));
-    JLabel tt = new JLabel(column.getName());
-    col_n.add(tt);
     c3.anchor =  GridBagConstraints.NORTHWEST;
     c3.gridx = last;
     c3.gridy = 0;

@@ -27,6 +27,7 @@ private LocalDateTime creationDate;
 public Card(String creatorIn, String titleIn){
   creator = creatorIn;
   title = titleIn;
+   members = new ArrayList<String>();
   creationDate = LocalDateTime.now();
 }
 

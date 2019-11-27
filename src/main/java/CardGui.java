@@ -16,7 +16,10 @@ public class CardGUI {
 
         JButton closeWindowBtn = new JButton("X Close");
         closeWindowBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) { System.exit(0); }
+            public void actionPerformed(ActionEvent e) { 
+                f.setVisible(false);
+                f.dispose();
+            }
         });
         //JLabel cardName = new JLabel(card.getTitle());
         JLabel cardName = new JLabel("Dummy");

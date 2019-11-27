@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
+import java.awt.event.*;
 
 public class ColumnGUI {
 
@@ -11,7 +12,7 @@ public class ColumnGUI {
     public ColumnGUI(String name) {
         this.name = name;
         column = new Column(name,name);
-        generatePanel();
+        
     }
 
     public JPanel generatePanel() {
@@ -19,40 +20,76 @@ public class ColumnGUI {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         JLabel nameLabel = new JLabel(name);
         panel.add(nameLabel);
-        createCards(panel);
-
+        loadCards();
+        addButton();
         return panel;
     }
 
+    public void addButton() {
+         JButton add_card = new JButton("ADD NEW CARD");
+        add_card.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+               String card_name =  JOptionPane.showInputDialog(Main.first_frame,
+                        "ENTER CARD TITLE:", null);
+                addCard(new Card("", card_name));
+            }
+        });
+        panel.add(add_card);
+    }
+    
     /*
-    Create Buttons for each card
+     Load all cards into a column
     */
-    public void createCards(JPanel panel){
+    public void loadCards(){
+        JPanel card_in_col;
+        
+        String members ="";
         ArrayList<Card> arrayOfCards = column.getCards();
-        for (int i = 0; i < column.getCards().size(); i++) {
-            CardGUI newCard = arrayOfCards.get(i);
-            panel.add(newCard);
+        
+        for(int i = 0; i<arrayOfCards.size(); i++)
+        {
+            final Card current_card = arrayOfCards.get(i);
+            card_in_col = new JPanel();
+            card_in_col.setLayout(new BorderLayout());
+            JLabel card_title = new JLabel(arrayOfCards.get(i).getTitle());
+             
+            for(String member:arrayOfCards.get(i).getMembers() )
+            {
+                members  = members + member + " ";
+            }
+            
+            JLabel card_members = new JLabel(members);
+            JButton view_card = new JButton("View");
+            view_card.addActionListener(new ActionListener() {
+             public void actionPerformed(ActionEvent e) {
+             CardGUI open_card = new CardGUI(current_card);
+              }
+            });
+            card_in_col.add(card_title, BorderLayout.PAGE_START);
+            card_in_col.add(card_members, BorderLayout.CENTER);
+            card_in_col.add(view_card, BorderLayout.LINE_END);
+            card_in_col.setBorder(BorderFactory.createLineBorder(Color.black));
+            panel.add(card_in_col);
         }
     }
     /*
     Create new cards for the column
     */
-    public void addCard(CardGUI newCard){
+    public void addCard(Card newCard){
         column.addCard(newCard);
-        panel.add(newCard);
+        panel.removeAll();
+        loadCards();
+        addButton();
+        panel.revalidate();
     }
 
     /*
     Delete cards from the column
     */
     public void deleteCard(String cardName){
-
+     
     }
 
-    /*
-    Edit cards from the column
-    */
-    public void editCard(String cardName){
-
-    }
+   
 }
