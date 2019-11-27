@@ -3,21 +3,21 @@ import java.awt.event.*;
 
 public class CardGui {
 
-    public Card card;
+    // public Card card;
 
-    public CardGui(Card card) {
-        this.card = card;
-        makeFrame();
-    }
+    // public CardGui(Card card) {
+    //     this.card = card;
+    //     makeFrame();
+    // }
 
-    public void makeFrame() {
-    // public static void main(String[] args) {
-        JFrame f=new JFrame();//creating instance of JFrame
+    // public void makeFrame() {
+    public static void main(String[] args) {
+        JFrame f=new JFrame();
 
         JButton closeWindowBtn = new JButton("X Close");
         closeWindowBtn.addActionListener(new ActionListener() {
-                               public void actionPerformed(ActionEvent e) { System.exit(0); }
-                           });
+            public void actionPerformed(ActionEvent e) { System.exit(0); }
+        });
         //JLabel cardName = new JLabel(card.getTitle());
         JLabel cardName = new JLabel("Dummy");
         String members = "Members: ";
