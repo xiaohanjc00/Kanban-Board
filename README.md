@@ -1,2 +1,7 @@
 # Team-Canary-Agile-Group-Project
-SEG
+
+Shivam Agarwal
+Scott Anderson
+Xiao - Han (Xiaohan) Jiang Chen
+Alan Mahmoud
+Ka Wang (Gavin) Sin
