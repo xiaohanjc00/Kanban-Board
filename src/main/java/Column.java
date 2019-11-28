@@ -3,6 +3,7 @@ public class Column {
     private String name;
     private String role;
     private ArrayList<Card> cards;
+    private int nextId;
 
     /*
     Constructor for making a new column
@@ -11,6 +12,7 @@ public class Column {
         name = nameIn;
         role = roleIn;
         cards =  new ArrayList<Card>();
+        nextId = 0;
     }
     /*
     Return the name of a column
@@ -46,8 +48,10 @@ public class Column {
     /*
     Add cards to a column
      */
-    public void addCard(Card newCard){
+    public void addCard(String creator, String cardName){
+        Card newCard = new Card(creator, cardName, nextId);
         cards.add(newCard);
+        nextId++;
     }
 
     /*
