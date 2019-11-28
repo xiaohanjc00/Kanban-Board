@@ -90,7 +90,7 @@ public  class boardGUI
 
     // Adding button to create list
 
-     JButton add_col = new JButton(" Create a new List ");
+     JButton add_col = new JButton(" CREATE A NEW COLUMN: ");
     add_col.addActionListener(new ActionListener() {
 
     public void actionPerformed(ActionEvent e) {
