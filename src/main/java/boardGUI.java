@@ -11,15 +11,18 @@ public  class boardGUI
    static JPanel col_n; // JPanel to add new column or list
     String b_name ;
     String col_name;
-    public boardGUI(String name)
+    Board board; //
+    public boardGUI(String name, Board b)
     {
         b_name = name;
+        board = b;
     }
     public  JPanel generate()
 {
     //add an input before the creation in the Homepage that would give us the name of the board
-    Board board = new Board(b_name);
-
+    //board = new Board(b_name);
+    //BoardList boardlist = new BoardList();
+    //boardlist.addBoard(board);
     JPanel f = new JPanel();
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     BorderLayout lay = new BorderLayout();
