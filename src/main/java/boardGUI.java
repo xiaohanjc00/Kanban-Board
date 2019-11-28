@@ -5,7 +5,7 @@ import java.awt.event.*;
 import java.time.*;
 import java.util.*;
 
-public  class boardGUI
+public class boardGUI
 {
    static int last = -1; // counter to keep track of the last position for lists
    static JPanel col_n;// JPanel to add new column or list
