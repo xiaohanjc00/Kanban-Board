@@ -15,19 +15,23 @@ private String title;
 private String description;
 //to be changed from String to member/user object once class has been implemented
 private final String creator;
+private int id;
 private ArrayList<String> members;
 //private Label label;
 private LocalDateTime deadline;
 private LocalDateTime creationDate;
+private int storyPoint;
+
 
 /*
 *Create a new Card object
 *Requires a creator and a Title
 */
-public Card(String creatorIn, String titleIn){
+public Card(String creatorIn, String titleIn, int idIn){
   creator = creatorIn;
   title = titleIn;
-   members = new ArrayList<String>();
+  id = idIn;
+  members = new ArrayList<String>();
   creationDate = LocalDateTime.now();
 }
 
@@ -45,6 +49,10 @@ public Card(String creatorIn, String titleIn){
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public String getId() {
+    return String.valueOf(id);
   }
 
   public ArrayList<String> getMembers() {
@@ -71,4 +79,13 @@ public Card(String creatorIn, String titleIn){
   public String getCreator(){
     return creator;
   }
+
+  public void setStoryPoint(int point) {
+    this.storyPoint = point;
+  }
+
+  public int getStoryPoint() {
+    return storyPoint;
+  }
+
 }
