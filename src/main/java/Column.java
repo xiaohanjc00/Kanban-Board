@@ -12,32 +12,48 @@ public class Column {
         role = roleIn;
         cards =  new ArrayList<Card>();
     }
-
+    /*
+    Return the name of a column
+     */
     public String getName(){
         return name;
     }
-
+    /*
+    Return the role of the column
+     */
     public String getRole(){
         return role;
     }
-
+    /*
+    Returns the array list which holds all the cards to be displayed in the column
+     */
     public ArrayList<Card> getCards(){
         return cards;
     }
 
+    /*
+    Change the name of a column
+     */
     public void setName(String nameIn){
         name = nameIn;
     }
-
+    /*
+    Change the role of a column
+     */
     public void setRole(String roleIn){
         role = roleIn;
     }
-
-    public void addCard(Card c){
-        cards.add(c);
+    /*
+    Add cards to a column
+     */
+    public void addCard(Card newCard){
+        cards.add(newCard);
     }
 
-    public void removeCard(Card c){
-        cards.remove(c);
+    /*
+    Remove cards from a column
+     */
+    public void removeCard(Card newCard){
+        cards.remove(newCard);
     }
 }

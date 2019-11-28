@@ -1,22 +1,25 @@
 import javax.swing.*;
 import java.awt.event.*;
 
-public class CardGui {
+public class CardGUI {
 
-    // public Card card;
+     public Card card;
 
-    // public CardGui(Card card) {
-    //     this.card = card;
-    //     makeFrame();
-    // }
+     public CardGUI(Card card) {
+       this.card = card;
+      makeFrame();
+     }
 
-    // public void makeFrame() {
-    public static void main(String[] args) {
+     public void makeFrame() {
+    //public static void main(String[] args) {
         JFrame f=new JFrame();
 
         JButton closeWindowBtn = new JButton("X Close");
         closeWindowBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) { System.exit(0); }
+            public void actionPerformed(ActionEvent e) { 
+                f.setVisible(false);
+                f.dispose();
+            }
         });
         //JLabel cardName = new JLabel(card.getTitle());
         JLabel cardName = new JLabel("Dummy");
