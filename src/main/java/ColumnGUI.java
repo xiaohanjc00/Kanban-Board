@@ -48,7 +48,7 @@ public class ColumnGUI {
             {
                String card_name =  JOptionPane.showInputDialog(Main.first_frame,
                         "ENTER CARD TITLE:", null);
-                addCard(new Card("", card_name));
+                addCard("", card_name);
             }
         });
         panel.add(add_card);
@@ -93,8 +93,8 @@ public class ColumnGUI {
     /*
     Create new cards for the column
     */
-    public void addCard(Card newCard){
-        column.addCard(newCard);
+    public void addCard(String creator, String cardName){
+        column.addCard(creator, cardName);
         panel.removeAll();
         addTitle();
         loadCards();
