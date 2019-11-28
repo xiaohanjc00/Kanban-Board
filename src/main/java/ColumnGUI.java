@@ -8,11 +8,12 @@ public class ColumnGUI {
     private String name;
     private Column column;
     private JPanel panel;
-   
-    public ColumnGUI(String name) {
+    private String role;
+    
+    public ColumnGUI(String name, String role) {
         this.name = name;
-        column = new Column(name,name);
-        
+        this.role = role;
+        column = new Column(name, role);   
     }
 
     public JPanel generatePanel() {
@@ -26,8 +27,14 @@ public class ColumnGUI {
 
    public void addTitle()
    {
-       JLabel nameLabel = new JLabel(name);
-        panel.add(nameLabel);
+       JPanel top = new JPanel();
+       top.setLayout(new BoxLayout(top,BoxLayout.X_AXIS));
+       JLabel nameLabel = new JLabel("NAME: " + name);
+        top.add(nameLabel);
+       top.add(Box.createHorizontalGlue());
+       JLabel roleLabel = new JLabel("ROLE: "+ role);
+       top.add(roleLabel);
+       panel.add(top);
    }
     
     /*
@@ -94,7 +101,6 @@ public class ColumnGUI {
         addButton();
         panel.revalidate();
     }
-
     /*
     Delete cards from the column
     */

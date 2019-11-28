@@ -3,24 +3,30 @@ import javax.swing.JComponent.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.time.*;
-import java.util.HashMap;
+import java.util.*;
 
 public  class boardGUI
 {
    static int last = -1; // counter to keep track of the last position for lists
-   static JPanel col_n; // JPanel to add new column or list
+   static JPanel col_n;// JPanel to add new column or list
+    JPanel col_area;
+    JPanel f;
     String b_name ;
-    String col_name;
-    public boardGUI(String name)
+    int col_name;
+    Board board; //
+    ArrayList<JPanel> cols = new ArrayList<>();
+    public boardGUI(String name, Board b)
     {
         b_name = name;
+        board = b;
     }
     public  JPanel generate()
 {
     //add an input before the creation in the Homepage that would give us the name of the board
-    Board board = new Board(b_name);
-
-    JPanel f = new JPanel();
+    //board = new Board(b_name);
+    //BoardList boardlist = new BoardList();
+    //boardlist.addBoard(board);
+     f = new JPanel();
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     BorderLayout lay = new BorderLayout();
 
@@ -74,7 +80,7 @@ public  class boardGUI
     /* JPanel for Columns */    JPanel work_area = new JPanel();
     work_area.setLayout(new BorderLayout());
 
-    JPanel col_area = new JPanel();
+    col_area = new JPanel();
 
     GridBagLayout g2 = new GridBagLayout();
 
@@ -87,17 +93,37 @@ public  class boardGUI
 
     // Adding button to create list
 
-     JButton add_col = new JButton(" Create a new List ");
+     JButton add_col = new JButton(" CREATE A NEW COLUMN: ");
     add_col.addActionListener(new ActionListener() {
 
     public void actionPerformed(ActionEvent e) {
         last++;
-        col_name = JOptionPane.showInputDialog(Main.first_frame,
-                        "ENTER COLUMN NAME:", null);
-    Column column = new Column(col_name, "TBD Column role");
+        JPanel col_input = new JPanel();
+        col_input.setLayout(new BoxLayout(col_input, BoxLayout.Y_AXIS));
+        col_input.add(new JLabel("ENTER COLUMN NAME: "));
+        JTextField name = new JTextField(5);
+        col_input.add(name);
+        col_input.add(new JPanel());
+        col_input.add(new JLabel("ENTER COLUMN ROLE: "));
+        JTextField role = new JTextField(5);
+        col_input.add(role);
+            int col_name = JOptionPane.showConfirmDialog(Main.first_frame, col_input,
+                        "ENTER COLUMN DETAILS:", JOptionPane.OK_CANCEL_OPTION);
+        if(col_name == JOptionPane.OK_OPTION)
+        {
+    Column column = new Column(name.getText(), role.getText());
     board.addColumn(column);
-    ColumnGUI col_obj= new ColumnGUI(col_name);
-    col_n = col_obj.generatePanel();
+    ColumnGUI col_obj= new ColumnGUI(name.getText(),role.getText()); 
+    col_n = new JPanel();
+    col_n.setLayout(new BoxLayout(col_n,BoxLayout.Y_AXIS));
+    col_n.add(col_obj.generatePanel());
+    JButton delete_col = new JButton("DELETE COLUMN");
+    delete_col.addActionListener(new ActionListener() {
+    public void actionPerformed(ActionEvent e) {
+       deleteCol(delete_col.getParent());
+    }
+    });
+    col_n.add(delete_col);
     col_n.setBorder(BorderFactory.createLineBorder(Color.black));
     c3.anchor =  GridBagConstraints.NORTHWEST;
     c3.gridx = last;
@@ -105,7 +131,9 @@ public  class boardGUI
      c3.weightx = 0.01;
     c3.weighty = 0.01;
     col_area.add(col_n,c3);
+    cols.add(col_n);
     f.revalidate();
+    }
     }
   });
 
@@ -125,7 +153,13 @@ public  class boardGUI
     return (f);
 }
 
-
+public void deleteCol(Container to_delete)
+{
+ col_area.remove(to_delete);
+ col_area.revalidate();
+ f.revalidate();
+ f.repaint();
+}
 
 
 
