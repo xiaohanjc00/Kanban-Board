@@ -104,7 +104,6 @@ public static JPanel loadBody(BoardList boardlist, JPanel head)
                 first_frame.add(new_board.generate(), BorderLayout.CENTER);
                 first_frame.revalidate();
                 first_frame.repaint();
-                
             }
         }
     });
