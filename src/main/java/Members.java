@@ -1,10 +1,10 @@
-public class Member{
+public class Members{
     private String username;
     private String firstName;
     private String lastName;
     private String bio;
 
-    public Member(String usernameIn, String firstNameIn, String lastNameIn){
+    public Members(String usernameIn, String firstNameIn, String lastNameIn){
         username = usernameIn;
         firstName = firstNameIn;
         lastName = lastNameIn;
