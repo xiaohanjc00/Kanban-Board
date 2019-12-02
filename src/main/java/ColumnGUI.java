@@ -8,6 +8,7 @@ public class ColumnGUI {
     private String name;
     private Column column;
     private JPanel panel;
+    private JPanel card_in_col;
     private String role;
     
     public ColumnGUI(String name, String role) {
@@ -58,7 +59,6 @@ public class ColumnGUI {
      Load all cards into a column
     */
     public void loadCards(){
-        JPanel card_in_col;
         
         String members ="";
         ArrayList<Card> arrayOfCards = column.getCards();
@@ -71,21 +71,37 @@ public class ColumnGUI {
             JLabel card_title = new JLabel(arrayOfCards.get(i).getTitle());
             
              
-            for(String member:arrayOfCards.get(i).getMembers() )
+            for(String member : arrayOfCards.get(i).getMembers())
             {
                 members  = members + member + " ";
             }
             
             JLabel card_members = new JLabel(members);
+            JPanel buttonsPanel = new JPanel();
+            buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.X_AXIS));
+            JButton delete_card = new JButton("Delete");
+            delete_card.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete card " + current_card.getTitle() + "?", "Confirm Deletion",
+				    JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
+                    System.out.println(response);
+                    if (response == 0) {
+                        column.removeCard(current_card);
+                        deleteCard(delete_card.getParent());
+                    }
+                }
+            });
             JButton view_card = new JButton("View");
             view_card.addActionListener(new ActionListener() {
              public void actionPerformed(ActionEvent e) {
              CardGUI open_card = new CardGUI(current_card);
               }
             });
+            buttonsPanel.add(delete_card);
+            buttonsPanel.add(view_card);
             card_in_col.add(card_title, BorderLayout.PAGE_START);
             card_in_col.add(card_members, BorderLayout.CENTER);
-            card_in_col.add(view_card, BorderLayout.LINE_END);
+            card_in_col.add(buttonsPanel, BorderLayout.LINE_END);
             card_in_col.setBorder(BorderFactory.createLineBorder(Color.black));
             panel.add(card_in_col);
         }
@@ -104,9 +120,11 @@ public class ColumnGUI {
     /*
     Delete cards from the column
     */
-    public void deleteCard(String cardName){
-     
+    public void deleteCard(Container toDelete){
+        panel.removeAll();
+        addTitle();
+        loadCards();
+        addButton();
+        panel.revalidate();
     }
-
-   
 }
