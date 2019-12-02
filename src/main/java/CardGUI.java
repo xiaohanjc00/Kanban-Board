@@ -204,6 +204,7 @@ public class CardGUI {
                 SpinnerModel model = new SpinnerNumberModel(1, 1, 5, 1);             
                 JSpinner pointsSpinner = new JSpinner(model);
                 pointsSpinner.setEditor(new JSpinner.NumberEditor(pointsSpinner));
+                ((JSpinner.DefaultEditor) pointsSpinner.getEditor()).getTextField().setEditable(false);
                 pointsSpinner.setMinimumSize(new Dimension(300,100));
                 pointsSpinner.setMaximumSize(new Dimension(300,100));
                 JButton submitBtn = new JButton("Submit");
