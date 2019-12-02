@@ -1,3 +1,7 @@
+/**
+* Represents the Column GUI for every column.
+*/
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
@@ -17,6 +21,10 @@ public class ColumnGUI {
         column = new Column(name, role);   
     }
 
+    /**
+    * method to generate a JPanel that represents a column in a board.
+    */
+    
     public JPanel generatePanel() {
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -26,6 +34,10 @@ public class ColumnGUI {
         return panel;
     }
 
+    /**
+    * method to add the name, and role to a column.
+    */
+    
    public void addTitle()
    {
        JPanel top = new JPanel();
@@ -38,8 +50,8 @@ public class ColumnGUI {
        panel.add(top);
    }
     
-    /*
-     Add Button to create cards
+    /**
+    * Add Button to create cards
     */
 
     public void addButton() {
@@ -56,7 +68,7 @@ public class ColumnGUI {
     }
     
     /*
-     Load all cards into a column
+    * Load all cards into a column
     */
     public void loadCards(){
         
