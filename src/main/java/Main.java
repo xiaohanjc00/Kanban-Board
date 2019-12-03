@@ -2,10 +2,12 @@
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class Main  {
     static String board_name = "";
     static JFrame first_frame;
+    static ActivityLog log;
    
 public static void main(String[] args)
 {
@@ -18,6 +20,13 @@ public static void main(String[] args)
     int screen_width = (int)screenSize.getWidth();
     BorderLayout base = new BorderLayout(10,10);
     
+    /*Board Log*/
+    try {
+        log = new ActivityLog();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
     /*header of home page */
     
     JPanel head = new JPanel();
