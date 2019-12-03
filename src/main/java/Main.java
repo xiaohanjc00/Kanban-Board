@@ -106,6 +106,7 @@ public static JPanel loadBody(BoardList boardlist, JPanel head)
             {
                 Board board_added = new Board(board_name);
                 boardlist.addBoard(board_added);
+                log.createBoardLog(board_name);
              boardGUI new_board = new boardGUI(board_name, board_added); //Board Object also passed as parameter
                 
                 first_frame.getContentPane().removeAll();

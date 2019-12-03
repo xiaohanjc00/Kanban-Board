@@ -42,6 +42,7 @@ public class ColumnGUI {
                String card_name =  JOptionPane.showInputDialog(Main.first_frame,
                         "ENTER CARD TITLE:", null);
                 addCard(new Card("", card_name));
+                Main.log.createCardLog(card_name, name);
             }
         });
         panel.add(add_card);

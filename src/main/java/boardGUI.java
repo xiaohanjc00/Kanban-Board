@@ -98,6 +98,7 @@ public  class boardGUI
         col_name = JOptionPane.showInputDialog(Main.first_frame,
                         "ENTER COLUMN NAME:", null);
     Column column = new Column(col_name, "TBD Column role");
+    Main.log.createColumnLog(col_name, board.getName());
     board.addColumn(column);
     ColumnGUI col_obj= new ColumnGUI(col_name);
     col_n = col_obj.generatePanel();

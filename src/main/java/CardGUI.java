@@ -36,7 +36,9 @@ public class CardGUI {
         saveDescriptionBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             //card.setDescription(descriptionText.getText());
-            JOptionPane.showMessageDialog(f, "Description Saved!");}
+            JOptionPane.showMessageDialog(f, "Description Saved!");
+            Main.log.setDescription(card);
+            }
         });
 
         JLabel activityLabel = new JLabel("Activity");
@@ -56,7 +58,9 @@ public class CardGUI {
             addBtn.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                 //card.addMember(memberInput.getText());
-                JOptionPane.showMessageDialog(newFrame, "Member Added!");}
+                JOptionPane.showMessageDialog(newFrame, "Member Added!");
+                Main.log.addMemberLog(memberInput.getText(), card.getTitle());
+                }
             });
             newFrame.add(addBtn);
             newFrame.add(memberInput);
@@ -79,7 +83,9 @@ public class CardGUI {
             removeBtn.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                 //card.removeMember(memberInput.getText());
-                JOptionPane.showMessageDialog(newFrame, "Member Removed!");}
+                JOptionPane.showMessageDialog(newFrame, "Member Removed!");
+                Main.log.deleteMemberLog(memberInput.getText(), card.getTitle());
+                }
             });
             newFrame.add(removeBtn);
             newFrame.add(memberInput);
