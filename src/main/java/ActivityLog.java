@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.time.LocalDateTime;
 
 public class ActivityLog {
@@ -24,7 +25,7 @@ public class ActivityLog {
     }
 
     /**
-     * Get the current activity fron¡m the ActivityLog file
+     * Get the current activity from the ActivityLog file
      * @throws IOException if there is no such file
      */
     public void viewActivityLog() throws IOException {
@@ -33,6 +34,10 @@ public class ActivityLog {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<String> getActivityLog(){
+        return null;
     }
 
     /**
