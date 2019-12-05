@@ -14,6 +14,7 @@ public class CSVcreator {
 
     /**
      * Create CSV file for the activity log
+     * @param fileName name of the file
      * @throws IOException
      */
     public void createNewCSV(String fileName) throws IOException{

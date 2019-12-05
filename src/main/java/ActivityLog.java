@@ -36,7 +36,10 @@ public class ActivityLog {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Get the Activity log as a list of strings
+     * @return list of strings of each line of the CSV
+     */
     public List<String> getActivityLog(){
         ArrayList<String> list = new ArrayList<String>();
         try {
@@ -46,7 +49,10 @@ public class ActivityLog {
         }
         return list;
     }
-
+    /**
+     * Get the Activity log as a unified string
+     * @return String of the entire CSV
+     */
     public String getActivityLogAsString(){
         String output = "";
         try {

@@ -16,7 +16,7 @@ public class CSVreader {
     }
 
     /**
-     * Reade the content of a file
+     * Reade the content of a file and print it out
      * @throws IOException if there is no such file
      */
     public void readCSV() throws IOException {
@@ -26,6 +26,11 @@ public class CSVreader {
         }
     }
 
+    /**
+     * Get the CSV content as a list of String
+     * @return list of string of each line of the CSV
+     * @throws IOException if there is no such file
+     */
     public List<String> CSVGetString() throws IOException{
         File file = new File(fileName);
         Scanner input = new Scanner(file);
@@ -36,7 +41,11 @@ public class CSVreader {
         }
         return list;
     }
-
+    /**
+     * Get the CSV content as an unified String
+     * @returnString of the content of the CSV
+     * @throws IOException if there is no such file
+     */
     public String CSVAsString() throws IOException{
         int i;
         String output = "";
