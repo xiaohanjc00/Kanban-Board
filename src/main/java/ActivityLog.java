@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDateTime;
 
@@ -8,9 +9,9 @@ public class ActivityLog {
     CSVcreator csvWriter;
     CSVreader csvReader;
 
-    public ActivityLog() throws IOException {
-        csvWriter = new CSVcreator();
-        viewActivityLog();
+    public ActivityLog(String fileName) throws IOException {
+        csvWriter = new CSVcreator(fileName);
+        viewActivityLog(fileName);
     }
 
     /**
@@ -28,16 +29,35 @@ public class ActivityLog {
      * Get the current activity from the ActivityLog file
      * @throws IOException if there is no such file
      */
-    public void viewActivityLog() throws IOException {
+    public void viewActivityLog(String fileName) throws IOException {
         try {
-            csvReader = new CSVreader("ActivityLog.csv");
+            csvReader = new CSVreader(fileName);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public List<String> getActivityLog(){
-        return null;
+        ArrayList<String> list = new ArrayList<String>();
+        try {
+            list = (ArrayList<String>) csvReader.CSVGetString();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public String getActivityLogAsString(){
+        String output = "";
+        try {
+            output = csvReader.CSVAsString();
+            if(output == null){
+                output = "";
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return output;
     }
 
     /**

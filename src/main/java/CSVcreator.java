@@ -4,9 +4,9 @@ import java.io.IOException;
 public class CSVcreator {
     FileWriter csvWriter;
 
-    public CSVcreator(){
+    public CSVcreator(String fileName){
         try {
-            createNewCSV();
+            createNewCSV(fileName);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -16,8 +16,8 @@ public class CSVcreator {
      * Create CSV file for the activity log
      * @throws IOException
      */
-    public void createNewCSV() throws IOException{
-        csvWriter = new FileWriter("ActivityLog.csv", true);
+    public void createNewCSV(String fileName) throws IOException{
+        csvWriter = new FileWriter(fileName, true);
     }
 
     /**

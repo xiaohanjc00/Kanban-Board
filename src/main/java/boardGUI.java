@@ -4,9 +4,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.time.*;
 import java.util.HashMap;
+import java.io.IOException;
 
 public  class boardGUI
 {
+  static ActivityLog actLog;
    static int last = -1; // counter to keep track of the last position for lists
    static JPanel col_n; // JPanel to add new column or list
     String b_name ;
@@ -16,6 +18,13 @@ public  class boardGUI
     {
         b_name = name;
         board = b;
+
+        /*Board Log*/
+        try {
+            actLog = new ActivityLog(b_name + "ActivityLog.csv");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public  JPanel generate()
 {
@@ -53,7 +62,7 @@ public  class boardGUI
     activity.setLayout(g1);
 
     JLabel head = new JLabel("   ACTIVITY LOG    ");
-
+      head.setText(actLog.getActivityLogAsString());
 
      c.fill = GridBagConstraints.HORIZONTAL;
     c.anchor =  GridBagConstraints.NORTHWEST;

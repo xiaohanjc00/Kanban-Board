@@ -11,7 +11,7 @@ public class CSVreader {
     String fileName;
 
     public CSVreader(String fileName) throws IOException {
-        fileName = this.fileName;
+        this.fileName = fileName;
         csvReader = new FileReader(fileName);
     }
 
@@ -35,6 +35,15 @@ public class CSVreader {
             list.add(input.nextLine());
         }
         return list;
+    }
+
+    public String CSVAsString() throws IOException{
+        int i;
+        String output = "";
+        while ((i = csvReader.read()) != -1) {
+            output = output + (char) i;
+        }
+        return output;
     }
 
     /**

@@ -22,7 +22,7 @@ public static void main(String[] args)
     
     /*Board Log*/
     try {
-        log = new ActivityLog();
+        log = new ActivityLog("MainActivityLog.csv");
     } catch (IOException e) {
         e.printStackTrace();
     }
@@ -107,7 +107,7 @@ public static JPanel loadBody(BoardList boardlist, JPanel head)
                 Board board_added = new Board(board_name);
                 boardlist.addBoard(board_added);
                 log.createBoardLog(board_name);
-             boardGUI new_board = new boardGUI(board_name, board_added); //Board Object also passed as parameter
+                boardGUI new_board = new boardGUI(board_name, board_added); //Board Object also passed as parameter
                 
                 first_frame.getContentPane().removeAll();
                 first_frame.add(head, BorderLayout.PAGE_START);
