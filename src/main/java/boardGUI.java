@@ -100,9 +100,7 @@ public class boardGUI {
         /* Adding button to create list */
 
         JButton add_col = new JButton(" CREATE A NEW COLUMN: ");
-        add_col.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
+        add_col.addActionListener(l -> {
                 last++;
                 JPanel col_input = new JPanel();
                 col_input.setLayout(new BoxLayout(col_input, BoxLayout.Y_AXIS));
@@ -116,19 +114,75 @@ public class boardGUI {
                 int col_name = JOptionPane.showConfirmDialog(Main.first_frame, col_input,
                     "ENTER COLUMN DETAILS:", JOptionPane.OK_CANCEL_OPTION);
                 if (col_name == JOptionPane.OK_OPTION) {
-                    Column column = new Column(name.getText(), role.getText());
+                    ColumnGUI col_obj = new ColumnGUI(name.getText(), role.getText(), this);
+                    Column column = col_obj.getColumn();
                     board.addColumn(column);
-                    ColumnGUI col_obj = new ColumnGUI(name.getText(), role.getText());
+
                     col_n = new JPanel();
-                    col_outer = new DropPane();
+                    col_outer = new DropPane(column);
                     col_n.setLayout(new BoxLayout(col_n, BoxLayout.Y_AXIS));
                     col_n.add(col_obj.generatePanel());
-                     JButton delete_col = new JButton("DELETE COLUMN");
-                    delete_col.addActionListener(new ActionListener() {
+                    JButton edit_col = new JButton("EDIT COLUMN");
+                    edit_col.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
-                            deleteCol(delete_col.getParent().getParent());
+                            JFrame newFrame = new JFrame();
+                            JPanel newPanel = new JPanel();
+                            newPanel.setLayout(new BoxLayout(newPanel, BoxLayout.Y_AXIS));
+                            JLabel columnTitleLabel = new JLabel("Please input the new column name:");
+                            JTextArea columnTitleText = new JTextArea(column.getName());
+                            columnTitleText.setMinimumSize(new Dimension(150,50));
+                            columnTitleText.setMaximumSize(new Dimension(150,50));
+                            columnTitleText.setLineWrap(true);
+
+                            JLabel columnRoleLabel = new JLabel("Please input the new column role:");
+                            JTextArea columnRoleText = new JTextArea(column.getRole());
+                            columnRoleText.setMinimumSize(new Dimension(150,50));
+                            columnRoleText.setMaximumSize(new Dimension(150,50));
+                            columnRoleText.setLineWrap(true);
+                            
+                            JButton submitBtn = new JButton("Submit");
+                            submitBtn.addActionListener(new ActionListener(){
+                                public void actionPerformed(ActionEvent e) {
+                                    col_obj.changeName(columnTitleText.getText());
+                                    col_obj.changeRole(columnRoleText.getText());
+                                    column.setName(columnTitleText.getText());
+                                    column.setRole(columnRoleText.getText());
+
+                                    JOptionPane.showMessageDialog(newFrame, "Column Details saved!");
+                                    newFrame.setVisible(false);
+                                    newFrame.dispose();
+                                    col_obj.refreshColumn();
+                                    col_n.remove(0);
+                                    col_n.add(col_obj.generatePanel(),0);
+                                    col_n.revalidate();
+                                    col_n.repaint();
+                                    f.revalidate();
+                                    f.repaint();
+                                }
+                            });
+                            columnTitleLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+                            columnTitleText.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+                            columnRoleLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+                            columnRoleText.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+                            submitBtn.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+                            newPanel.add(columnTitleLabel);
+                            newPanel.add(columnTitleText);
+                            newPanel.add(columnRoleLabel);
+                            newPanel.add(columnRoleText);
+                            newPanel.add(submitBtn);
+                            newFrame.add(newPanel);
+                            newFrame.setSize(400,200);
+                            newFrame.setVisible(true);
                         }
                     });
+                    JButton delete_col = new JButton("DELETE COLUMN");
+                    delete_col.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            board.removeColumn(column);
+                            deleteCol(delete_col.getParent());
+                        }
+                    });
+                    col_n.add(edit_col);
                     col_n.add(delete_col);
                     
                     col_n.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -145,7 +199,6 @@ public class boardGUI {
                     cols.add(col_n);
                     f.revalidate();
                 }
-            }
         });
 
         but.add(add_col);
@@ -157,7 +210,7 @@ public class boardGUI {
         f.add(work_area, BorderLayout.CENTER);
         return (f);
         
-    }
+                }
 
      /**
      * function to delete a column
@@ -170,6 +223,10 @@ public class boardGUI {
         col_area.revalidate();
         f.revalidate();
         f.repaint();
+    }
+
+    public Board getBoard() {
+        return board;
     }
 
 }

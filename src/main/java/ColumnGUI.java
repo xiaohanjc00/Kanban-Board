@@ -15,11 +15,13 @@ public class ColumnGUI {
     private DragPane card_in_col;
     private String role;
     private JPanel cards_area;
+    private boardGUI boardGui;
     
-    public ColumnGUI(String name, String role) {
+    public ColumnGUI(String name, String role, boardGUI boardGuiIn) {
         this.name = name;
         this.role = role;
-        column = new Column(name, role);   
+        column = new Column(name, role, this);
+        boardGui = boardGuiIn;
     }
 
     /**
@@ -51,6 +53,14 @@ public class ColumnGUI {
        top.add(roleLabel);
        panel.add(top);
    }
+
+   public void changeName(String newName) {
+       name = newName;
+   }
+
+   public void changeRole(String newRole) {
+       role = newRole;
+   }
     
     /**
     * Add Button to create cards
@@ -63,7 +73,7 @@ public class ColumnGUI {
             {
                String card_name =  JOptionPane.showInputDialog(Main.first_frame,
                         "ENTER CARD TITLE:", null);
-                addCard("", card_name);
+                if (card_name != null) {addCard("", card_name);}
             }
         });
         panel.add(add_card);
@@ -83,7 +93,7 @@ public class ColumnGUI {
         for(int i = 0; i<arrayOfCards.size(); i++)
         {
             final Card current_card = arrayOfCards.get(i);
-            card_in_col = new DragPane(true);
+            card_in_col = new DragPane(getColumn() ,current_card ,true);
             card_in_col.setLayout(new BorderLayout());
             JLabel card_title = new JLabel(arrayOfCards.get(i).getTitle());
             
@@ -104,16 +114,12 @@ public class ColumnGUI {
                     System.out.println(response);
                     if (response == 0) {
                         column.removeCard(current_card);
-                        deleteCard(delete_card.getParent());
+                        refreshColumn();
                     }
                 }
             });
             JButton view_card = new JButton("View");
-            view_card.addActionListener(new ActionListener() {
-             public void actionPerformed(ActionEvent e) {
-             CardGUI open_card = new CardGUI(current_card);
-              }
-            });
+            view_card.addActionListener(l ->  {CardGUI open_card = new CardGUI(current_card, this);});
             buttonsPanel.add(delete_card);
             buttonsPanel.add(view_card);
             card_in_col.add(card_title, BorderLayout.PAGE_START);
@@ -138,13 +144,21 @@ public class ColumnGUI {
         panel.repaint();
     }
     /*
-    Delete cards from the column
+    Refresh cards from the column
     */
-    public void deleteCard(Container toDelete){
+    public void refreshColumn(){
         panel.removeAll();
         addTitle();
         loadCards();
         addButton();
         panel.revalidate();
+    }
+
+    public Column getColumn() {
+        return column;
+    }
+
+    public boardGUI getBoardGui() {
+        return boardGui;
     }
 }

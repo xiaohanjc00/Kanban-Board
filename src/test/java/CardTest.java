@@ -1,6 +1,6 @@
 
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import org.junit.Test;
 import java.time.*;
 import java.time.format.*;
@@ -14,7 +14,7 @@ public class CardTest {
   public void cardCreationTest() {
     String creator = "Jeroen Keppens";
     String title = "My first card";
-    Card newCard = new Card(creator, title);
+    Card newCard = new Card(creator, title, 0);
     assertEquals(creator, newCard.getCreator());
     assertEquals(title, newCard.getTitle());
   }
@@ -24,7 +24,7 @@ public class CardTest {
     //create the card
     String creator = "Jeroen Keppens";
     String title = "My first card";
-    Card newCard = new Card(creator, title);
+    Card newCard = new Card(creator, title, 0);
 
     //title edit test
     String newTitle = "new Title";
@@ -38,40 +38,40 @@ public class CardTest {
 
   }
 
-    // @Test
-    // public void membersTest() {
-    //   //create the card
-    //   String creator = "Jeroen Keppens";
-    //   String title = "My first card";
-    //   Card newCard = new Card(creator, title);
-    //
-    //   //members test
-    //   String firstMember = "JKeppens";
-    //   String secondMember = "Kony2012";
-    //   String thirdMember = "Tony Stark";
-    //   ArrayList<String> expectedMembers;
-    //
-    //   expectedMembers.add(firstMember);
-    //   newCard.addMember(firstMember);
-    //   assertArrayEquals(expectedMembers.toArray(), newCard.getMembers().toArray());
-    //
-    //   expectedMembers.add(secondMember);
-    //   newCard.addMember(secondMember);
-    //   expectedMembers.add(thirdMember);
-    //   newCard.addMember(thirdMember);
-    //   assertArrayEquals(expectedMembers.toArray(), newCard.getMembers().toArray());
-    //
-    //   newCard.removeMember(secondMember);
-    //   expectedMembers.remove(secondMember);
-    //   assertArrayEquals(expectedMembers.toArray(), newCard.getMembers().toArray());
-    // }
+    @Test
+    public void membersTest() {
+      //create the card
+      String creator = "Jeroen Keppens";
+      String title = "My first card";
+      Card newCard = new Card(creator, title, 0);
+    
+      //members test
+      String firstMember = "JKeppens";
+      String secondMember = "Kony2012";
+      String thirdMember = "Tony Stark";
+      ArrayList<String> expectedMembers = new ArrayList<String>();
+    
+      expectedMembers.add(firstMember);
+      newCard.addMember(firstMember);
+      assertArrayEquals(expectedMembers.toArray(), newCard.getMembers().toArray());
+    
+      expectedMembers.add(secondMember);
+      newCard.addMember(secondMember);
+      expectedMembers.add(thirdMember);
+      newCard.addMember(thirdMember);
+      assertArrayEquals(expectedMembers.toArray(), newCard.getMembers().toArray());
+    
+      newCard.removeMember(secondMember);
+      expectedMembers.remove(secondMember);
+      assertArrayEquals(expectedMembers.toArray(), newCard.getMembers().toArray());
+    }
 
     @Test
     public void deadlineTest(){
       //create the card
       String creator = "Jeroen Keppens";
       String title = "My first card";
-      Card newCard = new Card(creator, title);
+      Card newCard = new Card(creator, title, 0);
 
       //deadline test
       String deadlineString = "2020-04-20 16:20";
