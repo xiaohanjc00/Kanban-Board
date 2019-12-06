@@ -67,6 +67,20 @@ public class ActivityLog {
     }
 
     /**
+     * Extra method for testing
+     */
+    public String activityLogAsString(){
+        List<String> list = new ArrayList<String>();
+        list = getActivityLog();
+        String finalString = "";
+
+        for(String line : list){
+            finalString = finalString + line + "\n";
+        }
+        return finalString;
+    }
+
+    /**
      * Log for creating new board
      * @param board name of the board
      */
@@ -93,11 +107,12 @@ public class ActivityLog {
      * @param column name of the column
      * @param board name of the board
      */
-    public void createColumnLog(String column, String board){
-        String text = "New column " + column + " has been created to " + board;
+    public String createColumnLog(String column, String board){
+        String text = "New column " + column + " has been created to " + board + " , " + getCurrentTime();
         //activityList.put(time, text);
-        csvWriter.appendCSV(text + " , " + getCurrentTime());
+        csvWriter.appendCSV(text);
         csvWriter.appendCSV("\n");
+        return text;
     }
 
     /**

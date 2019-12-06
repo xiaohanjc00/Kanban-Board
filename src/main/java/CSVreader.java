@@ -13,6 +13,7 @@ public class CSVreader {
     public CSVreader(String fileName) throws IOException {
         this.fileName = fileName;
         csvReader = new FileReader(fileName);
+        
     }
 
     /**

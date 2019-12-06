@@ -8,79 +8,57 @@ import java.io.IOException;
 
 public  class boardGUI
 {
-  static ActivityLog actLog;
-   static int last = -1; // counter to keep track of the last position for lists
-   static JPanel col_n; // JPanel to add new column or list
+    
+    static int last = -1; // counter to keep track of the last position for lists
+    static JPanel col_n; // JPanel to add new column or list
     String b_name ;
     String col_name;
-    Board board; //
+    Board board; 
+
+
     public boardGUI(String name, Board b)
     {
         b_name = name;
         board = b;
-
-        /*Board Log*/
-        try {
-            actLog = new ActivityLog(b_name + "ActivityLog.csv");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
-    public  JPanel generate()
-{
-    //add an input before the creation in the Homepage that would give us the name of the board
-    //board = new Board(b_name);
-    //BoardList boardlist = new BoardList();
-    //boardlist.addBoard(board);
+    public  JPanel generate(){
+
+    //Create the Panel
     JPanel f = new JPanel();
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     BorderLayout lay = new BorderLayout();
 
     // JPanel for toolbar showing board name and members
-    JPanel topbar = new JPanel();
-    topbar.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-    BoxLayout box_ly = new BoxLayout(topbar, BoxLayout.X_AXIS);
-    topbar.setLayout(box_ly);
+    JPanel topBar = new JPanel();
+    topBar.setBorder(BorderFactory.createEmptyBorder(40, 10, 10, 10));
+    BoxLayout box_ly = new BoxLayout(topBar, BoxLayout.X_AXIS);
+    topBar.setLayout(box_ly);
 
     JLabel board_name = new JLabel("BOARD NAME:  " + board.getName());
-    topbar.add(board_name);
-    topbar.add(Box.createHorizontalGlue());
+    topBar.add(board_name);
+    topBar.add(Box.createHorizontalGlue());
     JLabel members = new JLabel(" MEMBERS:  ");
     // topbar.add(members);
 
     for(String mem : board.getMembers()){
       JLabel thismember = new JLabel(mem);
-      topbar.add(thismember);
+      topBar.add(thismember);
     }
     //topbar.setAlignmentY(Component.TOP_ALIGNMENT);
 
     /*  JPanel showing the Activity Log for Current Board */
-    JPanel activity= new JPanel();
-    activity.setBorder(BorderFactory.createLineBorder(Color.black));
-    GridBagLayout g1 = new GridBagLayout();
-    GridBagConstraints c = new GridBagConstraints();
-    activity.setLayout(g1);
+    JPanel subPanel = new JPanel();
+    JScrollPane activityLogPanel = new JScrollPane(subPanel);
+    activityLogPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+    BoxLayout g1 = new BoxLayout(subPanel, BoxLayout.Y_AXIS);
+    subPanel.setLayout(g1);
 
     JLabel head = new JLabel("   ACTIVITY LOG    ");
-      head.setText(actLog.getActivityLogAsString());
+    ((JPanel)activityLogPanel.getViewport().getView()).add(head);
 
-     c.fill = GridBagConstraints.HORIZONTAL;
-    c.anchor =  GridBagConstraints.NORTHWEST;
-     c.gridx = 1;
-     c.gridy = 0;
-    c.gridwidth = 10;
-    c.gridheight = 2;
-    c.weightx = 0.01;
-    c.weighty = 0.01;
-    activity.add(head,c);
-
-
-    int i=1;
-    for(Object key : board.getLog().keySet()){
-      c.gridy = i;
-      JLabel thing = new JLabel(board.getLog().get(key));
-      activity.add(thing, c);
-      i++;
+    for(String line : board.getLog()){
+      JLabel newLabel = new JLabel(line);
+      ((JPanel)activityLogPanel.getViewport().getView()).add(newLabel);
     }
 
     /* JPanel for Columns */    JPanel work_area = new JPanel();
@@ -107,7 +85,11 @@ public  class boardGUI
         col_name = JOptionPane.showInputDialog(Main.first_frame,
                         "ENTER COLUMN NAME:", null);
     Column column = new Column(col_name, "TBD Column role");
-    Main.log.createColumnLog(col_name, board.getName());
+
+    String text = Main.log.createColumnLog(col_name, board.getName());
+    JLabel newLabel = new JLabel(text);
+    ((JPanel)activityLogPanel.getViewport().getView()).add(newLabel);
+
     board.addColumn(column);
     ColumnGUI col_obj= new ColumnGUI(col_name);
     col_n = col_obj.generatePanel();
@@ -129,8 +111,8 @@ public  class boardGUI
 
 
     f.setLayout(lay);
-    f.add(topbar, BorderLayout.PAGE_START);
-    f.add(activity, BorderLayout.LINE_END);
+    f.add(topBar, BorderLayout.PAGE_START);
+    f.add(activityLogPanel, BorderLayout.LINE_END);
     f.add(work_area, BorderLayout.CENTER);
     //f.setSize(screenSize.width, screenSize.height);
     //f.setVisible(true);

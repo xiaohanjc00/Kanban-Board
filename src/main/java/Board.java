@@ -1,3 +1,4 @@
+
 /*
 * Kanban board object class
 * board must contain a title
@@ -7,26 +8,37 @@
 import java.time.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.io.IOException;
 
 public class Board{
 private String name;
 private ArrayList<String> members;
 private ArrayList<Column> columns;
 private HashMap<LocalDateTime, String> history;
+private ActivityLog actLog;
 
 public Board(String nameIn){
     name = nameIn;
     history = new HashMap<LocalDateTime, String>();
     columns = new ArrayList<Column>();
     members = new ArrayList<String>();
+
+    /*Board Log*/
+    try{
+      actLog = new ActivityLog(name + "ActivityLog.csv");
+  } 
+  catch (IOException e) {
+      e.printStackTrace();
+  }
 }
 
 public void addToHistory(String data){
   history.put(LocalDateTime.now(), data);
 }
 
-public HashMap<LocalDateTime, String> getLog(){
-  return history;
+public List<String> getLog(){
+  return actLog.getActivityLog();
 }
 
 public void setName(String nameIn){
