@@ -9,11 +9,13 @@ public class CardGUI {
     private Card card;
     private ArrayList<JFrame> frames;
     private JFrame mainFrame;
+    private ColumnGUI columnGui;
 
-     public CardGUI(Card card) {
+     public CardGUI(Card card, ColumnGUI columnGuiIn) {
         this.card = card;
         mainFrame = new JFrame();
         frames = new ArrayList<>();
+        columnGui = columnGuiIn;
         makeFrame();
      }
 
@@ -163,8 +165,7 @@ public class CardGUI {
                         newFrame.setVisible(false);
                         newFrame.dispose();
                         refreshFrame();
-                        //ColumnGUI.refreshColumn();
-                        //Main.body.revalidate();
+                        columnGui.refreshColumn();
                     }
                 });
                 cardTitleLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);

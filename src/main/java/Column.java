@@ -1,63 +1,88 @@
 import java.util.ArrayList;
+
 public class Column {
+
     private String name;
     private String role;
     private ArrayList<Card> cards;
-    private int nextId;
+    private ColumnGUI columnGui;
 
     /*
-    Constructor for making a new column
+     * Constructor for making a new column
      */
-    public Column(String nameIn, String roleIn){
+    public Column(String nameIn, String roleIn, ColumnGUI columnGuiIn){
         name = nameIn;
         role = roleIn;
         cards =  new ArrayList<Card>();
-        nextId = 0;
+        columnGui = columnGuiIn;
     }
+
     /*
-    Return the name of a column
+     * Get the name of the column.
+     * @return The name of a column
      */
     public String getName(){
         return name;
     }
+
     /*
-    Return the role of the column
+     * Get the role of the column.
+     * @return The role of the column
      */
     public String getRole(){
         return role;
     }
+
     /*
-    Returns the array list which holds all the cards to be displayed in the column
+     * Get the ArrayList of cards.
+     * @return the array list which holds all the cards to be displayed in the column
      */
     public ArrayList<Card> getCards(){
         return cards;
     }
 
     /*
-    Change the name of a column
+     * Change the name of a column
+     * @param nameIn Name of the column
      */
     public void setName(String nameIn){
         name = nameIn;
     }
     /*
-    Change the role of a column
+     * Change the role of a column
+     * @param roleIn Role of the column
      */
     public void setRole(String roleIn){
         role = roleIn;
     }
     /*
-    Add cards to a column
+     * Add cards to a column
+     * @param creator Creator of the card
+     * @param cardName Title of the card
      */
     public void addCard(String creator, String cardName){
-        Card newCard = new Card(creator, cardName, nextId);
+        Card newCard = new Card(creator, cardName, columnGui.getBoardGui().getBoard().getId());
         cards.add(newCard);
-        nextId++;
+        columnGui.getBoardGui().getBoard().incrementId();
     }
 
     /*
-    Remove cards from a column
+     * Remove cards from a column
+     * @param newCard Card to be removed
      */
     public void removeCard(Card newCard){
         cards.remove(newCard);
+    }
+
+    /*
+     * Move card to another given column
+     * @param card Card to be moved
+     * @param newColumn Column to be moved to
+     */
+    public void moveCard(Card card, Column newColumn) {
+        cards.remove(card);
+        newColumn.getCards().add(card);
+        columnGui.refreshColumn();
+        newColumn.columnGui.refreshColumn();
     }
 }
