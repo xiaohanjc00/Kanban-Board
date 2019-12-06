@@ -96,7 +96,7 @@ public class boardGUI {
 
         JPanel but = new JPanel();
         but.setBorder(BorderFactory.createLineBorder(Color.black));
-
+        but.setLayout(new BoxLayout(but, BoxLayout.X_AXIS));
         /* Adding button to create list */
 
         JButton add_col = new JButton(" CREATE A NEW COLUMN: ");
@@ -201,6 +201,17 @@ public class boardGUI {
                 }
         });
 
+        
+        // JButton to save a board
+        JButton save = new JButton("SAVE");
+        save.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                
+            }
+        });
+        
+        but.add(save);
+        but.add(Box.createHorizontalGlue());
         but.add(add_col);
         work_area.add(but, BorderLayout.PAGE_START);
         work_area.add(col_area, BorderLayout.CENTER);
