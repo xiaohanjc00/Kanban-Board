@@ -12,8 +12,9 @@ public class ColumnGUI {
     private String name;
     private Column column;
     private JPanel panel;
-    private JPanel card_in_col;
+    private DragPane card_in_col;
     private String role;
+    private JPanel cards_area;
     
     public ColumnGUI(String name, String role) {
         this.name = name;
@@ -28,6 +29,7 @@ public class ColumnGUI {
     public JPanel generatePanel() {
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         addTitle();
         loadCards();
         addButton();
@@ -72,13 +74,16 @@ public class ColumnGUI {
     */
     public void loadCards(){
         
+        cards_area = new JPanel();
+        cards_area.setLayout(new BoxLayout(cards_area, BoxLayout.Y_AXIS));
+        cards_area.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.black));
         String members ="";
         ArrayList<Card> arrayOfCards = column.getCards();
         
         for(int i = 0; i<arrayOfCards.size(); i++)
         {
             final Card current_card = arrayOfCards.get(i);
-            card_in_col = new JPanel();
+            card_in_col = new DragPane(true);
             card_in_col.setLayout(new BorderLayout());
             JLabel card_title = new JLabel(arrayOfCards.get(i).getTitle());
             
@@ -115,8 +120,10 @@ public class ColumnGUI {
             card_in_col.add(card_members, BorderLayout.CENTER);
             card_in_col.add(buttonsPanel, BorderLayout.LINE_END);
             card_in_col.setBorder(BorderFactory.createLineBorder(Color.black));
-            panel.add(card_in_col);
+            //panel.add(card_in_col);
+            cards_area.add(card_in_col);
         }
+        panel.add(cards_area);
     }
     /*
     Create new cards for the column
@@ -128,6 +135,7 @@ public class ColumnGUI {
         loadCards();
         addButton();
         panel.revalidate();
+        panel.repaint();
     }
     /*
     Delete cards from the column

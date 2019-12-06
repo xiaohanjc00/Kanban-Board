@@ -13,7 +13,7 @@ import java.awt.Color;
 
 public class boardGUI {
     static int last = -1; // counter to keep track of the last position for lists
-    static DragPane col_n; // JPanel to add new column or list
+    static JPanel col_n; // JPanel to add new column or list
     JPanel col_area;
     JPanel f;
     String b_name;
@@ -119,8 +119,8 @@ public class boardGUI {
                     Column column = new Column(name.getText(), role.getText());
                     board.addColumn(column);
                     ColumnGUI col_obj = new ColumnGUI(name.getText(), role.getText());
-                    col_n = new DragPane(last);
-                    col_outer = new DropPane();;
+                    col_n = new JPanel();
+                    col_outer = new DropPane();
                     col_n.setLayout(new BoxLayout(col_n, BoxLayout.Y_AXIS));
                     col_n.add(col_obj.generatePanel());
                      JButton delete_col = new JButton("DELETE COLUMN");
@@ -130,6 +130,7 @@ public class boardGUI {
                         }
                     });
                     col_n.add(delete_col);
+                    
                     col_n.setBorder(BorderFactory.createLineBorder(Color.black));
                     col_outer.setBorder(BorderFactory.createLineBorder(Color.black));
                     col_outer.setBackground(Color.BLACK);
