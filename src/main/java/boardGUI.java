@@ -52,32 +52,18 @@ public class boardGUI {
         
         /*  JPanel showing the Activity Log for Current Board */
         
-        JPanel activity = new JPanel();
-        activity.setBorder(BorderFactory.createLineBorder(Color.black));
-        GridBagLayout g1 = new GridBagLayout();
-        GridBagConstraints c = new GridBagConstraints();
-        activity.setLayout(g1);
+        JPanel subPanel = new JPanel();
+        JScrollPane activityLogPanel = new JScrollPane(subPanel);
+        activityLogPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        BoxLayout g1 = new BoxLayout(subPanel, BoxLayout.Y_AXIS);
+        subPanel.setLayout(g1);
 
         JLabel head = new JLabel("   ACTIVITY LOG    ");
+        ((JPanel)activityLogPanel.getViewport().getView()).add(head);
 
-
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.anchor = GridBagConstraints.NORTHWEST;
-        c.gridx = 1;
-        c.gridy = 0;
-        c.gridwidth = 10;
-        c.gridheight = 2;
-        c.weightx = 0.01;
-        c.weighty = 0.01;
-        activity.add(head, c);
-
-
-        int i = 1;
-        for (Object key: board.getLog().keySet()) {
-            c.gridy = i;
-            JLabel thing = new JLabel(board.getLog().get(key));
-            activity.add(thing, c);
-            i++;
+        for(String line : board.getLog()){
+        JLabel newLabel = new JLabel(line);
+        ((JPanel)activityLogPanel.getViewport().getView()).add(newLabel);
         }
 
         /* JPanel for Columns */
@@ -117,6 +103,10 @@ public class boardGUI {
                     ColumnGUI col_obj = new ColumnGUI(name.getText(), role.getText(), this);
                     Column column = col_obj.getColumn();
                     board.addColumn(column);
+
+                    String text = Main.log.createColumnLog(col_name, board.getName());
+                    JLabel newLabel = new JLabel(text);
+                    ((JPanel)activityLogPanel.getViewport().getView()).add(newLabel);
 
                     col_n = new JPanel();
                     col_outer = new DropPane(column);
@@ -204,11 +194,11 @@ public class boardGUI {
         
         // JButton to save a board
         JButton save = new JButton("SAVE");
-        save.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
+        //save.addActionListener(new ActionListener() {
+        //    public void actionPerformed(ActionEvent e){
                 
-            }
-        });
+        //    }
+        //});
         
         but.add(save);
         but.add(Box.createHorizontalGlue());
@@ -239,5 +229,4 @@ public class boardGUI {
     public Board getBoard() {
         return board;
     }
-
 }
