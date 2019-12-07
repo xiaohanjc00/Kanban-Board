@@ -86,6 +86,7 @@ public class CardGUI {
             public void actionPerformed(ActionEvent e) {
                 card.setDescription(descriptionText.getText());
                 JOptionPane.showMessageDialog(leftPanel, "Description Saved!");
+                columnGui.refreshColumn();
                 
                 /*Edit description log */
                 String text = Board.actLog.setDescriptionLog(card);
@@ -135,6 +136,7 @@ public class CardGUI {
                         newFrame.setVisible(false);
                         newFrame.dispose();
                         refreshFrame();
+                        columnGui.refreshColumn();
 
                         /*Edit story point log */
                         String text = Board.actLog.setStoryPointLog(card);
