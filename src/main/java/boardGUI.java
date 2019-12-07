@@ -184,7 +184,7 @@ public class boardGUI {
                         addNewLogLine(text);
 
                         board.removeColumn(column);
-                        deleteCol(delete_col.getParent());
+                        deleteCol(delete_col.getParent().getParent());
                     }
                 });
                 col_n.add(edit_col);
