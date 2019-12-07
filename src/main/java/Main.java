@@ -5,11 +5,13 @@
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.awt.*;
 
 public class Main {
     static String board_name = "";
     static JFrame first_frame;
+    static ActivityLog log;
 
     
     public static void main(String[] args) {
@@ -21,6 +23,15 @@ public class Main {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int screen_width = (int) screenSize.getWidth();
         BorderLayout base = new BorderLayout(10, 10);
+
+        /*Board Log*/ 
+        //try{
+        //    log = new ActivityLog("MainActivityLog.csv");
+        //}
+        //catch(IOException e){
+        //    e.printStackTrace();
+        //}
+
 
         /*header of home page */
 

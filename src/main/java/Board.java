@@ -17,7 +17,7 @@ public class Board{
   private ArrayList<Column> columns;
   private HashMap<LocalDateTime, String> history;
   private int nextId;
-  private ActivityLog actLog;
+  static ActivityLog actLog;
 
 public Board(String nameIn){
     name = nameIn;
@@ -29,10 +29,10 @@ public Board(String nameIn){
     /*Board Log*/
     try{
       actLog = new ActivityLog(name + "ActivityLog.csv");
-  } 
-  catch (IOException e) {
-      e.printStackTrace();
-  }
+    } 
+    catch (IOException e) {
+        e.printStackTrace();
+    }
 }
 
   public void addToHistory(String data){

@@ -120,11 +120,36 @@ public class ActivityLog {
      * @param column name of the column
      * @param board name of the board
      */
-    public void deleteColumnLog(String column, String board){
+    public String editColumnLog(String newColumn, String oldColumn, String newRole, String oldRole){
+        String text = "";
+        if(!(oldColumn.equals(newColumn) && oldRole.equals(newRole))){
+            if(!oldColumn.equals(newColumn) && !oldRole.equals(newRole)){
+                text = "Column " + oldColumn + " has changed to " + newColumn + " and role changed to " + newRole + " , " + getCurrentTime();
+            }
+            else if(!oldColumn.equals(newColumn)){
+                text = "Column " + oldColumn + " has been edited to " + newColumn + " , " + getCurrentTime();
+            }
+            else if(!oldRole.equals(newRole)){
+                text = "Role of column " + oldColumn + " has been edited to " + newRole + " , " + getCurrentTime();
+            }
+            //activityList.put(time, text);
+            csvWriter.appendCSV(text);
+            csvWriter.appendCSV("\n");
+        }
+        return text;
+    }
+
+    /**
+     * Log for creating new column
+     * @param column name of the column
+     * @param board name of the board
+     */
+    public String deleteColumnLog(String column, String board){
         String text = "Column " + column + " has been deleted from " + board;
         //activityList.put(time, text);
         csvWriter.appendCSV(text + " , " + getCurrentTime());
         csvWriter.appendCSV("\n");
+        return text;
     }
 
     /**

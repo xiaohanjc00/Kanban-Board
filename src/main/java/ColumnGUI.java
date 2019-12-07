@@ -38,6 +38,7 @@ public class ColumnGUI {
         return panel;
     }
 
+
     /**
     * method to add the name, and role to a column.
     */
