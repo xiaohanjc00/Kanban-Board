@@ -183,8 +183,7 @@ public class boardGUI {
                         String text = Board.actLog.deleteColumnLog(column.getName(), b_name);
                         addNewLogLine(text);
 
-                        board.removeColumn(column);
-                        deleteCol(delete_col.getParent());
+                        deleteCol(delete_col.getParent().getParent());
                     }
                 });
                 col_n.add(edit_col);
