@@ -109,7 +109,7 @@ public class boardGUI {
                 board.addColumn(column);
 
                 /*New Column log */
-                String text = board.actLog.createColumnLog(name.getText(), board.getName());
+                String text = Board.actLog.createColumnLog(name.getText(), board.getName());
                 addNewLogLine(text);
 
                 col_n = new JPanel();
@@ -156,7 +156,7 @@ public class boardGUI {
                                 f.repaint();
 
                                 /*Edit column log */
-                                String text = board.actLog.editColumnLog(columnTitleText.getText(), tempName, columnRoleText.getText(), tempRole);
+                                String text = Board.actLog.editColumnLog(columnTitleText.getText(), tempName, columnRoleText.getText(), tempRole);
                                 addNewLogLine(text);
                             }
                         });
@@ -178,9 +178,9 @@ public class boardGUI {
                 JButton delete_col = new JButton("DELETE COLUMN");
                 delete_col.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        
+
                         /*Delete column log */
-                        String text = board.actLog.deleteColumnLog(column.getName(), b_name);
+                        String text = Board.actLog.deleteColumnLog(column.getName(), b_name);
                         addNewLogLine(text);
 
                         board.removeColumn(column);

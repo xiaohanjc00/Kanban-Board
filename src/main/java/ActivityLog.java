@@ -157,11 +157,12 @@ public class ActivityLog {
      * @param card name of the card
      * @param column name of the column
      */
-    public void createCardLog(String card, String column){
+    public String createCardLog(String card, String column){
         String text = "New card " + card + " has been created to " + column;
         //activityList.put(time, text);
         csvWriter.appendCSV(text + " , " + getCurrentTime());
         csvWriter.appendCSV("\n");
+        return text;
     }
 
     /**
@@ -169,7 +170,7 @@ public class ActivityLog {
      * @param card name of the card
      * @param column name of the column
      */
-    public void deleteCardLog(String card, String column){
+    public String deleteCardLog(String card, String column){
         String text = "Column " + card + " has been deleted from " + column;
         //activityList.put(time, text);
         csvWriter.appendCSV(text + " , " + getCurrentTime());
