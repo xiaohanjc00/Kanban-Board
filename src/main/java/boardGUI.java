@@ -111,16 +111,14 @@ public class boardGUI implements Serializable {
                 board.addColumn(column);
 
                 /*New Column log */
-                String text = board.actLog.createColumnLog(name.getText(), board.getName());
+                String text = Board.actLog.createColumnLog(name.getText(), board.getName());
                 addNewLogLine(text);
 
                 col_n = new JPanel();
                 col_outer = new DropPane(column);
                 col_n.setLayout(new BoxLayout(col_n, BoxLayout.Y_AXIS));
                 col_n.add(col_obj.generatePanel());
-               
-                col_n.add(deleteBut(column));
-
+               col_n.add(deleteBut(column));
                 col_n.setBorder(BorderFactory.createLineBorder(Color.black));
                 col_outer.setBorder(BorderFactory.createLineBorder(Color.black));
                 col_outer.setBackground(Color.BLACK);
@@ -139,11 +137,12 @@ public class boardGUI implements Serializable {
 
         // JButton to save a board
         JButton save = new JButton("SAVE");
-        // save.addActionListener(new ActionListener() {
-        // public void actionPerformed(ActionEvent e){
-
-        // }
-        // });
+         save.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e){
+            String fileName = board.getName() + ".csv";
+            SaveData saveData = new SaveData(fileName, board);
+         }
+         });
 
         but.add(save);
         but.add(Box.createHorizontalGlue());

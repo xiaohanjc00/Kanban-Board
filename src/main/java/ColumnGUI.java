@@ -101,7 +101,13 @@ public class ColumnGUI implements Serializable {
                String card_name =  JOptionPane.showInputDialog(Main.first_frame,
                         "ENTER CARD TITLE:", null);
 
-                if (card_name != null) {addCard("", card_name);}
+                if (card_name != null) {
+                    addCard("", card_name);
+
+                    /*Add card log */
+                    String text = Board.actLog.createCardLog(card_name, name);
+                    boardGUI.addNewLogLine(text);
+                }
             }
         });
         panel.add(add_card);
@@ -143,6 +149,10 @@ public class ColumnGUI implements Serializable {
                     if (response == 0) {
                         column.removeCard(current_card);
                         refreshColumn();
+
+                        /*Delete card log */
+                        String text = Board.actLog.deleteCardLog(current_card.getTitle(), name);
+                        boardGUI.addNewLogLine(text);
                     }
                 }
             });

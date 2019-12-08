@@ -84,8 +84,14 @@ public class CardGUI {
         JButton saveDescriptionBtn = new JButton("Save Description");
         saveDescriptionBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            card.setDescription(descriptionText.getText());
-            JOptionPane.showMessageDialog(leftPanel, "Description Saved!");}
+                card.setDescription(descriptionText.getText());
+                JOptionPane.showMessageDialog(leftPanel, "Description Saved!");
+                columnGui.refreshColumn();
+                
+                /*Edit description log */
+                String text = Board.actLog.setDescriptionLog(card);
+                boardGUI.addNewLogLine(text);
+            }
         });
 
         descriptionLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
@@ -130,6 +136,11 @@ public class CardGUI {
                         newFrame.setVisible(false);
                         newFrame.dispose();
                         refreshFrame();
+                        columnGui.refreshColumn();
+
+                        /*Edit story point log */
+                        String text = Board.actLog.setStoryPointLog(card);
+                        boardGUI.addNewLogLine(text);
                     }
                 });
                 storyPointsLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
@@ -159,6 +170,7 @@ public class CardGUI {
                 JButton submitBtn = new JButton("Submit");
                 submitBtn.addActionListener(new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
+                        String temp = card.getTitle();
                         card.setTitle(cardTitleText.getText());
                         JOptionPane.showMessageDialog(newFrame, "Card Title saved!");
                         removeFrameFromList(newFrame);
@@ -166,6 +178,10 @@ public class CardGUI {
                         newFrame.dispose();
                         refreshFrame();
                         columnGui.refreshColumn();
+
+                        /*Edit card title log */
+                        String text = Board.actLog.editCardTitleLog(temp, card);
+                        boardGUI.addNewLogLine(text);
                     }
                 });
                 cardTitleLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);

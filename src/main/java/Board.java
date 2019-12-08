@@ -15,13 +15,11 @@ public class Board implements Serializable{
   private String name;
   private ArrayList<String> members;
   private ArrayList<Column> columns;
-  private HashMap<LocalDateTime, String> history;
   private int nextId;
   static ActivityLog actLog;
 
 public Board(String nameIn){
     name = nameIn;
-    history = new HashMap<LocalDateTime, String>();
     columns = new ArrayList<Column>();
     members = new ArrayList<String>();
     nextId = 0;
@@ -35,20 +33,16 @@ public Board(String nameIn){
     }
 }
 
-  public void addToHistory(String data){
-    history.put(LocalDateTime.now(), data);
+  public List<String> getLog(){
+    return actLog.getActivityLog();
   }
 
-  public HashMap<LocalDateTime, String> getLog2(){
-    return history;
+  public ArrayList<Column> getColumnsList(){
+    return columns;
   }
-public List<String> getLog(){
-  return actLog.getActivityLog();
-}
 
   public void setName(String nameIn){
     name = nameIn;
-    addToHistory("Changed Board name to" + name);
   }
 
   public String getName(){
@@ -57,12 +51,10 @@ public List<String> getLog(){
 
   public void addColumn(Column col){
     columns.add(col);
-    addToHistory("Added column " + col.getName());
   }
 
   public void removeColumn(Column col){
     columns.remove(col);
-    addToHistory("Removed column " + col.getName());
   }
 
   public ArrayList<Column> getColumns(){
@@ -71,12 +63,10 @@ public List<String> getLog(){
 
   public void addMember(String member){
     members.add(member);
-    addToHistory("Added Member " + member);
   }
 
   public void removeMember(String member){
     members.remove(member);
-    addToHistory("Removed Member " + member);
   }
 
   public ArrayList<String> getMembers(){
