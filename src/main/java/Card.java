@@ -1,14 +1,14 @@
 
 import java.time.*;
 import java.util.ArrayList;
-
+import java.io.*;
 /*
 * Card object class
 * Cards must contain a title, creator
 * Cards can contain a description, members assigned, a deadline
 *
 */
-public class Card {
+public class Card implements Serializable {
 
     private String title;
     private String description;

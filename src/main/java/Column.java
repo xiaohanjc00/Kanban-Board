@@ -1,6 +1,6 @@
 import java.util.ArrayList;
-
-public class Column {
+import java.io.*;
+public class Column implements Serializable{
 
     private String name;
     private String role;
@@ -16,7 +16,13 @@ public class Column {
         cards =  new ArrayList<Card>();
         columnGui = columnGuiIn;
     }
-
+    
+    public Column(String nameIn, String roleIn, ArrayList<Card> cardsIn, ColumnGUI columnGuiIn){
+        name = nameIn;
+        role = roleIn;
+        cards =  cardsIn;
+        columnGui = columnGuiIn;
+    }
     /*
      * Get the name of the column.
      * @return The name of a column

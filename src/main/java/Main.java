@@ -131,7 +131,17 @@ public class Main {
         list_boards.add(list_l);
         JPanel board_panel;
         for (Board curr_board: boardlist.getAllBoards()) {
-            JLabel curr_board_name = new JLabel(curr_board.getName());
+            JButton curr_board_name = new JButton(curr_board.getName());
+            curr_board_name.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            boardGUI load_board = new boardGUI("Add Board Name Here", curr_board);
+            first_frame.getContentPane().removeAll();
+            first_frame.add(head, BorderLayout.PAGE_START);
+            first_frame.add(load_board.build("Add board name here" ), BorderLayout.CENTER);
+            first_frame.revalidate();
+            first_frame.repaint();
+            }
+            });
             board_panel = new JPanel();
             board_panel.add(curr_board_name);
             list_boards.add(board_panel);

@@ -6,8 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 import java.awt.event.*;
+import java.io.*;
 
-public class ColumnGUI {
+public class ColumnGUI implements Serializable {
 
     private String name;
     private Column column;
@@ -23,6 +24,13 @@ public class ColumnGUI {
         column = new Column(name, role, this);
         boardGui = boardGuiIn;
     }
+    
+    public ColumnGUI(String name, String role, boardGUI boardGuiIn, ArrayList<Card> cards){
+         this.name = name;
+        this.role = role;
+        column = new Column(name, role, cards, this);
+        boardGui = boardGuiIn;
+    }
 
     /**
     * method to generate a JPanel that represents a column in a board.
@@ -35,7 +43,25 @@ public class ColumnGUI {
         addTitle();
         loadCards();
         addButton();
+        editCol();
         return panel;
+    }
+    
+    
+    /**
+    * method to build JPanel that represents a column loaded from the board.
+    */
+    
+    public JPanel buildCol()
+    {
+       panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        addTitle();
+        loadCards();
+        addButton();
+        editCol();
+        return panel;  
     }
 
 
@@ -113,7 +139,7 @@ public class ColumnGUI {
                 public void actionPerformed(ActionEvent e) {
                     int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete card " + current_card.getTitle() + "?", "Confirm Deletion",
 				    JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
-                    System.out.println(response);
+                   // System.out.println(response);
                     if (response == 0) {
                         column.removeCard(current_card);
                         refreshColumn();
@@ -142,8 +168,68 @@ public class ColumnGUI {
         addTitle();
         loadCards();
         addButton();
+        editCol();
         panel.revalidate();
         panel.repaint();
+    }
+    
+    /*
+     Edit Column name and role.
+    */
+    public void editCol()
+    {
+     JButton edit_col = new JButton("EDIT COLUMN");
+     edit_col.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+      JFrame newFrame = new JFrame();
+                        JPanel newPanel = new JPanel();
+                        newPanel.setLayout(new BoxLayout(newPanel, BoxLayout.Y_AXIS));
+                        JLabel columnTitleLabel = new JLabel("Please input the new column name:");
+                        JTextArea columnTitleText = new JTextArea(column.getName());
+                        columnTitleText.setMinimumSize(new Dimension(150, 50));
+                        columnTitleText.setMaximumSize(new Dimension(150, 50));
+                        columnTitleText.setLineWrap(true);
+
+                        JLabel columnRoleLabel = new JLabel("Please input the new column role:");
+                        JTextArea columnRoleText = new JTextArea(column.getRole());
+                        columnRoleText.setMinimumSize(new Dimension(150, 50));
+                        columnRoleText.setMaximumSize(new Dimension(150, 50));
+                        columnRoleText.setLineWrap(true);
+
+                        JButton submitBtn = new JButton("Submit");
+                        submitBtn.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                        String tempName = column.getName();
+                        String tempRole = column.getRole();   
+                        changeName(columnTitleText.getText());
+                        changeRole(columnRoleText.getText());
+                        column.setName(columnTitleText.getText());
+                        column.setRole(columnRoleText.getText());
+                        JOptionPane.showMessageDialog(newFrame, "Column Details saved!");
+                        newFrame.setVisible(false);
+                        newFrame.dispose();
+                        refreshColumn();
+                        /*Edit column log */
+                    
+                    }
+            });
+          columnTitleLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+                        columnTitleText.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+                        columnRoleLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+                        columnRoleText.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+                        submitBtn.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+                        newPanel.add(columnTitleLabel);
+                        newPanel.add(columnTitleText);
+                        newPanel.add(columnRoleLabel);
+                        newPanel.add(columnRoleText);
+                        newPanel.add(submitBtn);
+                        newFrame.add(newPanel);
+                        newFrame.setSize(400, 200);
+                        newFrame.setVisible(true);
+          
+      }
+     });
+        panel.add(edit_col);
     }
     /*
     Refresh cards from the column
@@ -153,6 +239,7 @@ public class ColumnGUI {
         addTitle();
         loadCards();
         addButton();
+        editCol();
         panel.revalidate();
     }
 

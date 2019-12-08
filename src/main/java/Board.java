@@ -9,9 +9,9 @@ import java.time.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.io.IOException;
+import java.io.*;
 
-public class Board{
+public class Board implements Serializable{
   private String name;
   private ArrayList<String> members;
   private ArrayList<Column> columns;

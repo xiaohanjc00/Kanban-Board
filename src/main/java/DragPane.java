@@ -15,7 +15,7 @@ public class DragPane extends JPanel {
     private DragGestureRecognizer dgr;
     private DragGestureRecognizer dgr1;
     private DragGestureHandler dragGestureHandler;
-      private DragGestureHandler dragGestureHandler1;
+    private DragGestureHandler dragGestureHandler1;
     private int index;
     private boolean isCard;
     private Column cur_col;
@@ -44,6 +44,7 @@ public class DragPane extends JPanel {
     {
         return cur_card;
     }
+    
     public int getInd(){
         return index;
     }
