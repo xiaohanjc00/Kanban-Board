@@ -6,10 +6,23 @@ public class CSVcreator {
 
     public CSVcreator(String fileName){
         try {
-            createNewCSV(fileName);
+            createCSV(fileName);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public CSVcreator(String fileName, Boolean appendMode){
+            try {
+                if(appendMode == false){
+                    createNewCSV(fileName);
+                }
+                else{
+                    createCSV(fileName);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
     }
 
     /**
@@ -17,8 +30,12 @@ public class CSVcreator {
      * @param fileName name of the file
      * @throws IOException
      */
-    public void createNewCSV(String fileName) throws IOException{
+    public void createCSV(String fileName) throws IOException{
         csvWriter = new FileWriter(fileName, true);
+    }
+
+    public void createNewCSV(String fileName) throws IOException{
+        csvWriter = new FileWriter(fileName, false);
     }
 
     /**

@@ -109,7 +109,7 @@ public class boardGUI {
                 board.addColumn(column);
 
                 /*New Column log */
-                String text = board.actLog.createColumnLog(name.getText(), board.getName());
+                String text = Board.actLog.createColumnLog(name.getText(), board.getName());
                 addNewLogLine(text);
 
                 col_n = new JPanel();
@@ -156,7 +156,7 @@ public class boardGUI {
                                 f.repaint();
 
                                 /*Edit column log */
-                                String text = board.actLog.editColumnLog(columnTitleText.getText(), tempName, columnRoleText.getText(), tempRole);
+                                String text = Board.actLog.editColumnLog(columnTitleText.getText(), tempName, columnRoleText.getText(), tempRole);
                                 addNewLogLine(text);
                             }
                         });
@@ -178,13 +178,13 @@ public class boardGUI {
                 JButton delete_col = new JButton("DELETE COLUMN");
                 delete_col.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        
+
                         /*Delete column log */
-                        String text = board.actLog.deleteColumnLog(column.getName(), b_name);
+                        String text = Board.actLog.deleteColumnLog(column.getName(), b_name);
                         addNewLogLine(text);
 
-                        board.removeColumn(column);
                         deleteCol(delete_col.getParent().getParent());
+                        board.removeColumn(column);
                     }
                 });
                 col_n.add(edit_col);
@@ -208,11 +208,12 @@ public class boardGUI {
 
         // JButton to save a board
         JButton save = new JButton("SAVE");
-        // save.addActionListener(new ActionListener() {
-        // public void actionPerformed(ActionEvent e){
-
-        // }
-        // });
+         save.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e){
+            String fileName = board.getName() + ".csv";
+            SaveData saveData = new SaveData(fileName, board);
+         }
+         });
 
         but.add(save);
         but.add(Box.createHorizontalGlue());

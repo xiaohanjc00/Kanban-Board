@@ -32,10 +32,10 @@ public class CSVreader {
      * @return list of string of each line of the CSV
      * @throws IOException if there is no such file
      */
-    public List<String> CSVGetString() throws IOException{
+    public ArrayList<String> CSVGetString() throws IOException{
         File file = new File(fileName);
         Scanner input = new Scanner(file);
-        List<String> list = new ArrayList<String>();
+        ArrayList<String> list = new ArrayList<String>();
 
         while (input.hasNextLine()) {
             list.add(input.nextLine());
