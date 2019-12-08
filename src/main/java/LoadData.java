@@ -106,4 +106,67 @@ public class LoadData{
         }
         return isEmpty;
     }
+    /**
+     * Get the column name from a columnDetail ArrayList
+     * @param columnDetails selected column from the ArrayList of columns
+     * @return  column name
+     */
+    public String getColumnName(ArrayList<Object> columnDetails){
+        return (String) columnDetails.get(0);
+    }
+
+    /**
+     * Get the column role from a columnDetail ArrayList
+     * @param columnDetails selected column from the ArrayList of columns
+     * @return  column role
+     */
+    public String getColumnRole(ArrayList<Object> columnDetails){
+        return (String) columnDetails.get(1);
+    }
+
+    /** 
+     * Get the list of Cards from a selected column
+     * @param columnDetails selected column from the ArrayList of columns
+     * @return  ArrayList of the cards in a column
+     */
+    public ArrayList<String> getCardDetails(ArrayList<Object> columnDetails){
+        return (ArrayList<String>) columnDetails.get(2);
+    }
+
+    /**
+     * Get card name from a selected card
+     * @param cardDetails selected card from the ArrayList of cards
+     * @return  name of the card
+     */
+    public String getCardName(ArrayList<String> cardDetails){
+        return cardDetails.get(0);
+    }
+
+    /**
+     * Get card ID from a selected card
+     * @param cardDetailsselected card from the ArrayList of cards
+     * @return ID of the card
+     */
+    public String getCardID(ArrayList<String> cardDetails){
+        return cardDetails.get(1);
+    }
+
+    /**
+     * Get the card story point from a selected card
+     * @param cardDetails card from the ArrayList of cards
+     * @return  story point of the card
+     */
+    public String getCardStoryPoints(ArrayList<String> cardDetails){
+        return cardDetails.get(2);
+    }
+
+    /**
+     * Get the card description from a selected card
+     * @param cardDetails card from the ArrayList of cards
+     * @return description of the card
+     */
+    public String getCardDescription(ArrayList<String> cardDetails){
+        return cardDetails.get(3);
+    }
+
 }
