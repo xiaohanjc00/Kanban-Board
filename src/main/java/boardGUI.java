@@ -161,7 +161,7 @@ public class boardGUI implements Serializable {
     * Method to build board with given information.
     */
     
-    public JPanel build(String load_name)
+    public JPanel build(LoadData load_data)
     {
      build_board = new JPanel();    
      Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -173,7 +173,7 @@ public class boardGUI implements Serializable {
         topbar.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         BoxLayout box_ly = new BoxLayout(topbar, BoxLayout.X_AXIS);
         topbar.setLayout(box_ly);
-        JLabel board_name = new JLabel("BOARD NAME: " + load_name);
+        JLabel board_name = new JLabel("BOARD NAME: ");
         topbar.add(board_name);
         topbar.add(Box.createHorizontalGlue());
         JLabel members = new JLabel(" MEMBERS:  ");
@@ -264,11 +264,11 @@ public class boardGUI implements Serializable {
         
         // JButton to save a board
         JButton save = new JButton("SAVE");
-        // save.addActionListener(new ActionListener() {
-        // public void actionPerformed(ActionEvent e){
-
-        // }
-        // });
+         save.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e){
+       
+         }
+          });
 
         but.add(save);
         but.add(Box.createHorizontalGlue());
@@ -276,7 +276,8 @@ public class boardGUI implements Serializable {
         
         /* Load up the components of the board (e.g. Columns, Cards in Columns) */
         
-        //for(ArrayList<Object> column: board_info) //This loop goes through every ArrayList<Object> element.
+        ArrayList<ArrayList<Object>> board_info = new ArrayList<ArrayList<Object>>(); //redefine this arraylist
+        for(ArrayList<Object> column: board_info) //This loop goes through every ArrayList<Object> element.
         {
         ArrayList<Card> load_cards = new ArrayList<Card>(); //this is the arraylist that holds all cards for a column. 
         //add all card objects in this arraylist

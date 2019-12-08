@@ -134,10 +134,12 @@ public class Main {
             JButton curr_board_name = new JButton(curr_board.getName());
             curr_board_name.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            //create the LoadData object here
+            LoadData load_data = new LoadData(curr_board.getName()); 
             boardGUI load_board = new boardGUI("Add Board Name Here", curr_board);
             first_frame.getContentPane().removeAll();
             first_frame.add(head, BorderLayout.PAGE_START);
-            first_frame.add(load_board.build("Add board name here" ), BorderLayout.CENTER);
+            first_frame.add(load_board.build(load_data), BorderLayout.CENTER);
             first_frame.revalidate();
             first_frame.repaint();
             }
