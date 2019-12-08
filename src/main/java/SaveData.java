@@ -30,7 +30,12 @@ public class SaveData {
             //Index 0 for the name of the column
             ArrayList<String> firstValue = new ArrayList<>();
             firstValue.add(col.getName());
-            firstValue.add(col.getRole());
+            if(!col.getRole().equals("")){
+                firstValue.add(col.getRole());
+            }
+            else{
+                firstValue.add("null");
+            }
             columnDetails.add(firstValue);
 
             //Following indexes for the cards inside the column
@@ -71,7 +76,7 @@ public class SaveData {
             String columnName = columnDetail.get(0).get(0);
             String columnRole = columnDetail.get(0).get(1);
             csvWriter.appendCSV("\n");
-            csvWriter.appendCSV("columnName, " + columnName + columnRole);
+            csvWriter.appendCSV("columnName, " + columnName + " , " + columnRole);
             csvWriter.appendCSV("\n");
 
             for(int i=1; i < columnDetail.size(); i++){
