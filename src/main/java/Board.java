@@ -33,9 +33,13 @@ public Board(String nameIn){
     }
 }
 
-public List<String> getLog(){
-  return actLog.getActivityLog();
-}
+  public List<String> getLog(){
+    return actLog.getActivityLog();
+  }
+
+  public ArrayList<Column> getColumnsList(){
+    return columns;
+  }
 
   public void setName(String nameIn){
     name = nameIn;

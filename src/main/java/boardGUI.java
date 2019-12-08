@@ -184,6 +184,7 @@ public class boardGUI {
                         addNewLogLine(text);
 
                         deleteCol(delete_col.getParent().getParent());
+                        board.removeColumn(column);
                     }
                 });
                 col_n.add(edit_col);
@@ -207,11 +208,12 @@ public class boardGUI {
 
         // JButton to save a board
         JButton save = new JButton("SAVE");
-        // save.addActionListener(new ActionListener() {
-        // public void actionPerformed(ActionEvent e){
-
-        // }
-        // });
+         save.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e){
+            String fileName = board.getName() + ".csv";
+            SaveData saveData = new SaveData(fileName, board);
+         }
+         });
 
         but.add(save);
         but.add(Box.createHorizontalGlue());

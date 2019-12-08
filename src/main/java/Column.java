@@ -17,6 +17,10 @@ public class Column {
         columnGui = columnGuiIn;
     }
 
+    public ArrayList<Card> getCardsList(){
+        return cards;
+    }
+
     /*
      * Get the name of the column.
      * @return The name of a column
