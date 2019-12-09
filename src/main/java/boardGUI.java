@@ -283,6 +283,7 @@ public class boardGUI implements Serializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        last = last + 1;
         for(ArrayList<Object> column: board_info) //This loop goes through every ArrayList<Object> element.
         {
         ArrayList<ArrayList<String>> load_cards_string = new ArrayList<ArrayList<String>>(); //this is the arraylist that holds all cards for a column. 
@@ -294,10 +295,14 @@ public class boardGUI implements Serializable {
             newCard.setDescription(load_data.getCardDescription(cardString));
             newCard.setStoryPoint(load_data.getCardStoryPoints(cardString));
             load_cards.add(newCard);
+            
         }
+        ColumnGUI load_col;
+        load_col= new ColumnGUI(load_data.getColumnName(column), load_data.getColumnRole(column),this, load_cards); //Here, you add the column name and column role parameter.
+        Column loadColumn = load_col.getColumn();
+        board.addColumn(loadColumn);
 
-        ColumnGUI load_col= new ColumnGUI(load_data.getColumnName(column), "load_data.getColumnRole(column)",this, load_cards); //Here, you add the column name and column role parameter.
-        
+
         DropPane load_col_outer = new DropPane(load_col.getColumn());
         load_col_outer.setBorder(BorderFactory.createLineBorder(Color.black));
         load_col_outer.setBackground(Color.BLACK);

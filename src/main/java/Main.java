@@ -116,6 +116,8 @@ public class Main {
                     first_frame.getContentPane().removeAll();
                     first_frame.add(head, BorderLayout.PAGE_START);
                     first_frame.add(new_board.generate(), BorderLayout.CENTER);
+                    //LoadData load_data = new LoadData("aaa.csv");
+                    //first_frame.add(new_board.build(load_data), BorderLayout.CENTER);
                     first_frame.revalidate();
                     first_frame.repaint();
                 }

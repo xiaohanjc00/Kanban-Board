@@ -52,9 +52,8 @@ public class ColumnGUI implements Serializable {
     * method to build JPanel that represents a column loaded from the board.
     */
     
-    public JPanel buildCol()
-    {
-       panel = new JPanel();
+    public JPanel buildCol(){
+        panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         addTitle();
