@@ -6,7 +6,8 @@ public class LoadData{
     CSVreader csvReader;
 
     public LoadData(String fileName) {
-        readFile("src/BoardData/" + fileName);
+        //readFile("src/BoardData/" + fileName);
+        readFile(fileName);
     }
     
     /**

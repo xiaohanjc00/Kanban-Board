@@ -10,7 +10,8 @@ public class ActivityLog {
     CSVreader csvReader;
 
     public ActivityLog(String fileName) throws IOException {
-        csvWriter = new CSVcreator("src/ActivityLog/" + fileName);
+        //csvWriter = new CSVcreator("src/ActivityLog/" + fileName);
+        csvWriter = new CSVcreator(fileName);
         viewActivityLog(fileName);
     }
 
@@ -31,7 +32,8 @@ public class ActivityLog {
      */
     public void viewActivityLog(String fileName) throws IOException {
         try {
-            csvReader = new CSVreader("src/ActivityLog/" + fileName);
+            //csvReader = new CSVreader("src/ActivityLog/" + fileName);
+            csvReader = new CSVreader(fileName);
         } catch (IOException e) {
             e.printStackTrace();
         }
