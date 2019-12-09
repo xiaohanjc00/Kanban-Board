@@ -15,7 +15,7 @@ public class Main {
 
     
     public static void main(String[] args) {
-        Board board = new Board("b_name");
+        //Board board = new Board("b_name");
         BoardList boardlist = new BoardList();
         JPanel first_panel = new JPanel();
         String app_name = "APPLICATION_NAME";
@@ -23,14 +23,6 @@ public class Main {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int screen_width = (int) screenSize.getWidth();
         BorderLayout base = new BorderLayout(10, 10);
-
-        /*Board Log*/ 
-        //try{
-        //    log = new ActivityLog("MainActivityLog.csv");
-        //}
-        //catch(IOException e){
-        //    e.printStackTrace();
-        //}
 
 
         /*header of home page */
