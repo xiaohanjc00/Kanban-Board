@@ -13,7 +13,7 @@ public class Main {
     static JFrame first_frame;
     static ActivityLog log;
 
-    
+
     public static void main(String[] args) {
         //Board board = new Board("b_name");
         BoardList boardlist = new BoardList();
@@ -129,13 +129,15 @@ public class Main {
             curr_board_name.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             //create the LoadData object here
-            LoadData load_data = new LoadData(curr_board.getName()); 
-            boardGUI load_board = new boardGUI("Add Board Name Here", curr_board);
-            first_frame.getContentPane().removeAll();
-            first_frame.add(head, BorderLayout.PAGE_START);
-            first_frame.add(load_board.build(load_data), BorderLayout.CENTER);
-            first_frame.revalidate();
-            first_frame.repaint();
+            LoadData load_data = new LoadData(curr_board.getName() + ".csv"); 
+                    boardGUI load_board;
+                        load_board = new boardGUI(curr_board.getName(), curr_board);
+                        first_frame.getContentPane().removeAll();
+                        first_frame.add(head, BorderLayout.PAGE_START);
+                        first_frame.add(load_board.build(load_data), BorderLayout.CENTER);
+                        first_frame.revalidate();
+                        first_frame.repaint();
+            
             }
             });
             board_panel = new JPanel();
