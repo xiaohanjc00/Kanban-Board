@@ -266,7 +266,8 @@ public class boardGUI implements Serializable {
         JButton save = new JButton("SAVE");
          save.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e){
-       
+            String fileName = board.getName() + ".csv";
+            SaveData saveData = new SaveData(fileName, board);
          }
           });
 
@@ -277,12 +278,25 @@ public class boardGUI implements Serializable {
         /* Load up the components of the board (e.g. Columns, Cards in Columns) */
         
         ArrayList<ArrayList<Object>> board_info = new ArrayList<ArrayList<Object>>(); //redefine this arraylist
+        try {
+            board_info = load_data.getInformation();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         for(ArrayList<Object> column: board_info) //This loop goes through every ArrayList<Object> element.
         {
-        ArrayList<Card> load_cards = new ArrayList<Card>(); //this is the arraylist that holds all cards for a column. 
+        ArrayList<ArrayList<String>> load_cards_string = new ArrayList<ArrayList<String>>(); //this is the arraylist that holds all cards for a column. 
         //add all card objects in this arraylist
-            
-        ColumnGUI load_col= new ColumnGUI("NAME-REPLACE THIS WITH COL NAME", "ROLE- REPLACE THIS WITH COL ROLE",this, load_cards); //Here, you add the column name and column role parameter.
+        load_cards_string = load_data.getCardDetails(column);
+        ArrayList<Card> load_cards = new ArrayList<Card>();
+        for(ArrayList<String> cardString : load_cards_string){
+            Card newCard = new Card("creator", load_data.getCardName(cardString), load_data.getCardID(cardString));
+            newCard.setDescription(load_data.getCardDescription(cardString));
+            newCard.setStoryPoint(load_data.getCardStoryPoints(cardString));
+            load_cards.add(newCard);
+        }
+
+        ColumnGUI load_col= new ColumnGUI(load_data.getColumnName(column), "load_data.getColumnRole(column)",this, load_cards); //Here, you add the column name and column role parameter.
         
         DropPane load_col_outer = new DropPane(load_col.getColumn());
         load_col_outer.setBorder(BorderFactory.createLineBorder(Color.black));

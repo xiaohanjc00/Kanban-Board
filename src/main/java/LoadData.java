@@ -174,8 +174,8 @@ public class LoadData{
      * @param cardDetails card from the ArrayList of cards
      * @return description of the card
      */
-    public int getCardDescription(ArrayList<String> cardDetails){
-        return Integer.parseInt(cardDetails.get(3));
+    public String getCardDescription(ArrayList<String> cardDetails){
+        return cardDetails.get(3);
     }
 
 }
