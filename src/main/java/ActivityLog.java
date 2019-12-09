@@ -127,7 +127,7 @@ public class ActivityLog {
                 text = "Column " + oldColumn + " has changed to " + newColumn + " and role changed to " + newRole + " , " + getCurrentTime();
             }
             else if(!oldColumn.equals(newColumn)){
-                text = "Column " + oldColumn + " has been edited to " + newColumn + " , " + getCurrentTime();
+                text = "Column " + oldColumn + " has changed name to " + newColumn + " , " + getCurrentTime();
             }
             else if(!oldRole.equals(newRole)){
                 text = "Role of column " + oldColumn + " has been edited to " + newRole + " , " + getCurrentTime();
@@ -244,6 +244,13 @@ public class ActivityLog {
     public String setStoryPointLog(Card card){
         String text = card.getTitle() + " story point has been set to " + card.getStoryPoint() + " , " + getCurrentTime();
         //activityList.put(time, text);
+        csvWriter.appendCSV(text);
+        csvWriter.appendCSV("\n");
+        return text;
+    }
+
+    public String saveButtonLog(String board){
+        String text = "Board " + board + " has been saved correctly, " + getCurrentTime();
         csvWriter.appendCSV(text);
         csvWriter.appendCSV("\n");
         return text;

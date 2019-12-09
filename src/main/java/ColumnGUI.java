@@ -219,7 +219,8 @@ public class ColumnGUI implements Serializable {
                         newFrame.dispose();
                         refreshColumn();
                         /*Edit column log */
-                    
+                        String text = Board.actLog.editColumnLog(columnTitleText.getText(), tempName, columnRoleText.getText(), tempRole);
+                        boardGui.addNewLogLine(text);
                     }
             });
           columnTitleLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);

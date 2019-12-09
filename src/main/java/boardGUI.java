@@ -141,6 +141,12 @@ public class boardGUI implements Serializable {
          public void actionPerformed(ActionEvent e){
             String fileName = board.getName() + ".csv";
             SaveData saveData = new SaveData(fileName, board);
+
+            /*Save board log */
+            String text = Board.actLog.saveButtonLog(board.getName());
+            addNewLogLine(text);
+            f.revalidate();
+            f.repaint();
          }
          });
 
@@ -268,6 +274,10 @@ public class boardGUI implements Serializable {
          public void actionPerformed(ActionEvent e){
             String fileName = board.getName() + ".csv";
             SaveData saveData = new SaveData(fileName, board);
+
+            /*Save board log */
+            String text = Board.actLog.saveButtonLog(board.getName());
+            addNewLogLine(text);
          }
           });
 
@@ -366,7 +376,7 @@ public class boardGUI implements Serializable {
         delete_col.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
                         
-                        /*Delete column log */
+        /*Delete column log */
         String text = board.actLog.deleteColumnLog(column.getName(), b_name);
         addNewLogLine(text);
 
