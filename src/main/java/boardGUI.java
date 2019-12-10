@@ -1,5 +1,7 @@
-/**
- * Represents the Board GUI for the application.
+/** 
+ * Represents the Board GUI for the application. 
+ * The Board is a Kanban board that gives its users different features of a Kanban Board.
+ * It implements Serializable class to implement certain features of the board.
  */
 
 import javax.swing.*;
@@ -14,8 +16,8 @@ import java.awt.Color;
 import java.io.*;
 
 public class boardGUI implements Serializable {
-    static int last = -1; // counter to keep track of the last position for lists
-    static JPanel col_n; // JPanel to add new column or list
+    static int last = -1;                               // counter to keep track of the last position for lists
+    static JPanel col_n;            
     JPanel col_area;
     JPanel f;
     JPanel build_board;
@@ -23,7 +25,7 @@ public class boardGUI implements Serializable {
     int col_name;
     Board board;
     DropPane col_outer;
-    ArrayList < JPanel > cols = new ArrayList < > (); //arraylist to store all columns present in the current board.
+    ArrayList <JPanel> cols = new ArrayList <> ();      // arraylist to store all columns present in the current board.
     private static JScrollPane activityLogPanel;
 
     public boardGUI(String name, Board b) {
@@ -31,10 +33,12 @@ public class boardGUI implements Serializable {
         board = b;
     }
     
+   /**
+    * This generates a new board GUI instance in the form of a JPanel.
+    */
+    
     public JPanel generate() {
-        // add an input before the creation in the Homepage that would give us the name
-        // of the board
-
+        
         f = new JPanel();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         BorderLayout lay = new BorderLayout();
