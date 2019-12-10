@@ -51,6 +51,7 @@ public Board(String nameIn){
 
   public void addColumn(Column col){
     columns.add(col);
+    System.out.println("add one column");
   }
 
   public void removeColumn(Column col){

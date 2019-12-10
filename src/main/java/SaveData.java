@@ -11,7 +11,10 @@ public class SaveData {
         csvWriter = new CSVcreator(fileName, false);
         this.board = board;
         writeInformation();
-        LoadData aa = new LoadData(fileName);
+        //LoadData aa = new LoadData(fileName);
+        //csvWriter.flushCSV();
+        //csvWriter.closeCSV();
+        System.out.println("savedata");
     }
 
     /**
@@ -19,8 +22,10 @@ public class SaveData {
      * @return Arraylist of Columns(ArrayList of Cards(ArrayList of it details))
      */
     public ArrayList<ArrayList<ArrayList<String>>> getBoardInformation(){
+        System.out.println("getting board information\n");
         //Get list of columns
         ArrayList<Column> columnList = board.getColumnsList();
+        System.out.println("This board's column list has size " + columnList.size() + "\n");
 
         //Create the final board list
         ArrayList<ArrayList<ArrayList<String>>> boardDetails = new ArrayList<>();

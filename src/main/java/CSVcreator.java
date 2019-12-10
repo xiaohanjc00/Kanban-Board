@@ -32,10 +32,12 @@ public class CSVcreator {
      */
     public void createCSV(String fileName) throws IOException{
         csvWriter = new FileWriter(fileName, true);
+        System.out.println("append");
     }
 
     public void createNewCSV(String fileName) throws IOException{
         csvWriter = new FileWriter(fileName, false);
+        System.out.println("override");
     }
 
     /**

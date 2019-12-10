@@ -8,6 +8,7 @@ public class LoadData{
     public LoadData(String fileName) {
         //readFile("src/BoardData/" + fileName);
         readFile(fileName);
+        System.out.println("loadData");
     }
     
     /**
