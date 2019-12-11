@@ -66,22 +66,76 @@ public class CardTest {
       assertArrayEquals(expectedMembers.toArray(), newCard.getMembers().toArray());
     }
 
+    // @Test
+    // public void deadlineTest(){
+    //   //create the card
+    //   String creator = "Jeroen Keppens";
+    //   String title = "My first card";
+    //   Card newCard = new Card(creator, title, 0);
+
+    //   //deadline test
+    //   String deadlineString = "2020-04-20 16:20";
+    //   DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    //   LocalDateTime deadline = LocalDateTime.parse(deadlineString, formatter);
+
+    //   newCard.setDeadline(deadline);
+
+    //   assertEquals(deadlineString, newCard.getDeadline().format(formatter));
+
+    // }
+
     @Test
-    public void deadlineTest(){
+    public void storyPointsTest(){
       //create the card
       String creator = "Jeroen Keppens";
       String title = "My first card";
       Card newCard = new Card(creator, title, 0);
 
-      //deadline test
-      String deadlineString = "2020-04-20 16:20";
-      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-      LocalDateTime deadline = LocalDateTime.parse(deadlineString, formatter);
-
-      newCard.setDeadline(deadline);
-
-      assertEquals(deadlineString, newCard.getDeadline().format(formatter));
-
+      //story points test
+      newCard.setStoryPoint(4);
+      assertEquals(4, newCard.getStoryPoint());
     }
+
+    //now that all card backend functions are tested, we'll set up a general
+    //purpose test to check nothing spooky happens under weird circumstances
+
+    @Test
+    public void emptyNameTest(){
+      //create the card with empty string
+      String creator = "Jeroen Keppens";
+      String title = "title";
+      Card newCard = new Card(creator, title, 99999);
+
+      Card secondCard = new Card(creator, title, 99999);
+
+      
+      
+      assertEquals("", newCard.getTitle());
+    }
+
+    // @Test(expected=IllegalArgumentException.class)
+    // public void negativeIntTest(){
+    //   //create the card
+    //   String creator = "Jeroen Keppens";
+    //   String title = "title";
+    //   Card newCard = new Card(creator, title, -5);
+    // }
+    
+
+    // //localdateTime before now
+    // @Test(expected=IllegalArgumentException.class)
+    // public void timeTravelTest(){
+    //   //create the card
+    //   String creator = "Jeroen Keppens";
+    //   String title = "title";
+    //   String deadlineString = "2000-01-01 16:20";
+    //   DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    //   LocalDateTime deadline = LocalDateTime.parse(deadlineString, formatter);
+    //   Card newCard = new Card(creator, title, 1);
+
+    //   newCard.setDeadline(deadline);
+    // }
+
+
 
 }
