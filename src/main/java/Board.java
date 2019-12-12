@@ -82,4 +82,8 @@ public Board(String nameIn){
     nextId++;
   }
 
+  public void clearColumns(){
+    columns.clear();
+  }
+
 }
