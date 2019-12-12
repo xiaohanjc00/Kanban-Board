@@ -16,16 +16,16 @@ public class ColumnGUI implements Serializable {
     private DragPane card_in_col;
     private String role;
     private JPanel cards_area;
-    private boardGUI boardGui;
+    private BoardGUI boardGui;
     
-    public ColumnGUI(String name, String role, boardGUI boardGuiIn) {
+    public ColumnGUI(String name, String role, BoardGUI boardGuiIn) {
         this.name = name;
         this.role = role;
         column = new Column(name, role, this);
         boardGui = boardGuiIn;
     }
     
-    public ColumnGUI(String name, String role, boardGUI boardGuiIn, ArrayList<Card> cards){
+    public ColumnGUI(String name, String role, BoardGUI boardGuiIn, ArrayList<Card> cards){
          this.name = name;
         this.role = role;
         column = new Column(name, role, cards, this);
@@ -105,7 +105,7 @@ public class ColumnGUI implements Serializable {
 
                     /*Add card log */
                     String text = Board.actLog.createCardLog(card_name, name);
-                    boardGUI.addNewLogLine(text);
+                    boardGui.addNewLogLine(text);
                 }
             }
         });
@@ -151,7 +151,7 @@ public class ColumnGUI implements Serializable {
 
                         /*Delete card log */
                         String text = Board.actLog.deleteCardLog(current_card.getTitle(), name);
-                        boardGUI.addNewLogLine(text);
+                        boardGui.addNewLogLine(text);
                     }
                 }
             });
@@ -257,7 +257,7 @@ public class ColumnGUI implements Serializable {
         return column;
     }
 
-    public boardGUI getBoardGui() {
+    public BoardGUI getBoardGui() {
         return boardGui;
     }
 }

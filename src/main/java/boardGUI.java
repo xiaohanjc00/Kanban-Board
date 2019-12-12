@@ -13,7 +13,7 @@ import java.awt.dnd.*;
 import java.awt.Color;
 import java.io.*;
 
-public class boardGUI implements Serializable {
+public class BoardGUI implements Serializable {
     static int last = -1; // counter to keep track of the last position for lists
     static JPanel col_n; // JPanel to add new column or list
     JPanel col_area;
@@ -26,7 +26,7 @@ public class boardGUI implements Serializable {
     ArrayList < JPanel > cols = new ArrayList < > (); //arraylist to store all columns present in the current board.
     private static JScrollPane activityLogPanel;
 
-    public boardGUI(String name, Board b) {
+    public BoardGUI(String name, Board b) {
         b_name = name;
         board = b;
     }

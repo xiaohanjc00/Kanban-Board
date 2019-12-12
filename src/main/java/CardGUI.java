@@ -90,7 +90,7 @@ public class CardGUI {
                 
                 /*Edit description log */
                 String text = Board.actLog.setDescriptionLog(card);
-                boardGUI.addNewLogLine(text);
+                BoardGUI.addNewLogLine(text);
             }
         });
 
@@ -140,7 +140,7 @@ public class CardGUI {
 
                         /*Edit story point log */
                         String text = Board.actLog.setStoryPointLog(card);
-                        boardGUI.addNewLogLine(text);
+                        BoardGUI.addNewLogLine(text);
                     }
                 });
                 storyPointsLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
@@ -181,7 +181,7 @@ public class CardGUI {
 
                         /*Edit card title log */
                         String text = Board.actLog.editCardTitleLog(temp, card);
-                        boardGUI.addNewLogLine(text);
+                        BoardGUI.addNewLogLine(text);
                     }
                 });
                 cardTitleLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);

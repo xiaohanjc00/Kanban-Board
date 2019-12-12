@@ -103,7 +103,7 @@ public class Main {
                 if (board_name != null) {
                     Board board_added = new Board(board_name);
                     boardlist.addBoard(board_added);
-                    boardGUI new_board = new boardGUI(board_name, board_added); //Board Object also passed as parameter
+                    BoardGUI new_board = new BoardGUI(board_name, board_added); //Board Object also passed as parameter
 
                     first_frame.getContentPane().removeAll();
                     first_frame.add(head, BorderLayout.PAGE_START);
@@ -127,22 +127,17 @@ public class Main {
         for (Board curr_board: boardlist.getAllBoards()) {
             JButton curr_board_name = new JButton(curr_board.getName());
             curr_board_name.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            //create the LoadData object here
-            LoadData load_data = new LoadData(curr_board.getName() + ".csv");
-            System.out.println("load data function run");
-                    boardGUI load_board;
-                        load_board = new boardGUI(curr_board.getName(), curr_board);
-                        System.out.println("new boardGUI has been created");
-                        first_frame.getContentPane().removeAll();
-                        first_frame.add(head, BorderLayout.PAGE_START);
-                        System.out.println("start");
-                        first_frame.add(load_board.build(load_data), BorderLayout.CENTER);
-                        System.out.println("aa");
-                        first_frame.revalidate();
-                        first_frame.repaint();
-            
-            }
+                public void actionPerformed(ActionEvent e) {
+                    //create the LoadData object here
+                    LoadData load_data = new LoadData(curr_board.getName() + ".csv");
+                    BoardGUI load_board;
+                    load_board = new BoardGUI(curr_board.getName(), curr_board);
+                    first_frame.getContentPane().removeAll();
+                    first_frame.add(head, BorderLayout.PAGE_START);
+                    first_frame.add(load_board.build(load_data), BorderLayout.CENTER);
+                    first_frame.revalidate();
+                    first_frame.repaint();
+                }
             });
             board_panel = new JPanel();
             board_panel.add(curr_board_name);
