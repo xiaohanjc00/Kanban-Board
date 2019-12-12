@@ -1,6 +1,6 @@
 /**
 * This represents a JPanel that can be dragged.
-*It uses the DragGestureHandler class to link with Drag events.
+* It uses the DragGestureHandler class to link with Drag events.
 */
 
 import java.awt.Color;
