@@ -363,10 +363,10 @@ public class boardGUI implements Serializable {
 
         col_area.remove(to_delete);
         col_area.revalidate();
-        if(f != null)
+        if(board_panel != null)
         {
-        f.revalidate();
-        f.repaint();
+        board_panel.revalidate();
+        board_panel.repaint();
         }
         if(build_board != null)
         {
