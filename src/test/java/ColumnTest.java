@@ -83,7 +83,7 @@ public class ColumnTest{
         newColumn.addCard("James", "Do This");
         newColumn.addCard("John", "Important");
         //Remove 2nd card
-        newColumn.removeCard(c2.getId());
+        newColumn.removeCard(newColumn.getCards().get(0));
         ArrayList<Card> shouldBe = new ArrayList<Card>();
         shouldBe.add(c);
         //Check that column only has 1 card
