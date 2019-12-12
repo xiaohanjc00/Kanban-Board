@@ -13,6 +13,7 @@ public class Main {
     static String board_name = "";
     static JFrame first_frame;
     static ActivityLog log;
+    private static Board activeBoard;
     
     public static void main(String[] args) {
         
@@ -24,6 +25,7 @@ public class Main {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int screen_width = (int) screenSize.getWidth();
         BorderLayout base = new BorderLayout(10, 10);
+        activeBoard = null;
         
         /* Header of home page that that acts as the navbar and holds the Home Button, Close button, and title */
 
@@ -58,6 +60,8 @@ public class Main {
         JButton close_b = new JButton("X Close");
         close_b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                String fileName = activeBoard.getName() + ".csv";
+                SaveData saveData = new SaveData(fileName, activeBoard);
                 System.exit(0);
             }
         });
@@ -105,6 +109,7 @@ public class Main {
                     Board board_added = new Board(board_name);
                     boardlist.addBoard(board_added);
                     BoardGUI new_board = new BoardGUI(board_name, board_added); //Board Object also passed as parameter
+                    activeBoard = board_added;
 
                     first_frame.getContentPane().removeAll();
                     first_frame.add(head, BorderLayout.PAGE_START);
@@ -132,6 +137,7 @@ public class Main {
             JButton curr_board_name = new JButton(curr_board.getName());
             curr_board_name.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+                    activeBoard = curr_board;
                     //create the LoadData object here
                     LoadData load_data = new LoadData(curr_board.getName() + ".csv");
                     BoardGUI load_board;
