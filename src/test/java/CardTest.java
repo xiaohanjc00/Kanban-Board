@@ -103,13 +103,8 @@ public class CardTest {
     public void emptyNameTest(){
       //create the card with empty string
       String creator = "Jeroen Keppens";
-      String title = "title";
-      Card newCard = new Card(creator, title, 99999);
-
-      Card secondCard = new Card(creator, title, 99999);
-
-      
-      
+      String title = "";
+      Card newCard = new Card(creator, title, 99999);  
       assertEquals("", newCard.getTitle());
     }
 

@@ -69,8 +69,8 @@ public class Card implements Serializable {
      * Get the ID of the card.
      * @return The ID of the card.
      */
-    public String getId() {
-        return String.valueOf(id);
+    public int getId() {
+        return id;
     }
 
     /*
