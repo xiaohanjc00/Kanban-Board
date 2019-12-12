@@ -100,8 +100,8 @@ public class Column implements Serializable{
      * Remove cards from a column
      * @param newCard Card to be removed
      */
-    public void removeCard(Card newCard){
-        cards.remove(newCard);
+    public void removeCard(int id){
+        cards.remove(id);
     }
 
     /*
