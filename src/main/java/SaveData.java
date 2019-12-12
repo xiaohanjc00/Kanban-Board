@@ -3,14 +3,13 @@ import java.util.HashMap;
 
 
 public class SaveData {
-    CSVcreator csvWriter;
+    CSVCreator csvWriter;
     Board board;
 
     public SaveData(String fileName, Board board){
-        csvWriter = new CSVcreator(fileName, false);
+        csvWriter = new CSVCreator(fileName, false);
         this.board = board;
         writeInformation();
-        LoadData aa = new LoadData(fileName);
     }
 
     /**
@@ -30,7 +29,12 @@ public class SaveData {
             //Index 0 for the name of the column
             ArrayList<String> firstValue = new ArrayList<>();
             firstValue.add(col.getName());
-            firstValue.add(col.getRole());
+            if(!col.getRole().equals("")){
+                firstValue.add(col.getRole());
+            }
+            else{
+                firstValue.add("null");
+            }
             columnDetails.add(firstValue);
 
             //Following indexes for the cards inside the column
@@ -71,7 +75,7 @@ public class SaveData {
             String columnName = columnDetail.get(0).get(0);
             String columnRole = columnDetail.get(0).get(1);
             csvWriter.appendCSV("\n");
-            csvWriter.appendCSV("columnName, " + columnName + columnRole);
+            csvWriter.appendCSV("columnName, " + columnName + " , " + columnRole);
             csvWriter.appendCSV("\n");
 
             for(int i=1; i < columnDetail.size(); i++){

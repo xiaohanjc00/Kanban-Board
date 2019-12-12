@@ -3,14 +3,21 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDateTime;
-
+/*
+ * ActivityLog object class
+ * Manages the activity log of the kanban board.
+ */
 public class ActivityLog {
-    //HashMap<String, String> activityList;
-    CSVcreator csvWriter;
-    CSVreader csvReader;
+    CSVCreator csvWriter;
+    CSVReader csvReader;
 
+    /*
+     * Constructor of ActivityLog
+     * @param fileName The name of file to be imported.
+     */
     public ActivityLog(String fileName) throws IOException {
-        csvWriter = new CSVcreator(fileName);
+        //csvWriter = new CSVcreator("src/ActivityLog/" + fileName);
+        csvWriter = new CSVCreator(fileName);
         viewActivityLog(fileName);
     }
 
@@ -31,7 +38,8 @@ public class ActivityLog {
      */
     public void viewActivityLog(String fileName) throws IOException {
         try {
-            csvReader = new CSVreader(fileName);
+            //csvReader = new CSVreader("src/ActivityLog/" + fileName);
+            csvReader = new CSVReader(fileName);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -127,7 +135,7 @@ public class ActivityLog {
                 text = "Column " + oldColumn + " has changed to " + newColumn + " and role changed to " + newRole + " , " + getCurrentTime();
             }
             else if(!oldColumn.equals(newColumn)){
-                text = "Column " + oldColumn + " has been edited to " + newColumn + " , " + getCurrentTime();
+                text = "Column " + oldColumn + " has changed name to " + newColumn + " , " + getCurrentTime();
             }
             else if(!oldRole.equals(newRole)){
                 text = "Role of column " + oldColumn + " has been edited to " + newRole + " , " + getCurrentTime();
@@ -244,6 +252,13 @@ public class ActivityLog {
     public String setStoryPointLog(Card card){
         String text = card.getTitle() + " story point has been set to " + card.getStoryPoint() + " , " + getCurrentTime();
         //activityList.put(time, text);
+        csvWriter.appendCSV(text);
+        csvWriter.appendCSV("\n");
+        return text;
+    }
+
+    public String saveButtonLog(String board){
+        String text = "Board " + board + " has been saved correctly, " + getCurrentTime();
         csvWriter.appendCSV(text);
         csvWriter.appendCSV("\n");
         return text;

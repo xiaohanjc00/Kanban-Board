@@ -3,9 +3,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class LoadData{
-    CSVreader csvReader;
+    CSVReader csvReader;
 
-    public LoadData(String fileName){
+    public LoadData(String fileName) {
+        //readFile("src/BoardData/" + fileName);
         readFile(fileName);
     }
     
@@ -15,7 +16,7 @@ public class LoadData{
      */
     public void readFile(String fileName){
         try {
-            csvReader = new CSVreader(fileName);
+            csvReader = new CSVReader(fileName);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -48,7 +49,7 @@ public class LoadData{
 
         ArrayList<ArrayList<Object>> finalList = new ArrayList<>();
 
-        for(int i=0; i<lineList.size(); i++){
+        for(int i=1; i<lineList.size(); i++){
             String line = lineList.get(i);
             ArrayList<String> list = new ArrayList<String>(Arrays.asList(line.split(", ")));
             String lineType = list.get(0);
@@ -63,25 +64,27 @@ public class LoadData{
                     columnDetail.add("null");
                 }
 
-                if(i+1 < lineList.size()){
+                if(i+1 < lineList.size()){  //If there is next line
                     String nextLine = lineList.get(i+1);
                     ArrayList<String> tempList = new ArrayList<String>(Arrays.asList(nextLine.split(", ")));
-                    String tempLineType = tempList.get(0);
+                    if(!tempList.isEmpty()){
+                        String tempLineType = tempList.get(0);
 
-                    if(tempLineType.equals("cardName")){
-                        int j = 0;
-                        do{
-                        ArrayList<String> cardDetails = tempList;
-                        cardDetails.remove(0);
-                        columnDetail.add(cardDetails);
+                        if(tempLineType.equals("cardName")){
+                            int j = i + 1;
+                            do{
+                            ArrayList<String> cardDetails = tempList;
+                            cardDetails.remove(0);
+                            columnDetail.add(cardDetails);
 
-                        j = i + 1;
-                        nextLine = lineList.get(j);
-                        tempList = new ArrayList<String>(Arrays.asList(nextLine.split(", ")));
-                        tempLineType = tempList.get(0);
-                        } while(tempLineType.equals("cardName"));
+                            j = j + 1;
+                            nextLine = lineList.get(j);
+                            tempList = new ArrayList<String>(Arrays.asList(nextLine.split(", ")));
+                            tempLineType = tempList.get(0);
+                            } while(tempLineType.equals("cardName"));
 
-                        i = j;
+                            i = j;
+                        }
                     }
                 }
                 finalList.add(columnDetail);
@@ -118,7 +121,7 @@ public class LoadData{
     /**
      * Get the column role from a columnDetail ArrayList
      * @param columnDetails selected column from the ArrayList of columns
-     * @return  column role
+     * @return  column role, null if no specified
      */
     public String getColumnRole(ArrayList<Object> columnDetails){
         return (String) columnDetails.get(1);
@@ -129,8 +132,15 @@ public class LoadData{
      * @param columnDetails selected column from the ArrayList of columns
      * @return  ArrayList of the cards in a column
      */
-    public ArrayList<String> getCardDetails(ArrayList<Object> columnDetails){
-        return (ArrayList<String>) columnDetails.get(2);
+    @SuppressWarnings("unchecked")
+    public ArrayList<ArrayList<String>> getCardDetails(ArrayList<Object> columnDetails){
+        ArrayList<ArrayList<String>> list = new ArrayList<>();
+        if(columnDetails.size() > 2){
+            for(int i=2; i < columnDetails.size(); i++){
+                list.add((ArrayList<String>) columnDetails.get(i));
+            }
+        }
+        return list;
     }
 
     /**
@@ -144,11 +154,11 @@ public class LoadData{
 
     /**
      * Get card ID from a selected card
-     * @param cardDetailsselected card from the ArrayList of cards
+     * @param cardDetails selected card from the ArrayList of cards
      * @return ID of the card
      */
-    public String getCardID(ArrayList<String> cardDetails){
-        return cardDetails.get(1);
+    public int getCardID(ArrayList<String> cardDetails){
+        return Integer.parseInt(cardDetails.get(1));
     }
 
     /**
@@ -156,8 +166,8 @@ public class LoadData{
      * @param cardDetails card from the ArrayList of cards
      * @return  story point of the card
      */
-    public String getCardStoryPoints(ArrayList<String> cardDetails){
-        return cardDetails.get(2);
+    public int getCardStoryPoints(ArrayList<String> cardDetails){
+        return Integer.parseInt(cardDetails.get(2));
     }
 
     /**

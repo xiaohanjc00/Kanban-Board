@@ -1,6 +1,10 @@
 import java.util.ArrayList;
-
-public class Column {
+import java.io.*;
+/*
+* Column object class
+* Column must contain a title, role and a ColumnGUI.
+*/
+public class Column implements Serializable{
 
     private String name;
     private String role;
@@ -9,6 +13,9 @@ public class Column {
 
     /*
      * Constructor for making a new column
+     * @param nameIn Name of Column
+     * @param roleIn Role of Column
+     * @param columnGuiIn ColumnGUI object
      */
     public Column(String nameIn, String roleIn, ColumnGUI columnGuiIn){
         name = nameIn;
@@ -16,7 +23,26 @@ public class Column {
         cards =  new ArrayList<Card>();
         columnGui = columnGuiIn;
     }
+    
+    /*
+     * Constructor for making a new column
+     * @param nameIn Name of Column
+     * @param roleIn Role of Column
+     * @param cardsIn ArrayList of Cards
+     * @param columnGuiIn ColumnGUI object
+     */
+    public Column(String nameIn, String roleIn, ArrayList<Card> cardsIn, ColumnGUI columnGuiIn){
+        name = nameIn;
+        role = roleIn;
+        cards =  cardsIn;
+        columnGui = columnGuiIn;
+    }
 
+
+    /*
+     * Get all of the cards.
+     * @return ArrayList of Cards.
+     */
     public ArrayList<Card> getCardsList(){
         return cards;
     }
@@ -74,8 +100,8 @@ public class Column {
      * Remove cards from a column
      * @param newCard Card to be removed
      */
-    public void removeCard(Card newCard){
-        cards.remove(newCard);
+    public void removeCard(int id){
+        cards.remove(id);
     }
 
     /*
