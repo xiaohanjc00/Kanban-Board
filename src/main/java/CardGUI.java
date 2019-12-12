@@ -1,3 +1,8 @@
+/** 
+ * Represents the Card GUI for the application. 
+ * It represents the new JFrame that pops up when a card is viewed.
+ * It contains different functionalities to modify the state of a card in the board.
+ */
 import javax.swing.*;
 import javax.swing.JSpinner.NumberEditor;
 import java.awt.event.*;
@@ -18,9 +23,15 @@ public class CardGUI {
         columnGui = columnGuiIn;
         makeFrame();
      }
+    
+    /**
+    * This creates the new JFrame displaying the Card. it contains all options to modidy or edit a card.
+    */
 
      public void makeFrame() {
 
+         /* The Top Panel of the card Frame that contains the Title of the Card, Story Points of the Card and the Close Button */
+         
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new BorderLayout(10,10));
         JPanel topLeftPanel = new JPanel();
@@ -66,6 +77,11 @@ public class CardGUI {
         mainFrame.setSize(600,800);
         mainFrame.setVisible(true);
     }
+    
+    /**
+    * This creates the leftPanel of the Card Frame that contains the description of the card.
+    * Returns a JPanel.
+    */
 
     public JPanel makeLeftPanel() {
         JPanel leftPanel = new JPanel();
@@ -107,6 +123,13 @@ public class CardGUI {
         leftPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         return leftPanel;
     }
+    
+    /**
+    * This creates the rightPanel of the Card Frame that contains the different
+    * actions on a card. 
+    * These include, editting story points and editting card title.
+    * Returns a JPanel.
+    */
 
     public JPanel makeRightPanel() {
         JPanel rightPanel = new JPanel();
@@ -220,6 +243,11 @@ public class CardGUI {
         }
     }
 
+    /*
+    *This refreshes a Card Frame instance by removing all contents of the Frame, 
+    * and then making the Frame all over again.
+    */
+    
     public void refreshFrame() {
         mainFrame.getContentPane().removeAll();
         makeFrame();
