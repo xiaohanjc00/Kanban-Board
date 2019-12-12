@@ -1,5 +1,6 @@
 /**
 * This represents the Transfer wrapper that holds the object being transferred in the drag and drop event.
+
 * It holds all the necessary information about the Object being dragged.
 */
 

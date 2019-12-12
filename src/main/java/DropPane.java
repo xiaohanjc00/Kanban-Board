@@ -1,6 +1,9 @@
 /**
 * This represents a JPanel that acts as a drop area where drag objects can be dropped.
+
 * It uses the DropHandler class to link with Drop events.
+
+
 */
 
 

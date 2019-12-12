@@ -52,6 +52,19 @@ public void dragGestureRecognized(DragGestureEvent dge) {
     setParent(parent);
     child.getCol();
 
+
+
+    // Remove the panel from the parent.  If we don't do this, it
+    // can cause serialization issues.  We could overcome this
+    // by allowing the drop target to remove the component, but that's
+    // an argument for another day
+    // This is causing a NullPointerException on MacOS 10.13.3/Java 8
+    //      parent.remove(getPanel());
+    //      // Update the display
+    //      parent.invalidate();
+    //      parent.repaint();
+
+
     // Create our transferable wrapper
     
     transferable = new PanelTransferable(getPanel(), getType()  );
@@ -104,7 +117,7 @@ public void dragDropEnd(DragSourceDropEvent dsde) {
     child.getCol().moveCard(cc, DropHandler.mov_col);
         if(DropHandler.swap != null)
         par.add(DropHandler.swap);
-        
+
     }
     getParent().revalidate();
     getParent().repaint();
