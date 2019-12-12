@@ -38,33 +38,33 @@ public class CardTest {
 
   }
 
-    @Test
-    public void membersTest() {
-      //create the card
-      String creator = "Jeroen Keppens";
-      String title = "My first card";
-      Card newCard = new Card(creator, title, 0);
+    // @Test
+    // public void membersTest() {
+    //   //create the card
+    //   String creator = "Jeroen Keppens";
+    //   String title = "My first card";
+    //   Card newCard = new Card(creator, title, 0);
     
-      //members test
-      String firstMember = "JKeppens";
-      String secondMember = "Kony2012";
-      String thirdMember = "Tony Stark";
-      ArrayList<String> expectedMembers = new ArrayList<String>();
+    //   //members test
+    //   String firstMember = "JKeppens";
+    //   String secondMember = "Kony2012";
+    //   String thirdMember = "Tony Stark";
+    //   ArrayList<String> expectedMembers = new ArrayList<String>();
     
-      expectedMembers.add(firstMember);
-      newCard.addMember(firstMember);
-      assertArrayEquals(expectedMembers.toArray(), newCard.getMembers().toArray());
+    //   expectedMembers.add(firstMember);
+    //   newCard.addMember(firstMember);
+    //   assertArrayEquals(expectedMembers.toArray(), newCard.getMembers().toArray());
     
-      expectedMembers.add(secondMember);
-      newCard.addMember(secondMember);
-      expectedMembers.add(thirdMember);
-      newCard.addMember(thirdMember);
-      assertArrayEquals(expectedMembers.toArray(), newCard.getMembers().toArray());
+    //   expectedMembers.add(secondMember);
+    //   newCard.addMember(secondMember);
+    //   expectedMembers.add(thirdMember);
+    //   newCard.addMember(thirdMember);
+    //   assertArrayEquals(expectedMembers.toArray(), newCard.getMembers().toArray());
     
-      newCard.removeMember(secondMember);
-      expectedMembers.remove(secondMember);
-      assertArrayEquals(expectedMembers.toArray(), newCard.getMembers().toArray());
-    }
+    //   newCard.removeMember(secondMember);
+    //   expectedMembers.remove(secondMember);
+    //   assertArrayEquals(expectedMembers.toArray(), newCard.getMembers().toArray());
+    // }
 
     // @Test
     // public void deadlineTest(){

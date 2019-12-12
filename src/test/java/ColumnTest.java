@@ -9,7 +9,7 @@ public class ColumnTest{
         String name = "To Do";
         String role = "Backlog";
         Board board = new Board("board");
-        boardGUI bGUI = new boardGUI("Testing", board);
+        BoardGUI bGUI = new BoardGUI("Testing", board);
         ColumnGUI columnGUI = new ColumnGUI(name, role, bGUI);
         Column newColumn = new Column(name, role, columnGUI);
         assertEquals(name, newColumn.getName());
@@ -23,7 +23,7 @@ public class ColumnTest{
         String name = "To Do";
         String role = "Backlog";
         Board board = new Board("board");
-        boardGUI bGUI = new boardGUI("Testing", board);
+        BoardGUI bGUI = new BoardGUI("Testing", board);
         ColumnGUI columnGUI = new ColumnGUI(name, role, bGUI);
         Column newColumn = new Column(name, role, columnGUI);
         //Change Name
@@ -39,7 +39,7 @@ public class ColumnTest{
         String name = "To Do";
         String role = "Backlog";
         Board board = new Board("board");
-        boardGUI bGUI = new boardGUI("Testing", board);
+        BoardGUI bGUI = new BoardGUI("Testing", board);
         ColumnGUI columnGUI = new ColumnGUI(name, role, bGUI);
         Column newColumn = new Column(name, role, columnGUI);
         //Change role
@@ -55,7 +55,7 @@ public class ColumnTest{
         String name = "To Do";
         String role = "Backlog";
         Board board = new Board("board");
-        boardGUI bGUI = new boardGUI("Testing", board);
+        BoardGUI bGUI = new BoardGUI("Testing", board);
         ColumnGUI columnGUI = new ColumnGUI(name, role, bGUI);
         Column newColumn = new Column(name, role, columnGUI);
         newColumn.addCard("jK", "card1");
@@ -73,7 +73,7 @@ public class ColumnTest{
         String name = "To Do";
         String role = "Backlog";
         Board board = new Board("board");
-        boardGUI bGUI = new boardGUI("Testing", board);
+        BoardGUI bGUI = new BoardGUI("Testing", board);
         ColumnGUI columnGUI = new ColumnGUI(name, role, bGUI);
         Column newColumn = new Column(name, role, columnGUI);
 
@@ -96,7 +96,7 @@ public class ColumnTest{
         String name = "To Do";
         String role = "Backlog";
         Board board = new Board("board");
-        boardGUI bGUI = new boardGUI("Testing", board);
+        BoardGUI bGUI = new BoardGUI("Testing", board);
         ColumnGUI columnGUI = new ColumnGUI(name, role, bGUI);
         Column newColumn = new Column(name, role, columnGUI);
 

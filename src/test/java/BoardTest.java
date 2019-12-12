@@ -31,8 +31,8 @@ public class BoardTest{
     //Board creation
     String title = "My first board";
     Board newBoard = new Board(title);
-    boardGUI boardGui = new boardGUI(title, newBoard);
-    ColumnGUI columnGui = new ColumnGUI("name", "role", boardGui);
+    BoardGUI BoardGUI = new BoardGUI(title, newBoard);
+    ColumnGUI columnGui = new ColumnGUI("name", "role", BoardGUI);
     //Creation of column and column array for expected result
     Column column = new Column("col 1", "role", columnGui);
     ArrayList<Column> colList = new ArrayList<Column>();
@@ -48,8 +48,8 @@ public class BoardTest{
     //Creation of a board and column
     String title = "My first board";
     Board newBoard = new Board(title);
-    boardGUI boardGui = new boardGUI(title, newBoard);
-    ColumnGUI columnGui = new ColumnGUI("name", "role", boardGui);
+    BoardGUI BoardGUI = new BoardGUI(title, newBoard);
+    ColumnGUI columnGui = new ColumnGUI("name", "role", BoardGUI);
     Column column = new Column("col 1", "role", columnGui);
     //Creating column array for expected result
     ArrayList<Column> colList = new ArrayList<Column>();
@@ -70,8 +70,8 @@ public class BoardTest{
     //Board and column creation
     String title = "My first board";
     Board newBoard = new Board(title);
-    boardGUI boardGui = new boardGUI(title, newBoard);
-    ColumnGUI columnGui = new ColumnGUI("name", "role", boardGui);
+    BoardGUI BoardGUI = new BoardGUI(title, newBoard);
+    ColumnGUI columnGui = new ColumnGUI("name", "role", BoardGUI);
     Column column = new Column("col 1", "role", columnGui);
     //Adding column and card to the board
     newBoard.addColumn(column);
