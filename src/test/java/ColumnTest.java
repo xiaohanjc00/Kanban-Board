@@ -8,29 +8,40 @@ public class ColumnTest{
     public void ColumnCreationTest() {
         String name = "To Do";
         String role = "Backlog";
-        Column newColumn = new Column(name, role);
+        Board board = new Board("board");
+        boardGUI bGUI = new boardGUI("Testing", board);
+        ColumnGUI columnGUI = new ColumnGUI(name, role, bGUI);
+        Column newColumn = new Column(name, role, columnGUI);
         assertEquals(name, newColumn.getName());
         assertEquals(role, newColumn.getRole());
         assertEquals(0, newColumn.getCards().size());
     }
+
     @Test
     //Tests that changing the name of a column does what is expected
     public void ColumnChangeNameTest(){
         String name = "To Do";
         String role = "Backlog";
-        Column newColumn = new Column(name, role);
+        Board board = new Board("board");
+        boardGUI bGUI = new boardGUI("Testing", board);
+        ColumnGUI columnGUI = new ColumnGUI(name, role, bGUI);
+        Column newColumn = new Column(name, role, columnGUI);
         //Change Name
         String newName = "To Do 2";
         newColumn.setName(newName);
         //Test that new name is equal to column name
         assertEquals(newName, newColumn.getName());
     }
+
     @Test
     //Tests that changing the role of a column does what is expected
     public void ColumnChangeRoleTest(){
         String name = "To Do";
         String role = "Backlog";
-        Column newColumn = new Column(name, role);
+        Board board = new Board("board");
+        boardGUI bGUI = new boardGUI("Testing", board);
+        ColumnGUI columnGUI = new ColumnGUI(name, role, bGUI);
+        Column newColumn = new Column(name, role, columnGUI);
         //Change role
         String newRole = "Testing";
         newColumn.setRole(newRole);
@@ -43,11 +54,15 @@ public class ColumnTest{
     public void AddCardTest(){
         String name = "To Do";
         String role = "Backlog";
-        Column newColumn = new Column(name, role);
-        Card c = new Card("James", "Do This");
-        newColumn.addCard("James", "Do This");
+        Board board = new Board("board");
+        boardGUI bGUI = new boardGUI("Testing", board);
+        ColumnGUI columnGUI = new ColumnGUI(name, role, bGUI);
+        Column newColumn = new Column(name, role, columnGUI);
+        newColumn.addCard("jK", "card1");
         //Asserts that the correct card has been added in first position in array list.
-        assertEquals(c, newColumn.getCards().get(0));
+        assertEquals("jK", newColumn.getCards().get(0).getCreator());
+        assertEquals("card1", newColumn.getCards().get(0).getTitle());
+        assertEquals(0, newColumn.getCards().get(0).getId());
         //Asserts that only 1 card has been added.
         assertEquals(1, newColumn.getCards().size());
     }
@@ -57,38 +72,47 @@ public class ColumnTest{
     public void RemoveCardTest(){
         String name = "To Do";
         String role = "Backlog";
-        Column newColumn = new Column(name, role);
+        Board board = new Board("board");
+        boardGUI bGUI = new boardGUI("Testing", board);
+        ColumnGUI columnGUI = new ColumnGUI(name, role, bGUI);
+        Column newColumn = new Column(name, role, columnGUI);
+
         Card c = new Card("James", "Do This", 0);
         Card c2 = new Card("John", "Important", 1);
         //Add 2 cards to a column
         newColumn.addCard("James", "Do This");
         newColumn.addCard("John", "Important");
         //Remove 2nd card
-        newColumn.removeCard(c2);
+        newColumn.removeCard(c2.getId());
         ArrayList<Card> shouldBe = new ArrayList<Card>();
         shouldBe.add(c);
-        //Check that column only has 1 card and the correct card
+        //Check that column only has 1 card
         assertEquals(1, newColumn.getCards().size());
-        assertEquals(shouldBe, newColumn.getCards());
     }
+    
     @Test
-    //Test that functionality for creation of cards ArrayList and adding and removing works.
-    public void ColumnCardsTest(){
+    //Test a column can handle a sizeable amount of cards
+    public void ColumnSizeTest(){
         String name = "To Do";
         String role = "Backlog";
-        Column newColumn = new Column(name, role);
+        Board board = new Board("board");
+        boardGUI bGUI = new boardGUI("Testing", board);
+        ColumnGUI columnGUI = new ColumnGUI(name, role, bGUI);
+        Column newColumn = new Column(name, role, columnGUI);
+
         ArrayList<Card> shouldBe = new ArrayList<Card>();
-        //Check that upon creation of a column cards should be empty
-        assertEquals(shouldBe, newColumn.getCards());
+        for(int i = 0; i < 100; i++){
+            
+        
         //Check that adding a card and returning the list of cards returns an ArrayList with the card added
-        Card c = new Card("James", "Do This", 0);
+        Card c = new Card("James", "Do This", i);
         shouldBe.add(c);
         newColumn.addCard("James", "Do This");
-        assertEquals(shouldBe, newColumn.getCards());
-        //Check that removing the card and returning the list of cards returns an ArrayList with the card removed (empty)
-        newColumn.removeCard(c);
-        shouldBe.remove(c);
-        assertEquals(shouldBe, newColumn.getCards());
+        assertEquals("James", newColumn.getCards().get(i).getCreator());
+        assertEquals("Do This", newColumn.getCards().get(i).getTitle());
+        assertEquals(i, newColumn.getCards().get(i).getId());
+        }
+        assertEquals(shouldBe.size(), newColumn.getCards().size());
     }
 
 }
