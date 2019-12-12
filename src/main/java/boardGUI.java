@@ -172,6 +172,7 @@ public class boardGUI implements Serializable {
      build_board = new JPanel();    
      Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
      BorderLayout lay = new BorderLayout();   
+     board.clearColumns();
         
         /* topbar to show board name */
         
@@ -179,7 +180,7 @@ public class boardGUI implements Serializable {
         topbar.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         BoxLayout box_ly = new BoxLayout(topbar, BoxLayout.X_AXIS);
         topbar.setLayout(box_ly);
-        JLabel board_name = new JLabel("BOARD NAME: ");
+        JLabel board_name = new JLabel("BOARD NAME: " + board.getName());
         topbar.add(board_name);
         topbar.add(Box.createHorizontalGlue());
         JLabel members = new JLabel(" MEMBERS:  ");
@@ -309,8 +310,8 @@ public class boardGUI implements Serializable {
         }
         
         ColumnGUI load_col= new ColumnGUI(load_data.getColumnName(column), load_data.getColumnRole(column),this, load_cards); //Here, you add the column name and column role parameter.
-        //Column loadColumn = load_col.getColumn();
-        //board.addColumn(loadColumn);
+        Column loadColumn = load_col.getColumn();
+        board.addColumn(loadColumn);
         //System.out.println("-----");
 
 
