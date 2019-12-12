@@ -1,5 +1,7 @@
 /**
-* Represents the Column GUI for every column.
+* Represents the Column GUI for every column. It acts as the columns or lists of a Kanban Board.
+* Stores the different cards in the Column and displays as JPanels.
+* Implements Serializable to allow drag and drop of cards from one column to another.
 */
 
 import javax.swing.*;
@@ -33,7 +35,8 @@ public class ColumnGUI implements Serializable {
     }
 
     /**
-    * method to generate a JPanel that represents a column in a board.
+    *Method to generate a ColumnGUI instance in the application. 
+    * Return: Column in the form of a JPanel.
     */
     
     public JPanel generatePanel() {
@@ -49,7 +52,8 @@ public class ColumnGUI implements Serializable {
     
     
     /**
-    * method to build JPanel that represents a column loaded from the board.
+    * Method to build a ColumnGUI that was present in a board that was previously saved.
+    * Return: Column in the form of a JPanel.
     */
     
     public JPanel buildCol(){
@@ -65,7 +69,7 @@ public class ColumnGUI implements Serializable {
 
 
     /**
-    * method to add the name, and role to a column.
+    * Method to add the name, and role to a column.
     */
     
    public void addTitle()
@@ -79,7 +83,7 @@ public class ColumnGUI implements Serializable {
        top.add(roleLabel);
        panel.add(top);
    }
-
+  
    public void changeName(String newName) {
        name = newName;
    }
@@ -89,12 +93,13 @@ public class ColumnGUI implements Serializable {
    }
     
     /**
-    * Add Button to create cards
+    * Method to insert a JButton which create new cards into the Column.
+    * Input for the Card Details is taken from the user using a JOptionPane.
     */
 
     public void addButton() {
          JButton add_card = new JButton("ADD NEW CARD");
-        add_card.addActionListener(new ActionListener() {
+         add_card.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
                String card_name =  JOptionPane.showInputDialog(Main.first_frame,
@@ -113,11 +118,14 @@ public class ColumnGUI implements Serializable {
     }
     
     /*
-    * Load all cards into a column
+    * Method to load all cards into a column.
+    * All cards that are stored in the backend instance of the column are loaded into the ColumnGUI instance.
+    * Every card in a column is shown using a JPanel. 
+    * All cards have a delete and view option while in a Column.
     */
     public void loadCards(){
         
-        cards_area = new JPanel();
+        cards_area = new JPanel();                                          //JPanel containing all cards in the column
         cards_area.setLayout(new BoxLayout(cards_area, BoxLayout.Y_AXIS));
         cards_area.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.black));
         String members ="";
@@ -168,9 +176,11 @@ public class ColumnGUI implements Serializable {
         }
         panel.add(cards_area);
     }
-    /*
-    Create new cards for the column
-    */
+    
+     /*
+     * Method that is when a new card is added to a column.
+     * @param: The creator's name, and the Card Name.
+     */
     public void addCard(String creator, String cardName){
         column.addCard(creator, cardName);
         panel.removeAll();
@@ -183,8 +193,10 @@ public class ColumnGUI implements Serializable {
     }
     
     /*
-     Edit Column name and role.
-    */
+     * Method to edit Column name and role.
+     * User input to edit the column is taken using JOptionPane which shows a JTextArea to edit the name.
+     */
+    
     public void editCol()
     {
      JButton edit_col = new JButton("EDIT COLUMN");
@@ -242,8 +254,8 @@ public class ColumnGUI implements Serializable {
         panel.add(edit_col);
     }
     /*
-    Refresh cards from the column
-    */
+     *Method to refresh the column by deleting everything from the column, and then loading all components into the card.
+     */
     public void refreshColumn(){
         panel.removeAll();
         addTitle();
