@@ -3,15 +3,13 @@ import java.util.HashMap;
 
 
 public class SaveData {
-    CSVcreator csvWriter;
+    CSVCreator csvWriter;
     Board board;
 
     public SaveData(String fileName, Board board){
-        //csvWriter = new CSVcreator("src/BoardData/" + fileName, false);
-        csvWriter = new CSVcreator(fileName, false);
+        csvWriter = new CSVCreator(fileName, false);
         this.board = board;
         writeInformation();
-        LoadData aa = new LoadData(fileName);
     }
 
     /**

@@ -3,15 +3,21 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDateTime;
-
+/*
+ * ActivityLog object class
+ * Manages the activity log of the kanban board.
+ */
 public class ActivityLog {
-    //HashMap<String, String> activityList;
-    CSVcreator csvWriter;
-    CSVreader csvReader;
+    CSVCreator csvWriter;
+    CSVReader csvReader;
 
+    /*
+     * Constructor of ActivityLog
+     * @param fileName The name of file to be imported.
+     */
     public ActivityLog(String fileName) throws IOException {
         //csvWriter = new CSVcreator("src/ActivityLog/" + fileName);
-        csvWriter = new CSVcreator(fileName);
+        csvWriter = new CSVCreator(fileName);
         viewActivityLog(fileName);
     }
 
@@ -33,7 +39,7 @@ public class ActivityLog {
     public void viewActivityLog(String fileName) throws IOException {
         try {
             //csvReader = new CSVreader("src/ActivityLog/" + fileName);
-            csvReader = new CSVreader(fileName);
+            csvReader = new CSVReader(fileName);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -6,14 +6,11 @@ import java.io.*;
 * Card object class
 * Cards must contain a title, creator
 * Cards can contain a description, members assigned, a deadline
-*
 */
 public class Card implements Serializable {
 
     private String title;
     private String description;
-    // to be changed from String to member/user object once class has been
-    // implemented
     private final String creator;
     private int id;
     private ArrayList<String> members;
@@ -23,7 +20,10 @@ public class Card implements Serializable {
     private Column column;
 
     /*
-     * Create a new Card object Requires a creator and a Title
+     * Create a new Card object requires a Creator and a Title.
+     * @param creatorIn The creator of the Card.
+     * @param titleIn The title of the Card.
+     * @param idIn The ID of the Card.
      */
     public Card(String creatorIn, String titleIn, int idIn) {
         creator = creatorIn;
@@ -69,8 +69,8 @@ public class Card implements Serializable {
      * Get the ID of the card.
      * @return The ID of the card.
      */
-    public String getId() {
-        return String.valueOf(id);
+    public int getId() {
+        return id;
     }
 
     /*
@@ -81,26 +81,8 @@ public class Card implements Serializable {
         return members;
     }
 
-    /*
-     * Get the ArrayList of members.
-     * @return the ArrayList of members assigned in the card
-     */
-    public void addMember(String newMember) {
-        this.members.add(newMember);
-    }
-
-    public void removeMember(String member) {
-        this.members.remove(member);
-    }
-
     public LocalDateTime getDeadline() {
         return deadline;
-    }
-
-    // this method assumes the GUI checks that the date inputted has not alread
-    // passed
-    public void setDeadline(LocalDateTime deadline) {
-        this.deadline = deadline;
     }
 
     public String getCreator() {
