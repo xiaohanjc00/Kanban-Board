@@ -78,6 +78,7 @@ public class Board implements Serializable {
    */
   public void addColumn(Column col) {
     columns.add(col);
+    System.out.println("add one column");
   }
 
   /*

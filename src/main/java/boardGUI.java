@@ -307,10 +307,11 @@ public class boardGUI implements Serializable {
             load_cards.add(newCard);
             
         }
-        ColumnGUI load_col;
-        load_col= new ColumnGUI(load_data.getColumnName(column), load_data.getColumnRole(column),this, load_cards); //Here, you add the column name and column role parameter.
-        Column loadColumn = load_col.getColumn();
-        board.addColumn(loadColumn);
+        
+        ColumnGUI load_col= new ColumnGUI(load_data.getColumnName(column), load_data.getColumnRole(column),this, load_cards); //Here, you add the column name and column role parameter.
+        //Column loadColumn = load_col.getColumn();
+        //board.addColumn(loadColumn);
+        //System.out.println("-----");
 
 
         DropPane load_col_outer = new DropPane(load_col.getColumn());
@@ -320,7 +321,10 @@ public class boardGUI implements Serializable {
         JPanel load_col_n = new JPanel();
         load_col_n.setLayout(new BoxLayout(load_col_n, BoxLayout.Y_AXIS));
         load_col_n.add(load_col.buildCol());
+        //System.out.println("deleting " + load_col.getColumn());
+        //System.out.println("size before: " + );
         load_col_n.add(deleteBut(load_col.getColumn()));
+        //System.out.println("deleting " + load_col.getColumn());
         load_col_outer.add(load_col_n);
         
         GridBagConstraints c4 = new GridBagConstraints();
