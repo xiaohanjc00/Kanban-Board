@@ -15,15 +15,9 @@ import java.awt.dnd.*;
 import java.awt.Color;
 import java.io.*;
 
-<<<<<<< HEAD:src/main/java/boardGUI.java
-public class boardGUI implements Serializable {
-    static int last = -1;                               // counter to keep track of the last position for columns in the board.
-    static JPanel col_n;            
-=======
 public class BoardGUI implements Serializable {
     static int last = -1; // counter to keep track of the last position for lists
     static JPanel col_n; // JPanel to add new column or list
->>>>>>> Refactoring-backend:src/main/java/BoardGUI.java
     JPanel col_area;
     JPanel board_panel;
     JPanel build_board;
