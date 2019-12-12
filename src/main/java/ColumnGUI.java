@@ -153,7 +153,7 @@ public class ColumnGUI implements Serializable {
                     int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete card " + current_card.getTitle() + "?", "Confirm Deletion",
 				    JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
                     if (response == 0) {
-                        column.removeCard(current_card);
+                        column.removeCard(current_card.getId());
                         refreshColumn();
 
                         /*Delete card log */

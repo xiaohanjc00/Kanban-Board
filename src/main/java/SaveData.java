@@ -43,7 +43,7 @@ public class SaveData {
                 ArrayList<String> cardDetails = new ArrayList<>();
 
                 String cardName = card.getTitle();
-                String cardID = card.getId();
+                String cardID = "" + card.getId();
                 String cardStoryPoint = ((Integer)card.getStoryPoint()).toString();
                 String cardDescription = card.getDescription();
 
