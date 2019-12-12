@@ -45,7 +45,7 @@ public class ColumnTest{
         String role = "Backlog";
         Column newColumn = new Column(name, role);
         Card c = new Card("James", "Do This");
-        newColumn.addCard(c);
+        newColumn.addCard("James", "Do This");
         //Asserts that the correct card has been added in first position in array list.
         assertEquals(c, newColumn.getCards().get(0));
         //Asserts that only 1 card has been added.
@@ -58,11 +58,11 @@ public class ColumnTest{
         String name = "To Do";
         String role = "Backlog";
         Column newColumn = new Column(name, role);
-        Card c = new Card("James", "Do This");
-        Card c2 = new Card("John", "Important");
+        Card c = new Card("James", "Do This", 0);
+        Card c2 = new Card("John", "Important", 1);
         //Add 2 cards to a column
-        newColumn.addCard(c);
-        newColumn.addCard(c2);
+        newColumn.addCard("James", "Do This");
+        newColumn.addCard("John", "Important");
         //Remove 2nd card
         newColumn.removeCard(c2);
         ArrayList<Card> shouldBe = new ArrayList<Card>();
@@ -81,9 +81,9 @@ public class ColumnTest{
         //Check that upon creation of a column cards should be empty
         assertEquals(shouldBe, newColumn.getCards());
         //Check that adding a card and returning the list of cards returns an ArrayList with the card added
-        Card c = new Card("James", "Do This");
+        Card c = new Card("James", "Do This", 0);
         shouldBe.add(c);
-        newColumn.addCard(c);
+        newColumn.addCard("James", "Do This");
         assertEquals(shouldBe, newColumn.getCards());
         //Check that removing the card and returning the list of cards returns an ArrayList with the card removed (empty)
         newColumn.removeCard(c);

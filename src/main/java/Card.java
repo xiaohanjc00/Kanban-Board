@@ -1,74 +1,126 @@
 
-
 import java.time.*;
 import java.util.ArrayList;
-
+import java.io.*;
 /*
 * Card object class
 * Cards must contain a title, creator
 * Cards can contain a description, members assigned, a deadline
 *
 */
-public class Card{
+public class Card implements Serializable {
 
-private String title;
-private String description;
-//to be changed from String to member/user object once class has been implemented
-private final String creator;
-private ArrayList<String> members;
-//private Label label;
-private LocalDateTime deadline;
-private LocalDateTime creationDate;
+    private String title;
+    private String description;
+    // to be changed from String to member/user object once class has been
+    // implemented
+    private final String creator;
+    private int id;
+    private ArrayList<String> members;
+    private LocalDateTime deadline;
+    private LocalDateTime creationDate;
+    private int storyPoint;
+    private Column column;
 
-/*
-*Create a new Card object
-*Requires a creator and a Title
-*/
-public Card(String creatorIn, String titleIn){
-  creator = creatorIn;
-  title = titleIn;
-   members = new ArrayList<String>();
-  creationDate = LocalDateTime.now();
-}
+    /*
+     * Create a new Card object Requires a creator and a Title
+     */
+    public Card(String creatorIn, String titleIn, int idIn) {
+        creator = creatorIn;
+        title = titleIn;
+        id = idIn;
+        members = new ArrayList<String>();
+        creationDate = LocalDateTime.now();
+    }
 
-  public String getTitle() {
-    return title;
-  }
+    /*
+     * Get the title of the card.
+     * @return The title of a card
+     */
+    public String getTitle() {
+        return title;
+    }
 
-  public void setTitle(String title) {
-    this.title = title;
-  }
+    /*
+     * Set the title of the card.
+     * @param title The title of the card
+     */
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-  public String getDescription() {
-    return description;
-  }
+    /*
+     * Get the description of the card.
+     * @return The description of the card.
+     */
+    public String getDescription() {
+        return description;
+    }
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
+    /*
+     * Set the description of the card.
+     * @param description The description of the card.
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-  public ArrayList<String> getMembers() {
-    return members;
-  }
+    /*
+     * Get the ID of the card.
+     * @return The ID of the card.
+     */
+    public String getId() {
+        return String.valueOf(id);
+    }
 
-  public void addMember(String newMember) {
-    this.members.add(newMember);
-  }
+    /*
+     * Get the ArrayList of members.
+     * @return the ArrayList of members assigned in the card
+     */
+    public ArrayList<String> getMembers() {
+        return members;
+    }
 
+    /*
+     * Get the ArrayList of members.
+     * @return the ArrayList of members assigned in the card
+     */
+    public void addMember(String newMember) {
+        this.members.add(newMember);
+    }
 
- public void removeMember(String member) {
-   this.members.remove(member);
-  }
+    public void removeMember(String member) {
+        this.members.remove(member);
+    }
 
-  public LocalDateTime getDeadline() {
-    return deadline;
-  }
+    public LocalDateTime getDeadline() {
+        return deadline;
+    }
 
-  //this method assumes the GUI checks that the date inputted has not alread passed
-  public void setDeadline(LocalDateTime deadline) {
-    this.deadline = deadline;
-  }
-  public String getCreator(){
-    return creator;
-  }
+    // this method assumes the GUI checks that the date inputted has not alread
+    // passed
+    public void setDeadline(LocalDateTime deadline) {
+        this.deadline = deadline;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    /*
+     * Set the story point of a card.
+     * @param point The story point of a card
+     */
+    public void setStoryPoint(int point) {
+        this.storyPoint = point;
+    }
+
+    /*
+     * Get the story point of a card.
+     * @return The story point of a card
+     */
+    public int getStoryPoint() {
+        return storyPoint;
+    }
+
 }
