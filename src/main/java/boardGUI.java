@@ -16,10 +16,10 @@ import java.awt.Color;
 import java.io.*;
 
 public class boardGUI implements Serializable {
-    static int last = -1;                               // counter to keep track of the last position for lists
+    static int last = -1;                               // counter to keep track of the last position for columns in the board.
     static JPanel col_n;            
     JPanel col_area;
-    JPanel f;
+    JPanel board_panel;
     JPanel build_board;
     String b_name;
     int col_name;
@@ -34,12 +34,12 @@ public class boardGUI implements Serializable {
     }
     
    /**
-    * This generates a new board GUI instance in the form of a JPanel.
+    * This generates a new board GUI instance in the form of a JPanel. 
     */
     
     public JPanel generate() {
         
-        f = new JPanel();
+        board_panel = new JPanel();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         BorderLayout lay = new BorderLayout();
 
@@ -93,7 +93,8 @@ public class boardGUI implements Serializable {
         JPanel but = new JPanel();
         but.setBorder(BorderFactory.createLineBorder(Color.black));
         but.setLayout(new BoxLayout(but, BoxLayout.X_AXIS));
-        /* Adding button to create list */
+        
+        /* Adding button to create a column. The column informstion is taken by the user in a new JOPtionPane. */
 
         JButton add_col = new JButton(" CREATE A NEW COLUMN: ");
         add_col.addActionListener(l -> {
@@ -122,7 +123,7 @@ public class boardGUI implements Serializable {
                 col_outer = new DropPane(column);
                 col_n.setLayout(new BoxLayout(col_n, BoxLayout.Y_AXIS));
                 col_n.add(col_obj.generatePanel());
-               col_n.add(deleteBut(column));
+                col_n.add(deleteBut(column));
                 col_n.setBorder(BorderFactory.createLineBorder(Color.black));
                 col_outer.setBorder(BorderFactory.createLineBorder(Color.black));
                 col_outer.setBackground(Color.BLACK);
@@ -133,13 +134,13 @@ public class boardGUI implements Serializable {
                 c3.weightx = 0.01;
                 c3.weighty = 0.01;
                 col_area.add(col_outer, c3);
-
                 cols.add(col_n);
-                f.revalidate();
+                board_panel.revalidate();
             }
         });
 
-        // JButton to save a board
+        /* JButton to save a board and all the information it stores. */
+        
         JButton save = new JButton("SAVE");
          save.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e){
@@ -147,10 +148,11 @@ public class boardGUI implements Serializable {
             SaveData saveData = new SaveData(fileName, board);
 
             /*Save board log */
+             
             String text = Board.actLog.saveButtonLog(board.getName());
             addNewLogLine(text);
-            f.revalidate();
-            f.repaint();
+            board_panel.revalidate();
+            board_panel.repaint();
          }
          });
 
@@ -159,16 +161,18 @@ public class boardGUI implements Serializable {
         but.add(add_col);
         work_area.add(but, BorderLayout.PAGE_START);
         work_area.add(col_area, BorderLayout.CENTER);
-        f.setLayout(lay);
-        f.add(topbar, BorderLayout.PAGE_START);
-        f.add(activityLogPanel, BorderLayout.LINE_END);
-        f.add(work_area, BorderLayout.CENTER);
-        return (f);
+        board_panel.setLayout(lay);
+        board_panel.add(topbar, BorderLayout.PAGE_START);
+        board_panel.add(activityLogPanel, BorderLayout.LINE_END);
+        board_panel.add(work_area, BorderLayout.CENTER);
+        return (board_panel);
 
     }
     
     /*
-    * Method to build board with given information.
+    * Method to build a perviously saved board.
+    * @param: LoadData object that reads all information from a CSV file.
+    * It returns the board built in the form of a JPanel.
     */
     
     public JPanel build(LoadData load_data)
@@ -225,7 +229,7 @@ public class boardGUI implements Serializable {
         but.setBorder(BorderFactory.createLineBorder(Color.black));
         but.setLayout(new BoxLayout(but, BoxLayout.X_AXIS));
         
-        /* Adding button to create list */
+        /* Adding button to create list. The column informstion is taken by the user in a new JOPtionPane. */
 
         JButton add_col = new JButton(" CREATE A NEW COLUMN: ");
         add_col.addActionListener(l -> {
@@ -247,6 +251,7 @@ public class boardGUI implements Serializable {
                 board.addColumn(column);   
     
            /*New Column log */
+                
                 String text = board.actLog.createColumnLog(name.getText(), board.getName());
                 addNewLogLine(text);
                 
@@ -272,7 +277,8 @@ public class boardGUI implements Serializable {
             }
         });
         
-        // JButton to save a board
+        /* JButton to save a board. All information about the data is saved in a CSV file. */
+        
         JButton save = new JButton("SAVE");
          save.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e){
@@ -280,6 +286,7 @@ public class boardGUI implements Serializable {
             SaveData saveData = new SaveData(fileName, board);
 
             /*Save board log */
+             
             String text = Board.actLog.saveButtonLog(board.getName());
             addNewLogLine(text);
          }
@@ -289,7 +296,7 @@ public class boardGUI implements Serializable {
         but.add(Box.createHorizontalGlue());
         but.add(add_col);
         
-        /* Load up the components of the board (e.g. Columns, Cards in Columns) */
+        /* Load up the components of the board (e.g. Columns, Cards in Columns). The LoadData object holds all information of the CSV file. */
         
         ArrayList<ArrayList<Object>> board_info = new ArrayList<ArrayList<Object>>(); //redefine this arraylist
         try {
@@ -298,10 +305,9 @@ public class boardGUI implements Serializable {
             e.printStackTrace();
         }
         last = last + 1;
-        for(ArrayList<Object> column: board_info) //This loop goes through every ArrayList<Object> element.
+        for(ArrayList<Object> column: board_info)                             //This loop goes through every ArrayList<Object> element.
         {
-        ArrayList<ArrayList<String>> load_cards_string = new ArrayList<ArrayList<String>>(); //this is the arraylist that holds all cards for a column. 
-        //add all card objects in this arraylist
+        ArrayList<ArrayList<String>> load_cards_string = new ArrayList<ArrayList<String>>();  //add all card objects in this arraylist
         load_cards_string = load_data.getCardDetails(column);
         ArrayList<Card> load_cards = new ArrayList<Card>();
         for(ArrayList<String> cardString : load_cards_string){
@@ -315,7 +321,6 @@ public class boardGUI implements Serializable {
         load_col= new ColumnGUI(load_data.getColumnName(column), load_data.getColumnRole(column),this, load_cards); //Here, you add the column name and column role parameter.
         Column loadColumn = load_col.getColumn();
         board.addColumn(loadColumn);
-
 
         DropPane load_col_outer = new DropPane(load_col.getColumn());
         load_col_outer.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -337,7 +342,6 @@ public class boardGUI implements Serializable {
         last ++;
         }
         
-        /* Done */
         
         work_area.add(but, BorderLayout.PAGE_START);
         work_area.add(col_area, BorderLayout.CENTER);
