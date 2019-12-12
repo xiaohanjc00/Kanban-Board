@@ -3,12 +3,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class LoadData{
-    CSVreader csvReader;
+    CSVReader csvReader;
 
     public LoadData(String fileName) {
         //readFile("src/BoardData/" + fileName);
         readFile(fileName);
-        System.out.println("loadData");
     }
     
     /**
@@ -17,7 +16,7 @@ public class LoadData{
      */
     public void readFile(String fileName){
         try {
-            csvReader = new CSVreader(fileName);
+            csvReader = new CSVReader(fileName);
         } catch (IOException e) {
             e.printStackTrace();
         }

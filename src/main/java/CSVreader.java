@@ -6,11 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class CSVreader {
+/* 
+ * CSV Creator reads a CSV file
+ */
+
+public class CSVReader {
     FileReader csvReader;
     String fileName;
 
-    public CSVreader(String fileName) throws IOException {
+    /**
+     * Constructor
+     * @param fileName The name of file.
+     */
+    public CSVReader(String fileName) throws IOException {
         this.fileName = fileName;
         csvReader = new FileReader(fileName);
         

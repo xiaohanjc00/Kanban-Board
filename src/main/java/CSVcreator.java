@@ -1,10 +1,18 @@
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class CSVcreator {
+/* 
+ * CSV Creator creates a CSV for each board
+ */
+
+public class CSVCreator {
     FileWriter csvWriter;
 
-    public CSVcreator(String fileName){
+    /*
+     * Constructor
+     * @param fileName The name of file.
+     */
+    public CSVCreator(String fileName){
         try {
             createCSV(fileName);
         } catch (IOException e) {
@@ -12,7 +20,12 @@ public class CSVcreator {
         }
     }
 
-    public CSVcreator(String fileName, Boolean appendMode){
+    /*
+     * Constructor
+     * @param fileName The name of file.
+     * @param appendMode True of you want to append to file, false otherwise.
+     */
+    public CSVCreator(String fileName, Boolean appendMode){
             try {
                 if(appendMode == false){
                     createNewCSV(fileName);
@@ -32,12 +45,17 @@ public class CSVcreator {
      */
     public void createCSV(String fileName) throws IOException{
         csvWriter = new FileWriter(fileName, true);
-        System.out.println("append");
+
     }
 
+    /**
+     * Create CSV file for the activity log,
+     * which overwrites everything previously in that file.
+     * @param fileName name of the file
+     * @throws IOException
+     */
     public void createNewCSV(String fileName) throws IOException{
         csvWriter = new FileWriter(fileName, false);
-        System.out.println("override");
     }
 
     /**
