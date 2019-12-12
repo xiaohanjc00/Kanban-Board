@@ -3,12 +3,18 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDateTime;
-
+/*
+ * ActivityLog object class
+ * Manages the activity log of the kanban board.
+ */
 public class ActivityLog {
-    //HashMap<String, String> activityList;
     CSVcreator csvWriter;
     CSVreader csvReader;
 
+    /*
+     * Constructor of ActivityLog
+     * @param fileName The name of file to be imported.
+     */
     public ActivityLog(String fileName) throws IOException {
         csvWriter = new CSVcreator("src/ActivityLog/" + fileName);
         viewActivityLog(fileName);

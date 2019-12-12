@@ -1,82 +1,134 @@
 
 /*
-* Kanban board object class
-* board must contain a title
-* board can contain a description, members assigned, a deadline
-*
+ * Kanban board object class
+ * Board must contain a title.
+ * Board can contain a description, members assigned, a deadline (can be added afterwards)
 */
-import java.time.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.io.*;
+import java.util.*;
+import java.time.*;
 
-public class Board implements Serializable{
+public class Board implements Serializable {
   private String name;
   private ArrayList<String> members;
   private ArrayList<Column> columns;
   private int nextId;
   static ActivityLog actLog;
 
-public Board(String nameIn){
+  /*
+   * Constructor of Board class.
+   * 
+   * @param nameIn The title of the Board.
+   */
+
+  public Board(String nameIn) {
     name = nameIn;
     columns = new ArrayList<Column>();
     members = new ArrayList<String>();
     nextId = 0;
 
-    /*Board Log*/
-    try{
+    // Create an activity log for the board
+    try {
       actLog = new ActivityLog(name + "ActivityLog.csv");
-    } 
-    catch (IOException e) {
-        e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
-}
+  }
 
-  public List<String> getLog(){
+  /*
+   * Get the log of the Board.
+   * 
+   * @return Log of the Board in a list of strings.
+   */
+  public List<String> getLog() {
     return actLog.getActivityLog();
   }
 
-  public ArrayList<Column> getColumnsList(){
+  /*
+   * Get the ArrayList of Columns.
+   * 
+   * @return ArrayList of Columns.
+   */
+  public ArrayList<Column> getColumnsList() {
     return columns;
   }
 
-  public void setName(String nameIn){
+  /*
+   * Set the title of the Board.
+   * 
+   * @param nameIn The new title of the Board.
+   */
+  public void setName(String nameIn) {
     name = nameIn;
   }
 
-  public String getName(){
+  /*
+   * Get the title of the Board.
+   * 
+   * @return The title of the Board.
+   */
+  public String getName() {
     return name;
   }
 
-  public void addColumn(Column col){
+  /*
+   * Add a column to the Board.
+   * 
+   * @param col Column object to be added.
+   */
+  public void addColumn(Column col) {
     columns.add(col);
   }
 
-  public void removeColumn(Column col){
+  /*
+   * Remove a column from the Board.
+   * 
+   * @param col Column object to be removed.
+   */
+  public void removeColumn(Column col) {
     columns.remove(col);
   }
 
-  public ArrayList<Column> getColumns(){
+  /*
+   * Get all the columns in the board.
+   * 
+   * @return An ArrayList of Column objects.
+   */
+  public ArrayList<Column> getColumns() {
     return columns;
   }
 
-  public void addMember(String member){
+  /*
+   * Add a member to the board.
+   * 
+   * @param col Column object to be added.
+   */
+  public void addMember(String member) {
     members.add(member);
   }
 
-  public void removeMember(String member){
+  public void removeMember(String member) {
     members.remove(member);
   }
 
-  public ArrayList<String> getMembers(){
+  public ArrayList<String> getMembers() {
     return members;
   }
 
+  /*
+   * Get all the ID of the next Card.
+   * Each card in the board has unique IDs,
+   * therefore the board decides the ID of cards.
+   * 
+   * @return The ID of the next card
+   */
   public int getId() {
     return nextId;
   }
 
+  /*
+   * Increments the ID of the next Card.
+   */
   public void incrementId() {
     nextId++;
   }
