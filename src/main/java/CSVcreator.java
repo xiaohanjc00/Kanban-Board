@@ -45,12 +45,17 @@ public class CSVCreator {
      */
     public void createCSV(String fileName) throws IOException{
         csvWriter = new FileWriter(fileName, true);
-        System.out.println("append");
+
     }
 
+    /**
+     * Create CSV file for the activity log,
+     * which overwrites everything previously in that file.
+     * @param fileName name of the file
+     * @throws IOException
+     */
     public void createNewCSV(String fileName) throws IOException{
         csvWriter = new FileWriter(fileName, false);
-        System.out.println("override");
     }
 
     /**

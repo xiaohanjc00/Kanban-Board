@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
  * Manages the activity log of the kanban board.
  */
 public class ActivityLog {
-    CSVcreator csvWriter;
-    CSVreader csvReader;
+    CSVCreator csvWriter;
+    CSVReader csvReader;
 
     /*
      * Constructor of ActivityLog
@@ -17,7 +17,7 @@ public class ActivityLog {
      */
     public ActivityLog(String fileName) throws IOException {
         //csvWriter = new CSVcreator("src/ActivityLog/" + fileName);
-        csvWriter = new CSVcreator(fileName);
+        csvWriter = new CSVCreator(fileName);
         viewActivityLog(fileName);
     }
 
@@ -39,7 +39,7 @@ public class ActivityLog {
     public void viewActivityLog(String fileName) throws IOException {
         try {
             //csvReader = new CSVreader("src/ActivityLog/" + fileName);
-            csvReader = new CSVreader(fileName);
+            csvReader = new CSVReader(fileName);
         } catch (IOException e) {
             e.printStackTrace();
         }
