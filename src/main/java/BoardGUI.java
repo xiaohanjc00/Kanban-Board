@@ -180,7 +180,12 @@ public class BoardGUI implements Serializable {
      build_board = new JPanel();    
      Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
      BorderLayout lay = new BorderLayout();   
-     board.clearColumns();
+     //board.clearColumns();
+        try {
+            board = new Board(load_data.getBoardName());
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
         
         /* topbar to show board name */
         
@@ -290,6 +295,8 @@ public class BoardGUI implements Serializable {
              
             String text = Board.actLog.saveButtonLog(board.getName());
             addNewLogLine(text);
+            build_board.revalidate();
+            build_board.repaint();
          }
           });
 
@@ -324,6 +331,8 @@ public class BoardGUI implements Serializable {
         board.addColumn(loadColumn);
         //System.out.println("-----");
 
+
+
         DropPane load_col_outer = new DropPane(load_col.getColumn());
         load_col_outer.setBorder(BorderFactory.createLineBorder(Color.black));
         load_col_outer.setBackground(Color.BLACK);
@@ -336,6 +345,8 @@ public class BoardGUI implements Serializable {
         load_col_n.add(deleteBut(load_col.getColumn()));
         //System.out.println("deleting " + load_col.getColumn());
         load_col_outer.add(load_col_n);
+
+        
         
         GridBagConstraints c4 = new GridBagConstraints();
         c4.anchor = GridBagConstraints.NORTHWEST;
