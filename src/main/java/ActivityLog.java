@@ -19,7 +19,7 @@ public class ActivityLog {
      * @param fileName The name of file to be imported.
      */
     public ActivityLog(String fileName) throws IOException {
-        csvWriter = new CSVCreator(fileName + "ActivityLog.csv");
+        csvWriter = new CSVCreator(fileName + "ActivityLog.csv", "log");
         viewActivityLog(fileName);
     }
 
@@ -42,7 +42,7 @@ public class ActivityLog {
      */
     public void viewActivityLog(String fileName) throws IOException {
         try {
-            csvReader = new CSVReader(fileName + "ActivityLog.csv");
+            csvReader = new CSVReader(fileName + "ActivityLog.csv", "log");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -18,15 +18,21 @@ public class CSVReader {
      * Constructor
      * @param fileName The name of file.
      */
-    public CSVReader(String fileName) throws IOException {
-        File file = getResource(fileName);
+    public CSVReader(String fileName, String mode) throws IOException {
+        File file = getResource(fileName, mode);
         this.file = file;
         csvReader = new FileReader(file);
         
     }
 
-    public File getResource(String fileName){
-        File file = new File("resources/" + fileName); 
+    public File getResource(String fileName, String mode){
+        File file = null;
+        if(mode.equals("data")){
+            file = new File("resources/Data/" + fileName); 
+        }
+        else if(mode.equals("log")){
+            file = new File("resources/ActivityLog/" + fileName);
+        }
         return file;
     }
 

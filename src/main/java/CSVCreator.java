@@ -13,9 +13,9 @@ public class CSVCreator {
      * Constructor
      * @param fileName The name of file.
      */
-    public CSVCreator(String fileName){
+    public CSVCreator(String fileName, String mode){
         try {
-            createCSV(fileName);
+            createCSV(fileName, mode);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -26,21 +26,27 @@ public class CSVCreator {
      * @param fileName The name of file.
      * @param appendMode True of you want to append to file, false otherwise.
      */
-    public CSVCreator(String fileName, Boolean appendMode){
+    public CSVCreator(String fileName, Boolean appendMode, String mode){
             try {
                 if(appendMode == false){
-                    createNewCSV(fileName);
+                    createNewCSV(fileName, mode);
                 }
                 else{
-                    createCSV(fileName);
+                    createCSV(fileName, mode);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
     }
 
-    public File toResourceFolder(String fileName){
-        File folder = new File("resources"); 
+    public File toResourceFolder(String fileName, String mode){
+        File folder = null;
+        if(mode.equals("data")){
+            folder = new File("resources/Data"); 
+        }
+        else if(mode.equals("log")){
+            folder = new File("resources/ActivityLog");
+        }
         File file = new File(folder, fileName); 
         try {
             file.createNewFile();
@@ -55,8 +61,8 @@ public class CSVCreator {
      * @param fileName name of the file
      * @throws IOException
      */
-    public void createCSV(String fileName) throws IOException{
-        File newFile = toResourceFolder(fileName);
+    public void createCSV(String fileName, String mode) throws IOException{
+        File newFile = toResourceFolder(fileName, mode);
         csvWriter = new FileWriter(newFile, true);
 
     }
@@ -67,8 +73,8 @@ public class CSVCreator {
      * @param fileName name of the file
      * @throws IOException
      */
-    public void createNewCSV(String fileName) throws IOException{
-        File newFile = toResourceFolder(fileName);
+    public void createNewCSV(String fileName, String mode) throws IOException{
+        File newFile = toResourceFolder(fileName, mode);
         csvWriter = new FileWriter(newFile, false);
     }
 

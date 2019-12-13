@@ -16,7 +16,7 @@ public class LoadData{
      */
     public void readFile(String fileName){
         try {
-            csvReader = new CSVReader(fileName);
+            csvReader = new CSVReader(fileName, "data");
         } catch (IOException e) {
             e.printStackTrace();
         }
