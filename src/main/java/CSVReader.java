@@ -28,10 +28,10 @@ public class CSVReader {
     public File getResource(String fileName, String mode){
         File file = null;
         if(mode.equals("data")){
-            file = new File("resources/Data/" + fileName); 
+            file = new File("src/main/resources/Data/" + fileName); 
         }
         else if(mode.equals("log")){
-            file = new File("resources/ActivityLog/" + fileName);
+            file = new File("src/main/resources/ActivityLog/" + fileName);
         }
         return file;
     }

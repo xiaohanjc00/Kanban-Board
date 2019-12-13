@@ -42,10 +42,10 @@ public class CSVCreator {
     public File toResourceFolder(String fileName, String mode){
         File folder = null;
         if(mode.equals("data")){
-            folder = new File("resources/Data"); 
+            folder = new File("src/main/resources/Data"); 
         }
         else if(mode.equals("log")){
-            folder = new File("resources/ActivityLog");
+            folder = new File("src/main/resources/ActivityLog");
         }
         File file = new File(folder, fileName); 
         try {

@@ -15,7 +15,7 @@ public class Main {
     static String board_name = "";
     static JFrame first_frame;
     private static Board activeBoard;
-    final static File folder = new File("resources/Data/");
+    final static File folder = new File("src/main/resources/Data/");
     static BoardList boardlist;
 
     public static void main(String[] args) {
