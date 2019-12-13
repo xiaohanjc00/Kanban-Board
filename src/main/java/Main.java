@@ -169,11 +169,13 @@ public class Main {
 
     public static void listFileFromFolder(final File folder){
         boardlist.clearList();
-        for (final File fileEntry : folder.listFiles()) {
-                String result = fileEntry.getName();
-                result = result.substring(0, result.length() - 8);
-                Board board_added = new Board(result);
-                boardlist.addBoard(board_added);
+        if(folder.listFiles()!=null){
+            for (final File fileEntry : folder.listFiles()) {
+                    String result = fileEntry.getName();
+                    result = result.substring(0, result.length() - 8);
+                    Board board_added = new Board(result);
+                    boardlist.addBoard(board_added);
+            }
         }
     }
 }
