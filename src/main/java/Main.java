@@ -1,3 +1,4 @@
+
 /**
  * 
  * Represents the Homepage of the application. The homepage of the application gives a brief description of the application, and allows users to open a new * * board or an existing board.
@@ -6,6 +7,7 @@
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.File;
 import java.io.IOException;
 import java.awt.*;
 
@@ -13,10 +15,12 @@ public class Main {
     static String board_name = "";
     static JFrame first_frame;
     private static Board activeBoard;
-    
+    final static File folder = new File("resources/Data/");
+    static BoardList boardlist;
+
     public static void main(String[] args) {
-        
-        BoardList boardlist = new BoardList();
+
+        boardlist = new BoardList();
         JPanel first_panel = new JPanel();
         String app_name = "APPLICATION_NAME";
         first_frame = new JFrame();
@@ -24,8 +28,11 @@ public class Main {
         int screen_width = (int) screenSize.getWidth();
         BorderLayout base = new BorderLayout(10, 10);
         activeBoard = null;
-        
-        /* Header of home page that that acts as the navbar and holds the Home Button, Close button, and title */
+
+        /*
+         * Header of home page that that acts as the navbar and holds the Home Button,
+         * Close button, and title
+         */
 
         JPanel head = new JPanel();
         head.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.black));
@@ -33,11 +40,11 @@ public class Main {
         JLabel head_lb = new JLabel(app_name);
 
         /* Home Button: Clicking this loads the homepage of the application. */
-        
+
         JButton home_b = new JButton(" HOME ");
         home_b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                first_frame.getContentPane().removeAll();  
+                first_frame.getContentPane().removeAll();
                 first_panel.removeAll();
                 first_panel.setLayout(base);
                 first_panel.add(head, BorderLayout.PAGE_START);
@@ -47,21 +54,21 @@ public class Main {
                 first_frame.repaint();
             }
         });
-        
+
         head.add(home_b);
-        head.add(Box.createHorizontalGlue()); 
+        head.add(Box.createHorizontalGlue());
         head.add(head_lb);
         head.add(Box.createHorizontalGlue());
 
-        /*Close Button: Clicking this shuts the application. */
+        /* Close Button: Clicking this shuts the application. */
 
         JButton close_b = new JButton("X Close");
         close_b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                try{
+                try {
                     String fileName = activeBoard.getName();
                     SaveData saveData = new SaveData(fileName, activeBoard);
-                } catch(Exception e2){
+                } catch (Exception e2) {
                     System.out.println("no such file");
                 }
                 System.exit(0);
@@ -80,10 +87,10 @@ public class Main {
     }
 
     /**
-     * Loads the body of the homepage that stores the description of the application, 
-     * and features to add or load a board. 
+     * Loads the body of the homepage that stores the description of the
+     * application, and features to add or load a board.
      */
-    
+
     public static JPanel loadBody(BoardList boardlist, JPanel head) {
         JPanel body = new JPanel();
         body.setLayout(new BoxLayout(body, BoxLayout.Y_AXIS));
@@ -105,19 +112,18 @@ public class Main {
         add_board_btn.setPreferredSize(new Dimension(600, 100));
         add_board_btn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                board_name = JOptionPane.showInputDialog(first_frame,
-                    "ENTER BOARD NAME:", null);
+                board_name = JOptionPane.showInputDialog(first_frame, "ENTER BOARD NAME:", null);
                 if (board_name != null) {
                     Board board_added = new Board(board_name);
                     boardlist.addBoard(board_added);
-                    BoardGUI new_board = new BoardGUI(board_name, board_added); //Board Object also passed as parameter
+                    BoardGUI new_board = new BoardGUI(board_name, board_added); // Board Object also passed as parameter
                     activeBoard = board_added;
 
                     first_frame.getContentPane().removeAll();
                     first_frame.add(head, BorderLayout.PAGE_START);
                     first_frame.add(new_board.generate(), BorderLayout.CENTER);
-                    //LoadData load_data = new LoadData("aaa.csv");
-                    //first_frame.add(new_board.build(load_data), BorderLayout.CENTER);
+                    // LoadData load_data = new LoadData("aaa.csv");
+                    // first_frame.add(new_board.build(load_data), BorderLayout.CENTER);
                     first_frame.revalidate();
                     first_frame.repaint();
                 }
@@ -126,9 +132,9 @@ public class Main {
         add_board.add(add_board_btn);
         add_board.setMaximumSize(new Dimension((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(), 100));
         body.add(add_board);
-        
+
         /* Displaying a list of current saved boards in the application */
-        
+        listFileFromFolder(folder);
         JPanel list_boards = new JPanel();
         //list_boards.setLayout(new BoxLayout(list_boards, BoxLayout.Y_AXIS));
         list_boards.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.black));
@@ -159,5 +165,15 @@ public class Main {
         list_boards.setMaximumSize(new Dimension((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(), 300));
         body.add(list_boards);
         return body;
+    }
+
+    public static void listFileFromFolder(final File folder){
+        boardlist.clearList();
+        for (final File fileEntry : folder.listFiles()) {
+                String result = fileEntry.getName();
+                result = result.substring(0, result.length() - 8);
+                Board board_added = new Board(result);
+                boardlist.addBoard(board_added);
+        }
     }
 }

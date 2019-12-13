@@ -41,5 +41,9 @@ private ArrayList<Board> boards;
     {
         return boards;
     }
+
+    public void clearList(){
+        boards.clear();
+    }
     
 }
