@@ -1,19 +1,23 @@
+
 /** 
  * Represents the Board GUI for the application. 
  * The Board is a Kanban board that gives its users different features of a Kanban Board.
  * It implements Serializable class to implement certain features of the board.
  */
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.JComponent.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.awt.dnd.*;
 import java.awt.Color;
 import java.io.*;
+import java.awt.image.BufferedImage;
 
 public class BoardGUI implements Serializable {
     static int last = -1; // counter to keep track of the last position for lists
@@ -146,6 +150,7 @@ public class BoardGUI implements Serializable {
          public void actionPerformed(ActionEvent e){
             String fileName = board.getName() ;
             SaveData saveData = new SaveData(fileName, board);
+            takeSnapShot(board_panel, board.getName());
 
             /*Save board log */
              
@@ -290,6 +295,7 @@ public class BoardGUI implements Serializable {
          public void actionPerformed(ActionEvent e){
             String fileName = board.getName();
             SaveData saveData = new SaveData(fileName, board);
+            takeSnapShot(build_board, board.getName());
 
             /*Save board log */
              
@@ -420,4 +426,31 @@ public class BoardGUI implements Serializable {
     public Board getBoard() {
         return board;
     }
+
+    void takeSnapShot(JPanel panel , String boardName){
+        System.out.println("method started");
+        BufferedImage bufImage = new BufferedImage(panel.getSize().width, panel.getSize().height,BufferedImage.TYPE_INT_RGB);
+        panel.paint(bufImage.createGraphics());
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy_hh.mm.ss");
+        LocalDateTime localDateTime = LocalDateTime.now();
+        String time = localDateTime.format(formatter);
+
+        System.out.println("Looking for the folder");
+        File newFolder = new File("src/main/resources/Screenshots/" + boardName + "/" + boardName + "_" + time + ".jpeg");
+        if(!newFolder.exists()){
+            System.out.println("creating new folder");
+            newFolder.mkdirs();
+        }
+
+        try{
+            System.out.println("creating the new image");
+            //newFolder.createNewFile();
+            System.out.println("saving the image to the folder");
+            ImageIO.write(bufImage, "jpeg", newFolder);
+        }
+        catch(Exception ex){
+            ex.getStackTrace();
+        }
+ }
 }
