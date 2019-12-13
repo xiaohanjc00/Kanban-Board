@@ -428,7 +428,6 @@ public class BoardGUI implements Serializable {
     }
 
     void takeSnapShot(JPanel panel , String boardName){
-        System.out.println("method started");
         BufferedImage bufImage = new BufferedImage(panel.getSize().width, panel.getSize().height,BufferedImage.TYPE_INT_RGB);
         panel.paint(bufImage.createGraphics());
 
@@ -436,17 +435,13 @@ public class BoardGUI implements Serializable {
         LocalDateTime localDateTime = LocalDateTime.now();
         String time = localDateTime.format(formatter);
 
-        System.out.println("Looking for the folder");
         File newFolder = new File("src/main/resources/Screenshots/" + boardName + "/" + boardName + "_" + time + ".jpeg");
         if(!newFolder.exists()){
-            System.out.println("creating new folder");
             newFolder.mkdirs();
         }
 
         try{
-            System.out.println("creating the new image");
             //newFolder.createNewFile();
-            System.out.println("saving the image to the folder");
             ImageIO.write(bufImage, "jpeg", newFolder);
         }
         catch(Exception ex){
