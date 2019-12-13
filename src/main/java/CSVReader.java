@@ -12,16 +12,22 @@ import java.util.Scanner;
 
 public class CSVReader {
     FileReader csvReader;
-    String fileName;
+    File file;
 
     /**
      * Constructor
      * @param fileName The name of file.
      */
     public CSVReader(String fileName) throws IOException {
-        this.fileName = fileName;
-        csvReader = new FileReader(fileName);
+        File file = getResource(fileName);
+        this.file = file;
+        csvReader = new FileReader(file);
         
+    }
+
+    public File getResource(String fileName){
+        File file = new File("resources/" + fileName); 
+        return file;
     }
 
     /**
@@ -41,7 +47,6 @@ public class CSVReader {
      * @throws IOException if there is no such file
      */
     public ArrayList<String> CSVGetString() throws IOException{
-        File file = new File(fileName);
         Scanner input = new Scanner(file);
         ArrayList<String> list = new ArrayList<String>();
 

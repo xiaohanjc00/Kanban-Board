@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -38,13 +39,25 @@ public class CSVCreator {
             }
     }
 
+    public File toResourceFolder(String fileName){
+        File folder = new File("resources"); 
+        File file = new File(folder, fileName); 
+        try {
+            file.createNewFile();
+        } catch (IOException e) {            
+            e.printStackTrace();
+        }
+        return file;
+    }
+
     /**
      * Create CSV file for the activity log
      * @param fileName name of the file
      * @throws IOException
      */
     public void createCSV(String fileName) throws IOException{
-        csvWriter = new FileWriter(fileName, true);
+        File newFile = toResourceFolder(fileName);
+        csvWriter = new FileWriter(newFile, true);
 
     }
 
@@ -55,7 +68,8 @@ public class CSVCreator {
      * @throws IOException
      */
     public void createNewCSV(String fileName) throws IOException{
-        csvWriter = new FileWriter(fileName, false);
+        File newFile = toResourceFolder(fileName);
+        csvWriter = new FileWriter(newFile, false);
     }
 
     /**

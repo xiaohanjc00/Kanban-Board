@@ -12,12 +12,10 @@ import java.awt.*;
 public class Main {
     static String board_name = "";
     static JFrame first_frame;
-    static ActivityLog log;
     private static Board activeBoard;
     
     public static void main(String[] args) {
         
-        Board board = new Board("b_name");
         BoardList boardlist = new BoardList();
         JPanel first_panel = new JPanel();
         String app_name = "APPLICATION_NAME";
@@ -60,8 +58,12 @@ public class Main {
         JButton close_b = new JButton("X Close");
         close_b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String fileName = activeBoard.getName() + ".csv";
-                SaveData saveData = new SaveData(fileName, activeBoard);
+                try{
+                    String fileName = activeBoard.getName();
+                    SaveData saveData = new SaveData(fileName, activeBoard);
+                } catch(Exception e2){
+                    System.out.println("no such file");
+                }
                 System.exit(0);
             }
         });
@@ -139,7 +141,7 @@ public class Main {
                 public void actionPerformed(ActionEvent e) {
                     activeBoard = curr_board;
                     //create the LoadData object here
-                    LoadData load_data = new LoadData(curr_board.getName() + ".csv");
+                    LoadData load_data = new LoadData(curr_board.getName());
                     BoardGUI load_board;
                     load_board = new BoardGUI(curr_board.getName(), curr_board);
                     first_frame.getContentPane().removeAll();

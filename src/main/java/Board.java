@@ -5,6 +5,8 @@
  * Board can contain a description, members assigned, a deadline (can be added afterwards)
 */
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.time.*;
 
@@ -29,7 +31,7 @@ public class Board implements Serializable {
 
     // Create an activity log for the board
     try {
-      actLog = new ActivityLog(name + "ActivityLog.csv");
+      actLog = new ActivityLog(name);
     } catch (IOException e) {
       e.printStackTrace();
     }

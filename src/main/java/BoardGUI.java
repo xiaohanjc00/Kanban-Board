@@ -144,7 +144,7 @@ public class BoardGUI implements Serializable {
         JButton save = new JButton("SAVE");
          save.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e){
-            String fileName = board.getName() + ".csv";
+            String fileName = board.getName() ;
             SaveData saveData = new SaveData(fileName, board);
 
             /*Save board log */
@@ -283,7 +283,7 @@ public class BoardGUI implements Serializable {
         JButton save = new JButton("SAVE");
          save.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e){
-            String fileName = board.getName() + ".csv";
+            String fileName = board.getName();
             SaveData saveData = new SaveData(fileName, board);
 
             /*Save board log */

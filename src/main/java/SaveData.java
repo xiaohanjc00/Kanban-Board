@@ -7,7 +7,7 @@ public class SaveData {
     Board board;
 
     public SaveData(String fileName, Board board){
-        csvWriter = new CSVCreator(fileName, false);
+        csvWriter = new CSVCreator(fileName + "DATA.csv", false);
         this.board = board;
         writeInformation();
     }
