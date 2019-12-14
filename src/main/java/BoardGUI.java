@@ -23,13 +23,13 @@ public class BoardGUI implements Serializable {
     static int last = -1; // counter to keep track of the last position for lists
     static JPanel col_n; // JPanel to add new column or list
     JPanel col_area;
-    JPanel board_panel;
-    JPanel build_board;
+    static JPanel board_panel;
+    static JPanel build_board;
     String b_name;
     int col_name;
     Board board;
     DropPane col_outer;
-    ArrayList <JPanel> cols = new ArrayList <> ();      // arraylist to store all columns present in the current board.
+    ArrayList<JPanel> cols = new ArrayList<>(); // arraylist to store all columns present in the current board.
     private static JScrollPane activityLogPanel;
     private JScrollPane scroll_pane;
 
@@ -37,13 +37,14 @@ public class BoardGUI implements Serializable {
         b_name = name;
         board = b;
     }
-    
+
     /**
      * Generate Board GUI when creating a new board
+     * 
      * @return Main Board panel
      */
     public JPanel generate() {
-        /*Main panel */
+        /* Main panel */
         board_panel = new JPanel();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         BorderLayout lay = new BorderLayout();
@@ -77,23 +78,23 @@ public class BoardGUI implements Serializable {
 
     /**
      * Generate Board GUI when loading a previously created board
+     * 
      * @param load_data where previous data is stored
      * @return Main board panel
      */
-    public JPanel build(LoadData load_data)
-    {
-        /*Main panel */
-        build_board = new JPanel();    
+    public JPanel build(LoadData load_data) {
+        /* Main panel */
+        build_board = new JPanel();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        BorderLayout lay = new BorderLayout();   
-        
+        BorderLayout lay = new BorderLayout();
+
         /* Create new empty board */
         try {
-        board = new Board(load_data.getBoardName());
+            board = new Board(load_data.getBoardName());
         } catch (IOException e1) {
             e1.printStackTrace();
         }
-        
+
         /* Create topBar panel */
         JPanel topbar = new JPanel();
         topbar = buildTopBar();
@@ -105,13 +106,13 @@ public class BoardGUI implements Serializable {
         JPanel work_area = new JPanel();
         work_area.setLayout(new BorderLayout());
 
-        /*Create column panel */
+        /* Create column panel */
         col_area = new JPanel();
         col_area = buildNewColumn(work_area, col_area);
-        
-        /*Retrieve previous stored boards */
+
+        /* Retrieve previous stored boards */
         getPreviousBoards(load_data);
-        
+
         /* Join everything together */
         scroll_pane = new JScrollPane(work_area);
         work_area.add(col_area, BorderLayout.CENTER);
@@ -125,9 +126,10 @@ public class BoardGUI implements Serializable {
 
     /**
      * Build the top bar of the main Board panel
+     * 
      * @return topBar JPanel
      */
-    public JPanel buildTopBar(){
+    public JPanel buildTopBar() {
         /* Create topBar panel */
         JPanel topbar = new JPanel();
 
@@ -147,9 +149,9 @@ public class BoardGUI implements Serializable {
     /**
      * Build the activityLog panel
      */
-    public void buildActivityLogPanel(){
+    public void buildActivityLogPanel() {
 
-        /*Create the activityLog panel */
+        /* Create the activityLog panel */
         JPanel subPanel = new JPanel();
         activityLogPanel = new JScrollPane(subPanel);
         activityLogPanel.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -169,11 +171,12 @@ public class BoardGUI implements Serializable {
 
     /**
      * Build the main working panel of the Board (where column is showed)
+     * 
      * @param work_area Main panel of the Board
-     * @param col_area Column panel
+     * @param col_area  Column panel
      * @return JPanel of the main working panel
      */
-    public JPanel buildNewColumn(JPanel work_area, JPanel col_area){
+    public JPanel buildNewColumn(JPanel work_area, JPanel col_area) {
 
         /* Set the layout */
         GridBagLayout g2 = new GridBagLayout();
@@ -216,12 +219,12 @@ public class BoardGUI implements Serializable {
 
                 /* Create the new column */
                 Column column = col_obj.getColumn();
-                board.addColumn(column);   
-    
-                /*New Column log */
+                board.addColumn(column);
+
+                /* New Column log */
                 String text = board.actLog.createColumnLog(name.getText(), board.getName());
                 addNewLogLine(text);
-                
+
                 /* Create new DropPane for the column */
                 col_n = new JPanel();
                 col_outer = new DropPane(column);
@@ -245,14 +248,14 @@ public class BoardGUI implements Serializable {
                 cols.add(col_n);
 
                 /* Revalidating the board */
-                try{
+                try {
                     build_board.revalidate();
+                } catch (Exception e) {
                 }
-                catch(Exception e){}
-                try{
+                try {
                     board_panel.revalidate();
+                } catch (Exception e) {
                 }
-                catch(Exception e){}
             }
         });
 
@@ -269,56 +272,62 @@ public class BoardGUI implements Serializable {
 
     /**
      * Create the save button
+     * 
      * @return Button for the save function
      */
-    public JButton createSaveButton(){
+    public JButton createSaveButton() {
         /* Create the save button */
         JButton save = new JButton("SAVE");
 
         /* Action for the save button */
         save.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 /* Save the data board into its csv */
                 String fileName = board.getName();
                 SaveData saveData = new SaveData(fileName, board);
 
                 /* Save screenshot of the current board state */
-                try{
+                try {
                     takeSnapShot(build_board, board.getName());
+                } catch (Exception e3) {
                 }
-                catch(Exception e3){}
-                try{
+                try {
                     takeSnapShot(board_panel, board.getName());
+                } catch (Exception e3) {
                 }
-                catch(Exception e3){}
 
-                /*Save board log */
+                /* Save board log */
                 String text = Board.actLog.saveButtonLog(board.getName());
                 addNewLogLine(text);
 
                 /* Revalidate board */
-                try{
-                    build_board.revalidate();
+                try {
                     board_panel.revalidate();
-                    build_board.repaint();
                     board_panel.repaint();
+                } catch (Exception e2) {
                 }
-                catch(Exception e2){};
+                ;
+                try {
+                    build_board.revalidate();
+                    build_board.repaint();
+                } catch (Exception e2) {
+                }
             }
 
         });
-          return save;
+        return save;
     }
 
     /**
      * Get the board data of previously saved data
+     * 
      * @param load_data where the data is loaded
      */
-    public void getPreviousBoards(LoadData load_data){
+    public void getPreviousBoards(LoadData load_data) {
 
         /* Get the information form the load data file */
-        ArrayList<ArrayList<Object>> board_info = new ArrayList<ArrayList<Object>>(); 
+        ArrayList<ArrayList<Object>> board_info = new ArrayList<ArrayList<Object>>();
         try {
             board_info = load_data.getInformation();
         } catch (IOException e) {
@@ -327,36 +336,37 @@ public class BoardGUI implements Serializable {
 
         last = last + 1;
 
-        /* Build the board using the given information of each column*/
-        for(ArrayList<Object> column: board_info){
+        /* Build the board using the given information of each column */
+        for (ArrayList<Object> column : board_info) {
 
             /* Data structure for the cards in each column */
-            ArrayList<ArrayList<String>> load_cards_string = new ArrayList<ArrayList<String>>();  
+            ArrayList<ArrayList<String>> load_cards_string = new ArrayList<ArrayList<String>>();
             load_cards_string = load_data.getCardDetails(column);
             ArrayList<Card> load_cards = new ArrayList<Card>();
 
             /* For each card information given create a card */
-            for(ArrayList<String> cardString : load_cards_string){
+            for (ArrayList<String> cardString : load_cards_string) {
                 Card newCard = new Card("creator", load_data.getCardName(cardString), load_data.getCardID(cardString));
                 newCard.setDescription(load_data.getCardDescription(cardString));
                 newCard.setStoryPoint(load_data.getCardStoryPoints(cardString));
                 load_cards.add(newCard);
-                
+
             }
-        
+
             /* Create the column GUI */
-            ColumnGUI load_col= new ColumnGUI(load_data.getColumnName(column), load_data.getColumnRole(column),this, load_cards); //Here, you add the column name and column role parameter.
+            ColumnGUI load_col = new ColumnGUI(load_data.getColumnName(column), load_data.getColumnRole(column), this,
+                    load_cards); // Here, you add the column name and column role parameter.
             Column loadColumn = load_col.getColumn();
             board.addColumn(loadColumn);
 
             /* Set the new board as the current active board */
             Main.activeBoard = board;
 
-            /**Create the structure of the column */
+            /** Create the structure of the column */
             DropPane load_col_outer = new DropPane(load_col.getColumn());
             load_col_outer.setBorder(BorderFactory.createLineBorder(Color.black));
             load_col_outer.setBackground(Color.BLACK);
-            
+
             JPanel load_col_n = new JPanel();
             load_col_n.setLayout(new BoxLayout(load_col_n, BoxLayout.Y_AXIS));
             load_col_n.add(load_col.buildCol());
@@ -365,17 +375,18 @@ public class BoardGUI implements Serializable {
 
             GridBagConstraints c4 = new GridBagConstraints();
             c4.anchor = GridBagConstraints.NORTHWEST;
-                    c4.gridx = last;
-                    c4.gridy = 0;
-                    c4.weightx = 0.01;
-                    c4.weighty = 0.01;
-            col_area.add(load_col_outer,c4);
-            last ++;
+            c4.gridx = last;
+            c4.gridy = 0;
+            c4.weightx = 0.01;
+            c4.weighty = 0.01;
+            col_area.add(load_col_outer, c4);
+            last++;
         }
     }
 
     /**
      * FUnction for deleting a column
+     * 
      * @param Container object to be deleted
      */
     public void deleteCol(Container to_delete) {
@@ -385,11 +396,11 @@ public class BoardGUI implements Serializable {
         col_area.revalidate();
 
         /* Revalidate the board */
-        if(board_panel != null){
+        if (board_panel != null) {
             board_panel.revalidate();
             board_panel.repaint();
         }
-        if(build_board != null){
+        if (build_board != null) {
             build_board.revalidate();
             build_board.repaint();
         }
@@ -397,9 +408,10 @@ public class BoardGUI implements Serializable {
 
     /**
      * Create a delete button
+     * 
      * @param Column object associated with the parent column
      */
-    public JButton deleteBut(Column column){
+    public JButton deleteBut(Column column) {
 
         /* Create the button */
         JButton delete_col = new JButton("DELETE COLUMN");
@@ -408,8 +420,8 @@ public class BoardGUI implements Serializable {
         delete_col.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                        
-                /*Delete column log */
+
+                /* Delete column log */
                 String text = board.actLog.deleteColumnLog(column.getName(), b_name);
                 addNewLogLine(text);
 
@@ -425,14 +437,28 @@ public class BoardGUI implements Serializable {
 
     /**
      * Add a new line to the ActivityLog panel
+     * 
      * @param text text to be added to the ActivityLog panel
      */
     public static void addNewLogLine(String text) {
         /* Add the text if it is not null */
-        if(!text.equals("")){
+        if (!text.equals("")) {
             JLabel newLabel = new JLabel(text);
             ((JPanel) activityLogPanel.getViewport().getView()).add(newLabel);
         }
+
+        /* Revalidate board */
+        try {
+            board_panel.revalidate();
+            board_panel.repaint();
+        } catch (Exception e2) {
+        }
+        ;
+        try {
+            build_board.revalidate();
+            build_board.repaint();
+        }
+        catch(Exception e2){}
     }
 
     /**

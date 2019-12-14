@@ -144,6 +144,7 @@ public class Main {
         for (Board curr_board: boardlist.getAllBoards()) {
             JButton curr_board_name = new JButton(curr_board.getName());
             curr_board_name.addActionListener(new ActionListener() {
+
                 public void actionPerformed(ActionEvent e) {
                     activeBoard = curr_board;
                     //create the LoadData object here
@@ -156,6 +157,7 @@ public class Main {
                     first_frame.revalidate();
                     first_frame.repaint();
                 }
+                
             });
             board_panel = new JPanel();
             board_panel.add(curr_board_name);
