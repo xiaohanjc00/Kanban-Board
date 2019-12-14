@@ -154,7 +154,7 @@ public class BoardGUI implements Serializable {
         /* Create the activityLog panel */
         JPanel subPanel = new JPanel();
         activityLogPanel = new JScrollPane(subPanel);
-        activityLogPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        activityLogPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
         BoxLayout g1 = new BoxLayout(subPanel, BoxLayout.Y_AXIS);
         subPanel.setLayout(g1);
 
@@ -182,13 +182,13 @@ public class BoardGUI implements Serializable {
         GridBagLayout g2 = new GridBagLayout();
         GridBagConstraints c3 = new GridBagConstraints();
         col_area.setLayout(g2);
-        col_area.setBorder(BorderFactory.createLineBorder(Color.black));
+        col_area.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 
         /* Create button panel */
         JPanel but = new JPanel();
 
         /* Set button panel layout */
-        but.setBorder(BorderFactory.createLineBorder(Color.black));
+        but.setBorder(BorderFactory.createLineBorder(Color.WHITE));
         but.setLayout(new BoxLayout(but, BoxLayout.X_AXIS));
 
         /* Create add column button */
@@ -233,9 +233,9 @@ public class BoardGUI implements Serializable {
                 col_n.add(deleteBut(column));
 
                 /* Set the layout */
-                col_n.setBorder(BorderFactory.createLineBorder(Color.black));
-                col_outer.setBorder(BorderFactory.createLineBorder(Color.black));
-                col_outer.setBackground(Color.BLACK);
+                col_n.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+                col_outer.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+                col_outer.setBackground(Color.GRAY);
                 c3.anchor = GridBagConstraints.NORTHWEST;
                 c3.gridx = last;
                 c3.gridy = 0;
@@ -364,8 +364,8 @@ public class BoardGUI implements Serializable {
 
             /** Create the structure of the column */
             DropPane load_col_outer = new DropPane(load_col.getColumn());
-            load_col_outer.setBorder(BorderFactory.createLineBorder(Color.black));
-            load_col_outer.setBackground(Color.BLACK);
+            load_col_outer.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+            load_col_outer.setBackground(Color.WHITE);
 
             JPanel load_col_n = new JPanel();
             load_col_n.setLayout(new BoxLayout(load_col_n, BoxLayout.Y_AXIS));

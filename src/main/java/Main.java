@@ -19,10 +19,10 @@ public class Main {
     static BoardList boardlist;
 
     public static void main(String[] args) {
-
+        setColors();
         boardlist = new BoardList();
         JPanel first_panel = new JPanel();
-        String app_name = "APPLICATION_NAME";
+        String app_name = "KANBAN BOARD";
         first_frame = new JFrame();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int screen_width = (int) screenSize.getWidth();
@@ -35,7 +35,7 @@ public class Main {
          */
 
         JPanel head = new JPanel();
-        head.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.black));
+        head.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.decode("#0277BD")));
         head.setLayout(new BoxLayout(head, BoxLayout.X_AXIS));
         JLabel head_lb = new JLabel(app_name);
 
@@ -98,8 +98,9 @@ public class Main {
         /* Adding a basic description of the application */
 
         JPanel description = new JPanel();
-        description.setBorder(BorderFactory.createMatteBorder(0, 5, 5, 5, Color.black));
-        JLabel description_label = new JLabel(" ADD BASIC DESCRIPTION ABOUT THE APPLICATION ");
+        description.setBackground(Color.decode("#0277BD"));
+        description.setBorder(BorderFactory.createMatteBorder(3, 0, 0, 0, Color.GRAY));
+        JLabel description_label = new JLabel(" Welcome to our kanban board! ");
         description.add(description_label);
         description.setMaximumSize(new Dimension((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(), 400));
         body.add(description);
@@ -107,8 +108,10 @@ public class Main {
         /* Adding button to create a new Kanban Board */
 
         JPanel add_board = new JPanel();
-        add_board.setBorder(BorderFactory.createMatteBorder(0, 5, 0, 5, Color.black));
+        add_board.setBackground(Color.decode("#0277BD"));
+        add_board.setBorder(BorderFactory.createMatteBorder(0, 5, 0, 5, Color.decode("#0277BD")));
         JButton add_board_btn = new JButton(" ADD NEW BOARD ");
+        add_board_btn.setBackground(Color.decode("#ECEFF1"));
         add_board_btn.setPreferredSize(new Dimension(600, 100));
         add_board_btn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -136,18 +139,17 @@ public class Main {
         /* Displaying a list of current saved boards in the application */
         listFileFromFolder(folder);
         JPanel list_boards = new JPanel();
-        //list_boards.setLayout(new BoxLayout(list_boards, BoxLayout.Y_AXIS));
-        list_boards.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.black));
+        list_boards.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.decode("#0277BD")));
         JLabel list_l = new JLabel("CURRENT BOARDS: ");
         list_boards.add(list_l);
         JPanel board_panel;
-        for (Board curr_board: boardlist.getAllBoards()) {
+        for (Board curr_board : boardlist.getAllBoards()) {
             JButton curr_board_name = new JButton(curr_board.getName());
             curr_board_name.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
                     activeBoard = curr_board;
-                    //create the LoadData object here
+                    // create the LoadData object here
                     LoadData load_data = new LoadData(curr_board.getName());
                     BoardGUI load_board;
                     load_board = new BoardGUI(curr_board.getName(), curr_board);
@@ -157,7 +159,7 @@ public class Main {
                     first_frame.revalidate();
                     first_frame.repaint();
                 }
-                
+
             });
             board_panel = new JPanel();
             board_panel.add(curr_board_name);
@@ -169,15 +171,28 @@ public class Main {
         return body;
     }
 
-    public static void listFileFromFolder(final File folder){
+    public static void listFileFromFolder(final File folder) {
         boardlist.clearList();
-        if(folder.listFiles()!=null){
+        if (folder.listFiles() != null) {
             for (final File fileEntry : folder.listFiles()) {
-                    String result = fileEntry.getName();
-                    result = result.substring(0, result.length() - 8);
-                    Board board_added = new Board(result);
-                    boardlist.addBoard(board_added);
+                String result = fileEntry.getName();
+                result = result.substring(0, result.length() - 8);
+                Board board_added = new Board(result);
+                boardlist.addBoard(board_added);
             }
         }
+    }
+
+    public static void setColors() {
+        try{
+            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+        }
+        catch(Exception e4){}
+        
+        UIManager.put("Panel.background", Color.decode("#0277BD"));
+        UIManager.put("Label.foreground", Color.decode("#ECEFF1"));
+        UIManager.put("Button.background", Color.decode("#ECEFF1"));
+        UIManager.put("OptionPane.background", Color.decode("#0277BD"));
+        UIManager.put("OptionPane.foreground", Color.decode("#ECEFF1"));
     }
 }

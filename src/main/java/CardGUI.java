@@ -62,7 +62,7 @@ public class CardGUI {
         });
         topPanel.add(topLeftPanel, BorderLayout.LINE_START);
         topPanel.add(closeWindowBtn, BorderLayout.LINE_END);
-        topPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        topPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
@@ -120,7 +120,7 @@ public class CardGUI {
         leftPanel.add(Box.createRigidArea(new Dimension(0, 30)));
         leftPanel.add(saveDescriptionBtn);
         
-        leftPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        leftPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
         return leftPanel;
     }
     
@@ -224,7 +224,7 @@ public class CardGUI {
         rightPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         rightPanel.add(storyPointsBtn);
         rightPanel.add(cardTitleBtn);
-        rightPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        rightPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
         return rightPanel;
     }
 

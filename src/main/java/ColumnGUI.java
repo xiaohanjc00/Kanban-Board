@@ -127,7 +127,7 @@ public class ColumnGUI implements Serializable {
         
         cards_area = new JPanel();                                          //JPanel containing all cards in the column
         cards_area.setLayout(new BoxLayout(cards_area, BoxLayout.Y_AXIS));
-        cards_area.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.black));
+        cards_area.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.GRAY));
         String members ="";
         ArrayList<Card> arrayOfCards = column.getCards();
         
@@ -169,7 +169,7 @@ public class ColumnGUI implements Serializable {
             card_in_col.add(card_title, BorderLayout.PAGE_START);
             card_in_col.add(card_members, BorderLayout.CENTER);
             card_in_col.add(buttonsPanel, BorderLayout.LINE_END);
-            card_in_col.setBorder(BorderFactory.createLineBorder(Color.black));
+            card_in_col.setBorder(BorderFactory.createLineBorder(Color.GRAY));
             //panel.add(card_in_col);
             cards_area.add(card_in_col);
         }
