@@ -14,7 +14,7 @@ import java.awt.*;
 public class Main {
     static String board_name = "";
     static JFrame first_frame;
-    private static Board activeBoard;
+    public static Board activeBoard;
     final static File folder = new File("src/main/resources/Data/");
     static BoardList boardlist;
 

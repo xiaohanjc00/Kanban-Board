@@ -50,21 +50,7 @@ public class BoardGUI implements Serializable {
 
         // JPanel for toolbar showing board name and members
         JPanel topbar = new JPanel();
-
-        topbar.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        BoxLayout box_ly = new BoxLayout(topbar, BoxLayout.X_AXIS);
-        topbar.setLayout(box_ly);
-
-        JLabel board_name = new JLabel("BOARD NAME:  " + board.getName());
-        topbar.add(board_name);
-        topbar.add(Box.createHorizontalGlue());
-        JLabel members = new JLabel(" MEMBERS:  ");
-        topbar.add(members);
-
-        for (String mem : board.getMembers()) {
-            JLabel thismember = new JLabel(mem);
-            topbar.add(thismember);
-        }
+        topbar = buildTopBar();
 
         /* JPanel showing the Activity Log for Current Board */
 
@@ -182,6 +168,90 @@ public class BoardGUI implements Serializable {
     * It returns the board built in the form of a JPanel.
     */
     
+    public JPanel buildTopBar(){
+        // JPanel for toolbar showing board name and members
+        JPanel topbar = new JPanel();
+
+        topbar.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        BoxLayout box_ly = new BoxLayout(topbar, BoxLayout.X_AXIS);
+        topbar.setLayout(box_ly);
+
+        JLabel board_name = new JLabel("BOARD NAME:  " + board.getName());
+        topbar.add(board_name);
+        topbar.add(Box.createHorizontalGlue());
+        JLabel members = new JLabel(" MEMBERS:  ");
+        topbar.add(members);
+
+        for (String mem : board.getMembers()) {
+            JLabel thismember = new JLabel(mem);
+            topbar.add(thismember);
+        }
+        return topbar;
+    }
+
+    public JPanel buildNewColumn(){
+        JPanel work_area = new JPanel();
+    work_area.setLayout(new BorderLayout());
+
+    col_area = new JPanel();
+    GridBagLayout g2 = new GridBagLayout();
+
+        GridBagConstraints c3 = new GridBagConstraints();
+        col_area.setLayout(g2);
+        col_area.setBorder(BorderFactory.createLineBorder(Color.black));
+
+        JPanel but = new JPanel();
+        but.setBorder(BorderFactory.createLineBorder(Color.black));
+        but.setLayout(new BoxLayout(but, BoxLayout.X_AXIS));
+
+        JButton add_col = new JButton(" CREATE A NEW COLUMN: ");
+        add_col.addActionListener(l -> {
+        last++;
+        JPanel col_input = new JPanel();
+            col_input.setLayout(new BoxLayout(col_input, BoxLayout.Y_AXIS));
+            col_input.add(new JLabel("ENTER COLUMN NAME: "));
+            JTextField name = new JTextField(5);
+            col_input.add(name);
+            col_input.add(new JPanel());
+            col_input.add(new JLabel("ENTER COLUMN ROLE: "));
+            JTextField role = new JTextField(5);
+            col_input.add(role);
+            int col_name = JOptionPane.showConfirmDialog(Main.first_frame, col_input, "ENTER COLUMN DETAILS:",
+                    JOptionPane.OK_CANCEL_OPTION);
+            if (col_name == JOptionPane.OK_OPTION) {
+                ColumnGUI col_obj = new ColumnGUI(name.getText(), role.getText(), this);
+                Column column = col_obj.getColumn();
+                board.addColumn(column);   
+    
+           /*New Column log */
+                
+                String text = board.actLog.createColumnLog(name.getText(), board.getName());
+                addNewLogLine(text);
+                
+                col_n = new JPanel();
+                col_outer = new DropPane(column);
+                col_n.setLayout(new BoxLayout(col_n, BoxLayout.Y_AXIS));
+                col_n.add(col_obj.generatePanel());
+                col_n.add(deleteBut(column));
+
+                col_n.setBorder(BorderFactory.createLineBorder(Color.black));
+                col_outer.setBorder(BorderFactory.createLineBorder(Color.black));
+                col_outer.setBackground(Color.BLACK);
+                col_outer.add(col_n);
+                c3.anchor = GridBagConstraints.NORTHWEST;
+                c3.gridx = last;
+                c3.gridy = 0;
+                c3.weightx = 0.01;
+                c3.weighty = 0.01;
+                col_area.add(col_outer, c3);
+
+                cols.add(col_n);
+                build_board.revalidate();
+            }
+        });
+        return work_area;
+    }
+
     public JPanel build(LoadData load_data)
     {
      build_board = new JPanel();    
@@ -189,26 +259,16 @@ public class BoardGUI implements Serializable {
      BorderLayout lay = new BorderLayout();   
      //board.clearColumns();
         try {
-            board = new Board(load_data.getBoardName());
+        board = new Board(load_data.getBoardName());
         } catch (IOException e1) {
             e1.printStackTrace();
         }
         
+        
         /* topbar to show board name */
         
-     JPanel topbar = new JPanel();
-        topbar.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        BoxLayout box_ly = new BoxLayout(topbar, BoxLayout.X_AXIS);
-        topbar.setLayout(box_ly);
-        JLabel board_name = new JLabel("BOARD NAME: " + board.getName());
-        topbar.add(board_name);
-        topbar.add(Box.createHorizontalGlue());
-        JLabel members = new JLabel(" MEMBERS:  ");
-        topbar.add(members);
-        for (String mem : board.getMembers()) {
-            JLabel thismember = new JLabel(mem);
-            topbar.add(thismember);
-        }
+        JPanel topbar = new JPanel();
+        topbar = buildTopBar();
         
     /* JPanel showing the Activity Log for Current Board */
         
@@ -338,6 +398,7 @@ public class BoardGUI implements Serializable {
         Column loadColumn = load_col.getColumn();
         board.addColumn(loadColumn);
         //System.out.println("-----");
+        Main.activeBoard = board;
 
 
 
@@ -419,7 +480,6 @@ public class BoardGUI implements Serializable {
     public static void addNewLogLine(String text) {
         if(!text.equals("")){
             JLabel newLabel = new JLabel(text);
-            newLabel.setMaximumSize(new Dimension(200, Integer.MAX_VALUE));
             ((JPanel) activityLogPanel.getViewport().getView()).add(newLabel);
         }
     }
