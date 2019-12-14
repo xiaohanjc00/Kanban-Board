@@ -31,6 +31,7 @@ public class BoardGUI implements Serializable {
     DropPane col_outer;
     ArrayList <JPanel> cols = new ArrayList <> ();      // arraylist to store all columns present in the current board.
     private static JScrollPane activityLogPanel;
+    private JScrollPane scroll_pane;
 
     public BoardGUI(String name, Board b) {
         b_name = name;
@@ -160,7 +161,8 @@ public class BoardGUI implements Serializable {
             board_panel.repaint();
          }
          });
-
+        
+        scroll_pane = new JScrollPane(work_area);
         but.add(save);
         but.add(Box.createHorizontalGlue());
         but.add(add_col);
@@ -169,7 +171,7 @@ public class BoardGUI implements Serializable {
         board_panel.setLayout(lay);
         board_panel.add(topbar, BorderLayout.PAGE_START);
         board_panel.add(activityLogPanel, BorderLayout.LINE_END);
-        board_panel.add(work_area, BorderLayout.CENTER);
+        board_panel.add(scroll_pane, BorderLayout.CENTER);
         return (board_panel);
 
     }
