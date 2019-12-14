@@ -161,7 +161,6 @@ public class BoardGUI implements Serializable {
             board_panel.repaint();
          }
          });
-        
         scroll_pane = new JScrollPane(work_area);
         but.add(save);
         but.add(Box.createHorizontalGlue());
@@ -171,6 +170,7 @@ public class BoardGUI implements Serializable {
         board_panel.setLayout(lay);
         board_panel.add(topbar, BorderLayout.PAGE_START);
         board_panel.add(activityLogPanel, BorderLayout.LINE_END);
+        activityLogPanel.setPreferredSize(new Dimension(400, Integer.MAX_VALUE));
         board_panel.add(scroll_pane, BorderLayout.CENTER);
         return (board_panel);
 
@@ -348,10 +348,7 @@ public class BoardGUI implements Serializable {
         JPanel load_col_n = new JPanel();
         load_col_n.setLayout(new BoxLayout(load_col_n, BoxLayout.Y_AXIS));
         load_col_n.add(load_col.buildCol());
-        //System.out.println("deleting " + load_col.getColumn());
-        //System.out.println("size before: " + );
         load_col_n.add(deleteBut(load_col.getColumn()));
-        //System.out.println("deleting " + load_col.getColumn());
         load_col_outer.add(load_col_n);
 
         
@@ -366,14 +363,15 @@ public class BoardGUI implements Serializable {
         last ++;
         }
         
-        
+        scroll_pane = new JScrollPane(work_area);
         work_area.add(but, BorderLayout.PAGE_START);
         work_area.add(col_area, BorderLayout.CENTER);
         
         build_board.setLayout(lay);
         build_board.add(topbar, BorderLayout.PAGE_START);
         build_board.add(activityLogPanel, BorderLayout.LINE_END);
-        build_board.add(work_area, BorderLayout.CENTER);
+        activityLogPanel.setPreferredSize(new Dimension(400, Integer.MAX_VALUE));
+        build_board.add(scroll_pane, BorderLayout.CENTER);
         return build_board;
         
         
@@ -421,6 +419,7 @@ public class BoardGUI implements Serializable {
     public static void addNewLogLine(String text) {
         if(!text.equals("")){
             JLabel newLabel = new JLabel(text);
+            newLabel.setMaximumSize(new Dimension(200, Integer.MAX_VALUE));
             ((JPanel) activityLogPanel.getViewport().getView()).add(newLabel);
         }
     }
