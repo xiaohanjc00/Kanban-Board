@@ -113,7 +113,7 @@ public class DragGestureHandler implements DragGestureListener, DragSourceListen
 
             /*Move card log */
             String text = Board.actLog.moveCardLog(cc, DropHandler.mov_col);
-            boardGui.addNewLogLine(text);
+            BoardGUI.addNewLogLine(text);
 
         }
 

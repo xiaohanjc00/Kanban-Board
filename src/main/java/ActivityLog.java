@@ -240,8 +240,9 @@ public class ActivityLog {
      * @return the moving card log
      */
     public String moveCardLog(Card card, Column column){
-        String text = "Card " + card.getName() + " has been moved to " column.getName() + ", " + getCurrentTime();
+        String text = "Card " + card.getTitle() + " has been moved to " + column.getName() + ", " + getCurrentTime();
         csvWriter.appendCSV(text);
         csvWriter.appendCSV("\n");
+        return text;
     }
 }
