@@ -7,7 +7,7 @@ public class LoadData{
 
     public LoadData(String fileName) {
         //readFile("src/BoardData/" + fileName);
-        readFile(fileName);
+        readFile(fileName + "DATA.csv");
     }
     
     /**
@@ -16,7 +16,7 @@ public class LoadData{
      */
     public void readFile(String fileName){
         try {
-            csvReader = new CSVReader(fileName);
+            csvReader = new CSVReader(fileName, "data");
         } catch (IOException e) {
             e.printStackTrace();
         }

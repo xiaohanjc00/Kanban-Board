@@ -1,4 +1,7 @@
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +19,7 @@ public class ActivityLog {
      * @param fileName The name of file to be imported.
      */
     public ActivityLog(String fileName) throws IOException {
-        //csvWriter = new CSVcreator("src/ActivityLog/" + fileName);
-        csvWriter = new CSVCreator(fileName);
+        csvWriter = new CSVCreator(fileName + "ActivityLog.csv", "log");
         viewActivityLog(fileName);
     }
 
@@ -38,8 +40,7 @@ public class ActivityLog {
      */
     public void viewActivityLog(String fileName) throws IOException {
         try {
-            //csvReader = new CSVreader("src/ActivityLog/" + fileName);
-            csvReader = new CSVReader(fileName);
+            csvReader = new CSVReader(fileName + "ActivityLog.csv", "log");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -229,7 +230,7 @@ public class ActivityLog {
     public String setDescriptionLog(Card card){
         String text = "New card description has been set to " + card.getTitle() + " , " + getCurrentTime();
         //activityList.put(time, text);
-        csvWriter.appendCSV(text + " , " + getCurrentTime());
+        csvWriter.appendCSV(text);
         csvWriter.appendCSV("\n");
         return text;
     }

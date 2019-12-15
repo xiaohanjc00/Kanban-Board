@@ -17,12 +17,12 @@ public class DragPane extends JPanel {
     private DragGestureRecognizer dgr;
     private DragGestureRecognizer dgr1;
     private DragGestureHandler dragGestureHandler;
-
     private DragGestureHandler dragGestureHandler1;
     private int index;
     private boolean isCard;
     private Column cur_col;
     private Card cur_card;
+
     public DragPane(int ind, boolean isCard){
         this.isCard = isCard;
         index = ind;
@@ -38,15 +38,28 @@ public class DragPane extends JPanel {
         dgr = DragSource.getDefaultDragSource().createDefaultDragGestureRecognizer(this, DnDConstants.ACTION_MOVE, dragGestureHandler);
     }
     
+    /**
+     * Get the current column
+     * @return current column
+     */
     public Column getCol()
     {
         return cur_col;
     }
     
+    /**
+     * Get the current card
+     * @return current card
+     */
     public Card getCard()
     {
         return cur_card;
     }
+
+    /**
+     * Get the current index
+     * @return the current index
+     */
     public int getInd(){
         return index;
     }
