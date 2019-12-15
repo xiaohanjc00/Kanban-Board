@@ -101,20 +101,10 @@ public class ActivityLog {
     }
 
     /**
-     * Log for deleting an existing board
-     * @param board name of the board
-     */
-    public void deleteBoardLog(String board){
-        String text = "Board " + board + " has been deleted";
-        //activityList.put(time, text);
-        csvWriter.appendCSV(text + " , " + getCurrentTime());
-        csvWriter.appendCSV("\n");
-    }
-
-    /**
      * Log for creating new column
      * @param column name of the column
      * @param board name of the board
+     * @return log for creating a column
      */
     public String createColumnLog(String column, String board){
         String text = "New column " + column + " has been created to " + board + " , " + getCurrentTime();
@@ -126,8 +116,11 @@ public class ActivityLog {
 
     /**
      * Log for creating new column
-     * @param column name of the column
-     * @param board name of the board
+     * @param newColumn new name of the column
+     * @param oldColumn old name of the column
+     * @param newRole new role of the column
+     * @param oldRole old role of the column
+     * @return log for editing a column
      */
     public String editColumnLog(String newColumn, String oldColumn, String newRole, String oldRole){
         String text = "";
@@ -152,6 +145,7 @@ public class ActivityLog {
      * Log for creating new column
      * @param column name of the column
      * @param board name of the board
+     * @return log for deleting a column
      */
     public String deleteColumnLog(String column, String board){
         String text = "Column " + column + " has been deleted from " + board + " , " + getCurrentTime();
@@ -165,6 +159,7 @@ public class ActivityLog {
      * Log for creating new column
      * @param card name of the card
      * @param column name of the column
+     * @return log for creating a card
      */
     public String createCardLog(String card, String column){
         String text = "New card " + card + " has been created to " + column + " , " + getCurrentTime();
@@ -178,6 +173,7 @@ public class ActivityLog {
      * Log for creating new column
      * @param card name of the card
      * @param column name of the column
+     * @return log for deleting a card
      */
     public String deleteCardLog(String card, String column){
         String text = "Column " + card + " has been deleted from " + column + " , " + getCurrentTime();
@@ -188,32 +184,9 @@ public class ActivityLog {
     }
 
     /**
-     * Log for creating a new member
-     * @param member name of the new member
-     * @param card name of the card which is being added to
-     */
-    public void addMemberLog(String member, String card){
-        String text = "new member " + member + " has been added to " + card + " , " + getCurrentTime();
-        //activityList.put(time, text);
-        csvWriter.appendCSV(text);
-        csvWriter.appendCSV("\n");
-    }
-
-    /**
-     * Log for deleting a member
-     * @param member name of the deleted member
-     * @param card name of the card which is being deleted from
-     */
-    public void deleteMemberLog(String member, String card){
-        String text = "Member " + member + " has been deleted from" + card + " , " + getCurrentTime();
-        //activityList.put(time, text);
-        csvWriter.appendCSV(text);
-        csvWriter.appendCSV("\n");
-    }
-
-    /**
      * Log for setting card title
      * @param card Name of the card
+     * @return log for editing the card
      */
     public String editCardTitleLog(String oldName, Card card){
         String text = "Card " + oldName + " changed name to " + card.getTitle() + " , " + getCurrentTime();
@@ -226,6 +199,7 @@ public class ActivityLog {
     /**
      * Log for setting card description
      * @param card Name of the card
+     * @return log for the new description
      */
     public String setDescriptionLog(Card card){
         String text = "New card description has been set to " + card.getTitle() + " , " + getCurrentTime();
@@ -236,19 +210,9 @@ public class ActivityLog {
     }
 
     /**
-     * Log for setting card deadline
-     * @param card Name of the card
-     */
-    public void setDeadLineLog(Card card){
-        String text = "New deadline has been set to " + card.getDeadline() + " , " + getCurrentTime();
-        //activityList.put(time, text);
-        csvWriter.appendCSV(text);
-        csvWriter.appendCSV("\n");
-    }
-
-    /**
      * Log for setting card story point
      * @param card Name of the card
+     * @return log of the setting story point 
      */
     public String setStoryPointLog(Card card){
         String text = card.getTitle() + " story point has been set to " + card.getStoryPoint() + " , " + getCurrentTime();
@@ -257,7 +221,11 @@ public class ActivityLog {
         csvWriter.appendCSV("\n");
         return text;
     }
-
+    /**
+     * Log for the pressing the save button
+     * @param board the board which is saved
+     * @return the save button log
+     */
     public String saveButtonLog(String board){
         String text = "Board " + board + " has been saved correctly, " + getCurrentTime();
         csvWriter.appendCSV(text);
@@ -265,12 +233,12 @@ public class ActivityLog {
         return text;
     }
 
-    public void closeApplicationLog(){
-        String text = "Application has been closed by the user";
-        csvWriter.appendCSV(text);
-        csvWriter.appendCSV("\n");
-    }
-
+    /**
+     * Log for moving the cards
+     * @param card the moving card
+     * @param column the new column
+     * @return the moving card log
+     */
     public String moveCardLog(Card card, Column column){
         String text = "Card " + card.getName() + " has been moved to " column.getName() + ", " + getCurrentTime();
         csvWriter.appendCSV(text);
