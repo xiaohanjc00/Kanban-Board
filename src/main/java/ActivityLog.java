@@ -270,4 +270,10 @@ public class ActivityLog {
         csvWriter.appendCSV(text);
         csvWriter.appendCSV("\n");
     }
+
+    public String moveCardLog(Card card, Column column){
+        String text = "Card " + card.getName() + " has been moved to " column.getName() + ", " + getCurrentTime();
+        csvWriter.appendCSV(text);
+        csvWriter.appendCSV("\n");
+    }
 }
