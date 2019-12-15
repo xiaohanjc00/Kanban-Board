@@ -41,6 +41,21 @@ private ArrayList<Board> boards;
     {
         return boards;
     }
+    
+    /*
+    * Check if a board is already present in the list.
+    * @return true|false
+    */
+    public boolean contains(Board board)
+    {
+        boolean check = false;
+        for(Board board_in_list : boards)
+            {
+              if(board_in_list.getName().equals(board.getName()))
+                check = true;
+            }
+        return check;
+    }
 
     public void clearList(){
         boards.clear();
