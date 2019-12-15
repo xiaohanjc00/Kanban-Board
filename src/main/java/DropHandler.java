@@ -41,107 +41,107 @@ public class DropHandler implements DropTargetListener, Serializable {
     }
 
    @Override
-public void drop(DropTargetDropEvent dtde) {
-    boolean success = false;
-    // Basically, we want to unwrap the present...
-    if (dtde.isDataFlavorSupported(PanelDataFlavor.SHARED_INSTANCE)) {
-        Transferable transferable = DragGestureHandler.transferable;
-        try {
-            Object data = transferable.getTransferData(PanelDataFlavor.SHARED_INSTANCE);
-            
-            
-             boolean checkifCard =  DragGestureHandler.getType();
-             /////
-            if (data instanceof JPanel) {
-                JPanel panel = (JPanel) data;
-                DropTargetContext dtc = dtde.getDropTargetContext();
-                Component component = dtc.getComponent();
-                if (component instanceof JComponent) {
-                    
-                    //checking if the dragged object is the column itself
-                    
-                    if(checkifCard == false){
-                    Container parent = panel.getParent();
-                    if (parent != null) {
-                        parent.remove(panel);
-                        parent.revalidate();
-                        parent.repaint();
-                    }
-                    Component[] cc = ((JPanel) component).getComponents();
-                    //if the container being moved to has no contents then simply add the dragged component.
-                    if(cc.length == 0)
-                    {
-                    ((JPanel) component).add(panel);
-                    success = true;
-                    dtde.acceptDrop(DnDConstants.ACTION_MOVE);
-                    ((JPanel) component).invalidate();
-                    ((JPanel)component).repaint();
-                    }
-                    //if the container being moved to, has one or more content in it, then the dragged component and this child component must be swapped.
-                    else
-                    {
-                        swap =(JPanel)(cc[0]);
-                        JPanel box = ((JPanel) component);
-                       ((JPanel) component).removeAll();
-                       ((JPanel) component).add(panel);
+    public void drop(DropTargetDropEvent dtde) {
+        boolean success = false;
+        // Basically, we want to unwrap the present...
+        if (dtde.isDataFlavorSupported(PanelDataFlavor.SHARED_INSTANCE)) {
+            Transferable transferable = DragGestureHandler.transferable;
+            try {
+                Object data = transferable.getTransferData(PanelDataFlavor.SHARED_INSTANCE);
+                
+                
+                boolean checkifCard =  DragGestureHandler.getType();
+                /////
+                if (data instanceof JPanel) {
+                    JPanel panel = (JPanel) data;
+                    DropTargetContext dtc = dtde.getDropTargetContext();
+                    Component component = dtc.getComponent();
+                    if (component instanceof JComponent) {
                         
-                    success = true;
-                    dtde.acceptDrop(DnDConstants.ACTION_MOVE);
-                    ((JPanel) component).revalidate();
-                     ((JPanel) component).repaint(); 
-                        panel.revalidate();
-                        panel.repaint();
-                    }
-                    }
-                    
-                    //checking if the dragged object is a card
-                    else
-                    {
+                        //checking if the dragged object is the column itself
                         
-                        DropPane x = ((DropPane) component);
-                        mov_col = x.getCol();
-                        swap = null;
-                       Container parent = panel.getParent();
-                       
-                    if (parent != null) {
-                        parent.remove(panel);
-                        parent.revalidate();
-                        parent.repaint();
-                    }
+                        if(checkifCard == false){
+                        Container parent = panel.getParent();
+                        if (parent != null) {
+                            parent.remove(panel);
+                            parent.revalidate();
+                            parent.repaint();
+                        }
+                        Component[] cc = ((JPanel) component).getComponents();
+                        //if the container being moved to has no contents then simply add the dragged component.
+                        if(cc.length == 0)
+                        {
+                        ((JPanel) component).add(panel);
+                        success = true;
+                        dtde.acceptDrop(DnDConstants.ACTION_MOVE);
+                        ((JPanel) component).invalidate();
+                        ((JPanel)component).repaint();
+                        }
+                        //if the container being moved to, has one or more content in it, then the dragged component and this child component must be swapped.
+                        else
+                        {
+                            swap =(JPanel)(cc[0]);
+                            JPanel box = ((JPanel) component);
+                        ((JPanel) component).removeAll();
+                        ((JPanel) component).add(panel);
+                            
+                        success = true;
+                        dtde.acceptDrop(DnDConstants.ACTION_MOVE);
+                        ((JPanel) component).revalidate();
+                        ((JPanel) component).repaint(); 
+                            panel.revalidate();
+                            panel.repaint();
+                        }
+                        }
                         
+                        //checking if the dragged object is a card
+                        else
+                        {
+                            
+                            DropPane x = ((DropPane) component);
+                            mov_col = x.getCol();
+                            swap = null;
+                        Container parent = panel.getParent();
                         
-                    JPanel child1 = ((JPanel) ((JPanel) component).getComponents()[0]);
-                    JPanel child2 = ((JPanel) child1.getComponents()[0]);
-                    JPanel child3 = ((JPanel) child2.getComponents()[1]);
+                        if (parent != null) {
+                            parent.remove(panel);
+                            parent.revalidate();
+                            parent.repaint();
+                        }
+                            
+                            
+                        JPanel child1 = ((JPanel) ((JPanel) component).getComponents()[0]);
+                        JPanel child2 = ((JPanel) child1.getComponents()[0]);
+                        JPanel child3 = ((JPanel) child2.getComponents()[1]);
 
-                   (child3).add(panel);
-                    success = true;
-                    dtde.acceptDrop(DnDConstants.ACTION_MOVE);
-                    child3.revalidate();
-                    child3.repaint();
-                    ((JPanel) component).revalidate();
-                     ((JPanel) component).repaint(); 
-                        panel.revalidate();
-                        panel.repaint();    
+                    (child3).add(panel);
+                        success = true;
+                        dtde.acceptDrop(DnDConstants.ACTION_MOVE);
+                        child3.revalidate();
+                        child3.repaint();
+                        ((JPanel) component).revalidate();
+                        ((JPanel) component).repaint(); 
+                            panel.revalidate();
+                            panel.repaint();    
+                        }
+                        
+                    } else {
+                        success = false;
+                        dtde.rejectDrop();
                     }
-                    
                 } else {
                     success = false;
                     dtde.rejectDrop();
                 }
-            } else {
+            } catch (Exception exp) {
                 success = false;
                 dtde.rejectDrop();
+                exp.printStackTrace();
             }
-        } catch (Exception exp) {
+        } else {
             success = false;
             dtde.rejectDrop();
-            exp.printStackTrace();
         }
-    } else {
-        success = false;
-        dtde.rejectDrop();
+        dtde.dropComplete(success);
     }
-    dtde.dropComplete(success);
-}
 }

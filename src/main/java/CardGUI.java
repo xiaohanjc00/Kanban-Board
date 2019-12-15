@@ -16,7 +16,7 @@ public class CardGUI {
     private JFrame mainFrame;
     private ColumnGUI columnGui;
 
-     public CardGUI(Card card, ColumnGUI columnGuiIn) {
+    public CardGUI(Card card, ColumnGUI columnGuiIn) {
         this.card = card;
         mainFrame = new JFrame();
         frames = new ArrayList<>();
@@ -27,18 +27,21 @@ public class CardGUI {
     /**
     * This creates the new JFrame displaying the Card. it contains all options to modidy or edit a card.
     */
-
      public void makeFrame() {
 
          /* The Top Panel of the card Frame that contains the Title of the Card, Story Points of the Card and the Close Button */
-         
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new BorderLayout(10,10));
+
         JPanel topLeftPanel = new JPanel();
         topLeftPanel.setLayout(new BoxLayout(topLeftPanel, BoxLayout.Y_AXIS));
+
+        /* Labels for the card */
         JLabel cardName = new JLabel("Card: " + card.getTitle());
         JLabel id = new JLabel("ID: " + card.getId());
         JLabel storyPoint;
+
+        /* Set the story point of the card */
         int storyPointValue = card.getStoryPoint();
         if (storyPointValue == 0) {
             storyPoint = new JLabel("Story Point: NOT SET");
@@ -46,12 +49,16 @@ public class CardGUI {
         else {
             storyPoint = new JLabel("Story Point: " + storyPointValue);
         }
+
+        /* Card layout */
         cardName.setAlignmentX(JComponent.LEFT_ALIGNMENT);
         id.setAlignmentX(JComponent.LEFT_ALIGNMENT);
         storyPoint.setAlignmentX(JComponent.LEFT_ALIGNMENT);
         topLeftPanel.add(cardName);
         topLeftPanel.add(id);
         topLeftPanel.add(storyPoint);
+
+        /* Close button */
         JButton closeWindowBtn = new JButton("X Close");
         closeWindowBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) { 
@@ -60,6 +67,8 @@ public class CardGUI {
                 closeWindows();
             }
         });
+
+        /** Join everything together */
         topPanel.add(topLeftPanel, BorderLayout.LINE_START);
         topPanel.add(closeWindowBtn, BorderLayout.LINE_END);
         topPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
@@ -82,7 +91,6 @@ public class CardGUI {
     * This creates the leftPanel of the Card Frame that contains the description of the card.
     * Returns a JPanel.
     */
-
     public JPanel makeLeftPanel() {
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
@@ -93,12 +101,15 @@ public class CardGUI {
         JLabel membersLabel = new JLabel(members);
 
         JLabel descriptionLabel = new JLabel("Description");
+
         JTextArea descriptionText = new JTextArea(card.getDescription());
         descriptionText.setMinimumSize(new Dimension(300,100));
         descriptionText.setMaximumSize(new Dimension(300,100));
         descriptionText.setLineWrap(true);
+
         JButton saveDescriptionBtn = new JButton("Save Description");
         saveDescriptionBtn.addActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent e) {
                 card.setDescription(descriptionText.getText());
                 JOptionPane.showMessageDialog(leftPanel, "Description Saved!");
@@ -110,9 +121,12 @@ public class CardGUI {
             }
         });
 
+        /* Set layout */
         descriptionLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         descriptionText.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         saveDescriptionBtn.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+
+        /* Join all together */
         leftPanel.add(Box.createRigidArea(new Dimension(0, 50)));
         leftPanel.add(descriptionLabel);
         leftPanel.add(Box.createRigidArea(new Dimension(0, 30)));
@@ -130,19 +144,22 @@ public class CardGUI {
     * These include, editting story points and editting card title.
     * Returns a JPanel.
     */
-
     public JPanel makeRightPanel() {
         JPanel rightPanel = new JPanel();
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
         JLabel actionLabel = new JLabel("CARD ACTIONS...");
 
+        /*   Story points */
         JButton storyPointsBtn = new JButton("Set Story Point");
         storyPointsBtn.addActionListener(new ActionListener(){
+
             public void actionPerformed(ActionEvent e) {
                 JFrame newFrame = new JFrame();
                 addFrameToList(newFrame);
+
                 JPanel newPanel = new JPanel();
                 newPanel.setLayout(new BoxLayout(newPanel, BoxLayout.Y_AXIS));
+
                 JLabel storyPointsLabel = new JLabel("Please input the Story Point:");
                 SpinnerModel model = new SpinnerNumberModel(1, 1, 5, 1);             
                 JSpinner pointsSpinner = new JSpinner(model);
@@ -150,12 +167,15 @@ public class CardGUI {
                 ((JSpinner.DefaultEditor) pointsSpinner.getEditor()).getTextField().setEditable(false);
                 pointsSpinner.setMinimumSize(new Dimension(300,100));
                 pointsSpinner.setMaximumSize(new Dimension(300,100));
+
                 JButton submitBtn = new JButton("Submit");
                 submitBtn.addActionListener(new ActionListener() {
+
                     public void actionPerformed(ActionEvent e) {
                         card.setStoryPoint(pointsSpinner.getValue().hashCode());
                         JOptionPane.showMessageDialog(newFrame, "Story Point saved!");
                         removeFrameFromList(newFrame);
+
                         newFrame.setVisible(false);
                         newFrame.dispose();
                         refreshFrame();
@@ -166,9 +186,12 @@ public class CardGUI {
                         BoardGUI.addNewLogLine(text);
                     }
                 });
+                /* Set layout */
                 storyPointsLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
                 pointsSpinner.setAlignmentX(JComponent.CENTER_ALIGNMENT);
                 submitBtn.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+
+                /* Add all together */
                 newPanel.add(storyPointsLabel);
                 newPanel.add(pointsSpinner);
                 newPanel.add(submitBtn);
@@ -176,22 +199,29 @@ public class CardGUI {
                 newFrame.setSize(400,200);
                 newFrame.setVisible(true);
             }
+
         });
 
+        /* Change card title */
         JButton cardTitleBtn = new JButton("Change Card Title");
         cardTitleBtn.addActionListener(new ActionListener(){
+
             public void actionPerformed(ActionEvent e) {
                 JFrame newFrame = new JFrame();
                 addFrameToList(newFrame);
+
                 JPanel newPanel = new JPanel();
                 newPanel.setLayout(new BoxLayout(newPanel, BoxLayout.Y_AXIS));
+
                 JLabel cardTitleLabel = new JLabel("Please input the new card title:");
                 JTextArea cardTitleText = new JTextArea(card.getTitle());
                 cardTitleText.setMinimumSize(new Dimension(150,50));
                 cardTitleText.setMaximumSize(new Dimension(150,50));
                 cardTitleText.setLineWrap(true);
+
                 JButton submitBtn = new JButton("Submit");
                 submitBtn.addActionListener(new ActionListener(){
+
                     public void actionPerformed(ActionEvent e) {
                         String temp = card.getTitle();
                         card.setTitle(cardTitleText.getText());
@@ -206,10 +236,13 @@ public class CardGUI {
                         String text = Board.actLog.editCardTitleLog(temp, card);
                         BoardGUI.addNewLogLine(text);
                     }
+
                 });
+
                 cardTitleLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
                 cardTitleText.setAlignmentX(JComponent.CENTER_ALIGNMENT);
                 submitBtn.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+
                 newPanel.add(cardTitleLabel);
                 newPanel.add(cardTitleText);
                 newPanel.add(submitBtn);
@@ -217,6 +250,7 @@ public class CardGUI {
                 newFrame.setSize(400,200);
                 newFrame.setVisible(true);
             }
+
         });
 
         rightPanel.add(Box.createRigidArea(new Dimension(0, 50)));
@@ -228,14 +262,25 @@ public class CardGUI {
         return rightPanel;
     }
 
+    /**
+     * Add frame to list of panels
+     * @param frame main frame
+     */
     public void addFrameToList(JFrame frame) {
         frames.add(frame);
     }
 
+    /**
+     * Remove frame to list of panels
+     * @param frame main frame
+     */
     public void removeFrameFromList(JFrame frame) {
         frames.remove(frame);
     }
 
+    /**
+     * Set frame to not visible
+     */
     public void closeWindows() {
         for (JFrame frame : frames) {
             frame.setVisible(false);
@@ -247,7 +292,6 @@ public class CardGUI {
     *This refreshes a Card Frame instance by removing all contents of the Frame, 
     * and then making the Frame all over again.
     */
-    
     public void refreshFrame() {
         mainFrame.getContentPane().removeAll();
         makeFrame();

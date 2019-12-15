@@ -108,14 +108,15 @@ public class Main {
         /* Adding button to create a new Kanban Board */
 
         JPanel add_board = new JPanel();
-        add_board.setBackground(Color.decode("#0277BD"));
         add_board.setBorder(BorderFactory.createMatteBorder(0, 5, 0, 5, Color.decode("#0277BD")));
+
         JButton add_board_btn = new JButton(" ADD NEW BOARD ");
-        add_board_btn.setBackground(Color.decode("#ECEFF1"));
         add_board_btn.setPreferredSize(new Dimension(600, 100));
         add_board_btn.addActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent e) {
                 board_name = JOptionPane.showInputDialog(first_frame, "ENTER BOARD NAME:", null);
+
                 if (board_name != null) {
                     Board board_added = new Board(board_name);
                     boardlist.addBoard(board_added);
@@ -143,6 +144,7 @@ public class Main {
         JLabel list_l = new JLabel("CURRENT BOARDS: ");
         list_boards.add(list_l);
         JPanel board_panel;
+
         for (Board curr_board : boardlist.getAllBoards()) {
             JButton curr_board_name = new JButton(curr_board.getName());
             curr_board_name.addActionListener(new ActionListener() {
@@ -171,6 +173,9 @@ public class Main {
         return body;
     }
 
+    /**
+     * Get the list of files inside a folder
+     */
     public static void listFileFromFolder(final File folder) {
         boardlist.clearList();
         if (folder.listFiles() != null) {
@@ -183,6 +188,9 @@ public class Main {
         }
     }
 
+    /**
+     * Set the colors for the entire GUI
+     */
     public static void setColors() {
         try{
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());

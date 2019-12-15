@@ -11,132 +11,137 @@ import java.util.*;
 import java.time.*;
 
 public class Board implements Serializable {
-  private String name;
-  private ArrayList<String> members;
-  private ArrayList<Column> columns;
-  private int nextId;
-  static ActivityLog actLog;
 
-  /*
-   * Constructor of Board class.
-   * 
-   * @param nameIn The title of the Board.
-   */
+    private String name;
+    private ArrayList<String> members;
+    private ArrayList<Column> columns;
+    private int nextId;
+    static ActivityLog actLog;
 
-  public Board(String nameIn) {
-    name = nameIn;
-    columns = new ArrayList<Column>();
-    members = new ArrayList<String>();
-    nextId = 0;
+    /*
+    * Constructor of Board class.
+    * @param nameIn The title of the Board.
+    */
 
-    // Create an activity log for the board
-    try {
-      actLog = new ActivityLog(name);
-    } catch (IOException e) {
-      e.printStackTrace();
+    public Board(String nameIn) {
+        name = nameIn;
+        columns = new ArrayList<Column>();
+        members = new ArrayList<String>();
+        nextId = 0;
+
+        // Create an activity log for the board
+        try {
+            actLog = new ActivityLog(name);
+        } 
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
-  }
 
-  /*
-   * Get the log of the Board.
-   * 
-   * @return Log of the Board in a list of strings.
-   */
-  public List<String> getLog() {
-    return actLog.getActivityLog();
-  }
+    /*
+    * Get the log of the Board.
+    * @return Log of the Board in a list of strings.
+    */
+    public List<String> getLog() {
+        return actLog.getActivityLog();
+    }
 
-  /*
-   * Get the ArrayList of Columns.
-   * 
-   * @return ArrayList of Columns.
-   */
-  public ArrayList<Column> getColumnsList() {
-    return columns;
-  }
+    /*
+    * Get the ArrayList of Columns.
+    * @return ArrayList of Columns.
+    */
+    public ArrayList<Column> getColumnsList() {
+        return columns;
+    }
 
-  /*
-   * Set the title of the Board.
-   * 
-   * @param nameIn The new title of the Board.
-   */
-  public void setName(String nameIn) {
-    name = nameIn;
-  }
+    /*
+    * Set the title of the Board.
+    * @param nameIn The new title of the Board.
+    */
+    public void setName(String nameIn) {
+        name = nameIn;
+    }
 
-  /*
-   * Get the title of the Board.
-   * 
-   * @return The title of the Board.
-   */
-  public String getName() {
-    return name;
-  }
+    /*
+    * Get the title of the Board.
+    * @return The title of the Board.
+    */
+    public String getName() {
+        return name;
+    }
 
-  /*
-   * Add a column to the Board.
-   * 
-   * @param col Column object to be added.
-   */
-  public void addColumn(Column col) {
-    columns.add(col);
-  }
+    /*
+    * Add a column to the Board.
+    * @param col Column object to be added.
+    */
+    public void addColumn(Column col) {
+        columns.add(col);
+    }
 
-  /*
-   * Remove a column from the Board.
-   * 
-   * @param col Column object to be removed.
-   */
-  public void removeColumn(Column col) {
-    columns.remove(col);
-  }
+    /*
+    * Remove a column from the Board.
+    * @param col Column object to be removed.
+    */
+    public void removeColumn(Column col) {
+        columns.remove(col);
+    }
 
-  /*
-   * Get all the columns in the board.
-   * 
-   * @return An ArrayList of Column objects.
-   */
-  public ArrayList<Column> getColumns() {
-    return columns;
-  }
+    /*
+    * Get all the columns in the board.
+    * @return An ArrayList of Column objects.
+    */
+    public ArrayList<Column> getColumns() {
+        return columns;
+    }
 
-  /*
-   * Add a member to the board.
-   * 
-   * @param col Column object to be added.
-   */
-  public void addMember(String member) {
-    members.add(member);
-  }
+    /**
+     * Add member to the board
+     * @param member name of the member
+     */
+    public void addMember(String member) {
+        members.add(member);
+    }
 
-  public void removeMember(String member) {
-    members.remove(member);
-  }
+    /**
+     * Remove member from board
+     * @param member name of the member
+     */
+    public void removeMember(String member) {
+        members.remove(member);
+    }
 
-  public ArrayList<String> getMembers() {
-    return members;
-  }
+    /**
+     * Return the list of members
+     * @return ArrayLIst of the members
+     */
+    public ArrayList<String> getMembers() {
+        return members;
+    }
 
-  /*
-   * Get all the ID of the next Card.
-   * Each card in the board has unique IDs,
-   * therefore the board decides the ID of cards.
-   * 
-   * @return The ID of the next card
-   */
-  public int getId() {
-    return nextId;
-  }
+    /*
+    * Get all the ID of the next Card.
+    * Each card in the board has unique IDs,
+    * therefore the board decides the ID of cards.
+    * 
+    * @return The ID of the next card
+    */
+    public int getId() {
+        return nextId;
+    }
 
-  /*
-   * Increments the ID of the next Card.
-   */
-  public void incrementId() {
-    nextId++;
-  }
+    /*
+    * Increments the ID of the next Card.
+    */
+    public void incrementId() {
+        nextId++;
+    }
 
-  public void clearColumns(){
-    columns.clear();
-  }
+    /**
+     * Clear the list of columns of the board
+     */
+    public void clearColumns(){
+        columns.clear();
+    }
 
 }

@@ -23,8 +23,6 @@ public class ActivityLog {
         viewActivityLog(fileName);
     }
 
-    
-
     /**
      * Get the date and time
      * @return current date and time
