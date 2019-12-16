@@ -107,8 +107,14 @@ public class DragGestureHandler implements DragGestureListener, DragSourceListen
         } else {    
             Card cc = child.getCard();
             child.getCol().moveCard(cc, DropHandler.mov_col);
-            if(DropHandler.swap != null)
+            if(DropHandler.swap != null){
                 par.add(DropHandler.swap);
+            }
+
+            /*Move card log */
+            String text = Board.actLog.moveCardLog(cc, DropHandler.mov_col);
+            BoardGUI.addNewLogLine(text);
+
         }
 
         getParent().revalidate();

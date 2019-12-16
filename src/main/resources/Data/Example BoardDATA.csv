@@ -1,0 +1,36 @@
+boardName, Example Board
+
+columnName, Phase 0  , To-do
+ColumnEnd 
+
+columnName, Phase 1  , In progress
+ColumnEnd 
+
+columnName, Phase 2  , Unit Tests
+ColumnEnd 
+
+columnName, Phase 3  , Code Review
+ColumnEnd 
+
+columnName, Phase 4  , Complete
+cardName, Main Application Class, 1, 3, null, 
+cardName, Main Application GUI, 0, 3, null, 
+cardName, Board Class, 2, 2, null, 
+cardName, Board GUI, 3, 4, null, 
+cardName, Column Class, 4, 2, null, 
+cardName, Column GUI, 5, 3, null, 
+cardName, Card Class, 6, 4, null, 
+cardName, Card GUI, 7, 4, null, 
+cardName, Connect Card to CardGUI, 8, 4, null, 
+cardName, Connect Column to ColumnGUI, 9, 4, null, 
+cardName, Connect Board to BoardGUI, 10, 4, null, 
+cardName, Connect Main App to its GUI, 11, 4, null, 
+cardName, CSV Writer/Reader Class, 12, 4, null, 
+cardName, Activity Log Class, 13, 3, null, 
+cardName, Activity Log GUI, 14, 0, null, 
+cardName, Save Data to CSV functionality, 15, 4, null, 
+cardName, Fixing Bug #1, 16, 1, null, 
+cardName, Fix Bug #2, 17, 1, null, 
+cardName, Drag and Drop Cards, 18, 5, null, 
+cardName, Drag and Drop Columns, 19, 5, null, 
+ColumnEnd 

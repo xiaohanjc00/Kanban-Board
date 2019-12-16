@@ -100,9 +100,9 @@ public class Main {
         JPanel description = new JPanel();
         description.setBackground(Color.decode("#0277BD"));
         description.setBorder(BorderFactory.createMatteBorder(3, 0, 0, 0, Color.GRAY));
-        JLabel description_label = new JLabel(" Welcome to our kanban board! ");
+        JLabel description_label = new JLabel("A Kanban board is one of the tools that can be used to implement Kanban to manage work at a personal or organizational level. ");
         description.add(description_label);
-        description.setMaximumSize(new Dimension((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(), 400));
+        description.setMaximumSize(new Dimension((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(), 200));
         body.add(description);
 
         /* Adding button to create a new Kanban Board */
@@ -118,29 +118,33 @@ public class Main {
                 board_name = JOptionPane.showInputDialog(first_frame, "ENTER BOARD NAME:", null);
 
                 if (board_name != null) {
+                    
                     Board board_added = new Board(board_name);
-                    boardlist.addBoard(board_added);
-                    BoardGUI new_board = new BoardGUI(board_name, board_added); // Board Object also passed as parameter
-                    activeBoard = board_added;
-
-                    first_frame.getContentPane().removeAll();
-                    first_frame.add(head, BorderLayout.PAGE_START);
-                    first_frame.add(new_board.generate(), BorderLayout.CENTER);
-                    // LoadData load_data = new LoadData("aaa.csv");
-                    // first_frame.add(new_board.build(load_data), BorderLayout.CENTER);
-                    first_frame.revalidate();
-                    first_frame.repaint();
+                    if(!boardlist.contains(board_added))
+                      {
+                        boardlist.addBoard(board_added);
+                        BoardGUI new_board = new BoardGUI(board_name, board_added); // Board Object also passed as parameter
+                        activeBoard = board_added;
+                        first_frame.getContentPane().removeAll();
+                        first_frame.add(head, BorderLayout.PAGE_START);
+                        first_frame.add(new_board.generate(), BorderLayout.CENTER);
+                        first_frame.revalidate();
+                        first_frame.repaint();
+                     }
+                    else
+                    {
+                     JOptionPane.showMessageDialog(null, "THIS BOARD NAME IS ALREADY IN USE. KINDLY USE A DIFFERENT NAME.");   
+                    }
                 }
             }
         });
         add_board.add(add_board_btn);
-        add_board.setMaximumSize(new Dimension((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(), 100));
+        add_board.setMaximumSize(new Dimension((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(), 200));
         body.add(add_board);
 
         /* Displaying a list of current saved boards in the application */
         listFileFromFolder(folder);
         JPanel list_boards = new JPanel();
-        list_boards.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.decode("#0277BD")));
         JLabel list_l = new JLabel("CURRENT BOARDS: ");
         list_boards.add(list_l);
         JPanel board_panel;
@@ -164,6 +168,7 @@ public class Main {
 
             });
             board_panel = new JPanel();
+            curr_board_name.setPreferredSize(new Dimension(80,80));
             board_panel.add(curr_board_name);
             list_boards.add(board_panel);
         }
