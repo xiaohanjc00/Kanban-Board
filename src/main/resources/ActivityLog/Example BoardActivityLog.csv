@@ -1,0 +1,139 @@
+New column Phase 0 has been created to Example Board , 15-12-2019 03:49:47
+New column Phase 1 has been created to Example Board , 15-12-2019 03:50:00
+New column Phase 2 has been created to Example Board , 15-12-2019 03:50:35
+New column Phase 3 has been created to Example Board , 15-12-2019 03:51:01
+New column Phase 4 has been created to Example Board , 15-12-2019 03:51:06
+New card Main Application GUI has been created to Phase 0 , 15-12-2019 03:51:27
+New card Main Application Clas has been created to Phase 0 , 15-12-2019 03:51:37
+Card Main Application Clas changed name to Main Application Class , 15-12-2019 03:51:44 
+Main Application Class story point has been set to 3 , 15-12-2019 03:52:00
+Main Application GUI story point has been set to 3 , 15-12-2019 03:52:05
+New card Board Class has been created to Phase 0 , 15-12-2019 03:52:14
+Board Class story point has been set to 2 , 15-12-2019 03:52:20
+New card Board GUI has been created to Phase 0 , 15-12-2019 03:52:26
+Board GUI story point has been set to 4 , 15-12-2019 03:52:30
+New card Column Class has been created to Phase 0 , 15-12-2019 03:53:31
+Column Class story point has been set to 2 , 15-12-2019 03:53:36
+New card Column GUI has been created to Phase 0 , 15-12-2019 03:53:41
+Column GUI story point has been set to 3 , 15-12-2019 03:53:45
+New card Card Class has been created to Phase 0 , 15-12-2019 03:54:40
+Card Class story point has been set to 4 , 15-12-2019 03:54:47
+New card Card GUI has been created to Phase 0 , 15-12-2019 03:54:57
+Card GUI story point has been set to 4 , 15-12-2019 03:55:03
+Board Example Board has been saved correctly, 15-12-2019 03:55:15
+Card Main Application GUI has been moved to Phase 1, 15-12-2019 03:55:33
+Card Main Application Class has been moved to Phase 1, 15-12-2019 03:55:35
+Card Board Class has been moved to Phase 1, 15-12-2019 03:55:38
+Card Board GUI has been moved to Phase 1, 15-12-2019 03:55:39
+Board Example Board has been saved correctly, 15-12-2019 03:55:45
+Card Main Application Class has been moved to Phase 2, 15-12-2019 03:55:53
+Card Board Class has been moved to Phase 2, 15-12-2019 03:55:55
+Board Example Board has been saved correctly, 15-12-2019 03:56:03
+Card Main Application Class has been moved to Phase 3, 15-12-2019 03:56:07
+Card Board Class has been moved to Phase 3, 15-12-2019 03:56:08
+Card Main Application GUI has been moved to Phase 2, 15-12-2019 03:56:09
+Card Board GUI has been moved to Phase 2, 15-12-2019 03:56:11
+Board Example Board has been saved correctly, 15-12-2019 03:57:27
+Card Main Application Class has been moved to Phase 4, 15-12-2019 03:57:32
+Card Main Application GUI has been moved to Phase 3, 15-12-2019 03:57:35
+Card Board GUI has been moved to Phase 3, 15-12-2019 03:57:38
+Card Column Class has been moved to Phase 1, 15-12-2019 03:57:43
+Board Example Board has been saved correctly, 15-12-2019 03:57:50
+Card Main Application GUI has been moved to Phase 4, 15-12-2019 03:57:56
+Card Board Class has been moved to Phase 4, 15-12-2019 03:57:58
+Card Board GUI has been moved to Phase 4, 15-12-2019 03:57:59
+Card Column Class has been moved to Phase 2, 15-12-2019 03:58:01
+Card Column GUI has been moved to Phase 1, 15-12-2019 03:58:02
+Card Card Class has been moved to Phase 1, 15-12-2019 03:58:04
+Card Card GUI has been moved to Phase 1, 15-12-2019 03:58:05
+Board Example Board has been saved correctly, 15-12-2019 03:58:10
+New card Connect Card to CardGUI has been created to Phase 0 , 15-12-2019 03:59:30
+Connect Card to CardGUI story point has been set to 4 , 15-12-2019 03:59:34
+New card Connect Column to ColumnGUI has been created to Phase 0 , 15-12-2019 03:59:51
+Connect Column to ColumnGUI story point has been set to 4 , 15-12-2019 03:59:55
+New card Connect Board to BoardGUI has been created to Phase 0 , 15-12-2019 04:00:13
+Connect Board to BoardGUI story point has been set to 4 , 15-12-2019 04:00:18
+New card Connect Main App to its GUI has been created to Phase 0 , 15-12-2019 04:00:35
+Connect Main App to its GUI story point has been set to 4 , 15-12-2019 04:00:39
+Board Example Board has been saved correctly, 15-12-2019 04:01:21
+Card Column Class has been moved to Phase 3, 15-12-2019 04:01:24
+Card Column GUI has been moved to Phase 2, 15-12-2019 04:01:26
+Card Card Class has been moved to Phase 2, 15-12-2019 04:01:28
+Card Card GUI has been moved to Phase 2, 15-12-2019 04:01:29
+Board Example Board has been saved correctly, 15-12-2019 04:01:32
+Card Column Class has been moved to Phase 4, 15-12-2019 04:01:34
+Card Column GUI has been moved to Phase 3, 15-12-2019 04:01:35
+Card Card Class has been moved to Phase 3, 15-12-2019 04:01:36
+Card Card GUI has been moved to Phase 3, 15-12-2019 04:01:37
+Board Example Board has been saved correctly, 15-12-2019 04:01:46
+Card Column GUI has been moved to Phase 4, 15-12-2019 04:01:47
+Card Card Class has been moved to Phase 4, 15-12-2019 04:01:48
+Card Card GUI has been moved to Phase 4, 15-12-2019 04:01:49
+Card Connect Card to CardGUI has been moved to Phase 1, 15-12-2019 04:01:51
+Card Connect Column to ColumnGUI has been moved to Phase 1, 15-12-2019 04:01:51
+Card Connect Board to BoardGUI has been moved to Phase 1, 15-12-2019 04:01:52
+Card Connect Main App to its GUI has been moved to Phase 1, 15-12-2019 04:01:53
+Board Example Board has been saved correctly, 15-12-2019 04:01:54
+Card Connect Card to CardGUI has been moved to Phase 3, 15-12-2019 04:02:04
+Card Connect Column to ColumnGUI has been moved to Phase 3, 15-12-2019 04:02:05
+Card Connect Board to BoardGUI has been moved to Phase 3, 15-12-2019 04:02:06
+Card Connect Main App to its GUI has been moved to Phase 3, 15-12-2019 04:02:07
+Board Example Board has been saved correctly, 15-12-2019 04:02:11
+New card CSV Writer/Reader Class has been created to Phase 0 , 15-12-2019 04:02:54
+CSV Writer/Reader Class story point has been set to 4 , 15-12-2019 04:02:59
+New card Activity Log Class has been created to Phase 0 , 15-12-2019 04:03:22
+New card Activity Log GUI has been created to Phase 0 , 15-12-2019 04:03:33
+New card Save Data to CSV functionality has been created to Phase 0 , 15-12-2019 04:04:05
+Activity Log Class story point has been set to 3 , 15-12-2019 04:04:17
+Save Data to CSV functionality story point has been set to 4 , 15-12-2019 04:06:26
+Board Example Board has been saved correctly, 15-12-2019 04:07:45
+Card Connect Card to CardGUI has been moved to Phase 4, 15-12-2019 04:07:49
+Card Connect Column to ColumnGUI has been moved to Phase 4, 15-12-2019 04:07:50
+Card Connect Board to BoardGUI has been moved to Phase 4, 15-12-2019 04:07:52
+Card Connect Main App to its GUI has been moved to Phase 4, 15-12-2019 04:07:53
+Card CSV Writer/Reader Class has been moved to Phase 1, 15-12-2019 04:07:55
+Board Example Board has been saved correctly, 15-12-2019 04:08:00
+Card CSV Writer/Reader Class has been moved to Phase 2, 15-12-2019 04:08:01
+Board Example Board has been saved correctly, 15-12-2019 04:08:03
+Card CSV Writer/Reader Class has been moved to Phase 3, 15-12-2019 04:08:04
+Card Activity Log Class has been moved to Phase 1, 15-12-2019 04:08:05
+Card Activity Log GUI has been moved to Phase 1, 15-12-2019 04:08:06
+Card Save Data to CSV functionality has been moved to Phase 1, 15-12-2019 04:08:07
+Board Example Board has been saved correctly, 15-12-2019 04:08:10
+Card CSV Writer/Reader Class has been moved to Phase 4, 15-12-2019 04:08:14
+Card Activity Log Class has been moved to Phase 2, 15-12-2019 04:08:17
+Card Activity Log GUI has been moved to Phase 2, 15-12-2019 04:08:18
+New card Fixing Bug #1 has been created to Phase 0 , 15-12-2019 04:08:42
+Card Activity Log Class has been moved to Phase 3, 15-12-2019 04:08:50
+Card Activity Log GUI has been moved to Phase 3, 15-12-2019 04:08:51
+Card Save Data to CSV functionality has been moved to Phase 2, 15-12-2019 04:08:55
+Card Fixing Bug #1 has been moved to Phase 1, 15-12-2019 04:08:56
+New card Fix Bug #2 has been created to Phase 0 , 15-12-2019 04:09:06
+Fixing Bug #1 story point has been set to 1 , 15-12-2019 04:09:13
+Fix Bug #2 story point has been set to 1 , 15-12-2019 04:09:17
+Card Activity Log Class has been moved to Phase 4, 15-12-2019 04:09:49
+Card Activity Log GUI has been moved to Phase 4, 15-12-2019 04:09:50
+Card Save Data to CSV functionality has been moved to Phase 3, 15-12-2019 04:09:52
+Card Fixing Bug #1 has been moved to Phase 3, 15-12-2019 04:09:54
+Card Fix Bug #2 has been moved to Phase 1, 15-12-2019 04:09:56
+New card Drag and Drop Cards has been created to Phase 0 , 15-12-2019 04:10:07
+Drag and Drop Cards story point has been set to 5 , 15-12-2019 04:10:11
+New card Drag and Drop Columns has been created to Phase 0 , 15-12-2019 04:10:29
+Drag and Drop Columns story point has been set to 5 , 15-12-2019 04:10:35
+Card Drag and Drop Cards has been moved to Phase 1, 15-12-2019 04:10:40
+Card Fix Bug #2 has been moved to Phase 3, 15-12-2019 04:10:41
+Card Save Data to CSV functionality has been moved to Phase 4, 15-12-2019 04:10:43
+Board Example Board has been saved correctly, 15-12-2019 04:10:44
+Card Fixing Bug #1 has been moved to Phase 4, 15-12-2019 04:10:45
+Card Fix Bug #2 has been moved to Phase 4, 15-12-2019 04:10:47
+Card Drag and Drop Cards has been moved to Phase 2, 15-12-2019 04:10:50
+Card Drag and Drop Columns has been moved to Phase 1, 15-12-2019 04:10:51
+Board Example Board has been saved correctly, 15-12-2019 04:10:53
+Card Drag and Drop Cards has been moved to Phase 3, 15-12-2019 04:10:54
+Card Drag and Drop Columns has been moved to Phase 2, 15-12-2019 04:10:55
+Board Example Board has been saved correctly, 15-12-2019 04:10:57
+Card Drag and Drop Cards has been moved to Phase 4, 15-12-2019 04:10:59
+Card Drag and Drop Columns has been moved to Phase 3, 15-12-2019 04:11:01
+Board Example Board has been saved correctly, 15-12-2019 04:11:03
+Card Drag and Drop Columns has been moved to Phase 4, 15-12-2019 04:11:06
+Board Example Board has been saved correctly, 15-12-2019 04:11:10
