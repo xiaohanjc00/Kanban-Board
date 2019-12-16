@@ -235,3 +235,9 @@ Temporary Items
 
 # End of https://www.gitignore.io/api/java,linux,macos,intellij
 
+
+.classpath
+.gradle/*
+.project
+.settings
+.vscode
