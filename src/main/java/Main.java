@@ -168,7 +168,7 @@ public class Main {
 
             });
             board_panel = new JPanel();
-            curr_board_name.setPreferredSize(new Dimension(80,80));
+            curr_board_name.setPreferredSize(new Dimension(150,50));
             board_panel.add(curr_board_name);
             list_boards.add(board_panel);
         }
