@@ -1,5 +1,9 @@
 # Kanban Board
 
+Java-based Kanban Board implementation with:
+- Swing for GUI
+- Gradle for testing
+
 ## Functionality
 
 ### Creating Boards
