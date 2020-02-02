@@ -1,23 +1,31 @@
-# Team-Canary-Agile-Group-Project
+# Kanban Board
 
-Team Canary
+## Functionality
 
-Shivam Agarwal
+### Creating Boards
 
-Scott Anderson
+- Create new Kanban board (or access to previously created boards)
 
-Xiao - Han (Xiaohan) Jiang Chen
+- Save Kanban board into CSV files
 
-Alan Mahmoud
+### Board functionalities
 
-Ka Wang (Gavin) Sin
+- Create, edit, move (drag and drop), delete columns
 
+- Create, edit, delete cards
 
-Regarding Task n. 13: I want to be able to load and save a board, including its activity log, from/to persistent storage.
+- View activity log for each board
 
-A sample file, a modest project and a week's worth of activity is included with the project: Example Board is included inside the program, 
-The ActivityLog for the board is both displayed in the program and available at Team-Canary-Agile-Group-Project\src\main\resources\ActivityLog\Example BoardActivityLog.csv
+- Save screenshot of current board state
 
+## Contributors
 
-You can also view the Screenshots for task 12: "I want to be able to view the state of a board at a particular time in the project" at 
-\src\main\resources\Screenshots\Example Board
+- Shivam Agarwal
+
+- Scott Anderson
+
+- Xiaohan Jiang Chen
+
+- Alan Mahmoud
+
+- Ka Wang (Gavin) Sin
